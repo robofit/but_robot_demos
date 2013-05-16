@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <node pkg="trolley" name="trolley" type="trolley" output="screen" respawn="true">
+  </node>
+ 
+  <node pkg="kinect_motor" name="kinect_motor" type="kinect_motor" output="screen" respawn="true">
+  </node>
+
+  <node pkg="kinect_audio" name="kinect_audio" type="kinect_audio" output="screen" respawn="true">
+  </node>
+
+  <node pkg="btb_base_driver" name="roomba_driver" type="roomba500_light_node" output="screen" respawn="true">
+  </node>
+
+</launch>

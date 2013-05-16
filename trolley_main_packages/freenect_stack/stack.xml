@@ -1,0 +1,21 @@
+<stack>
+  <description brief="A libfreenect based ROS driver for the Microsoft Kinect">
+    A libfreenect based ROS driver for the Microsoft Kinect
+  </description>
+
+  <author>Maintained by Piyush Khandelwal</author>
+  <license>Apache 2.0/BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <version>0.1.1</version>
+  <url>http://ros.org/wiki/freenect_stack</url>
+
+  <depend stack="common_msgs" /> <!-- common_msgs -->
+  <depend stack="dynamic_reconfigure" /> <!-- dynamic_reconfigure -->
+  <depend stack="image_common" /> <!-- camera_info_manager, image_transport -->
+  <depend stack="nodelet_core" /> <!-- nodelet -->
+  <depend stack="ros_comm" /> <!-- roscpp -->
+  <depend stack="geometry" /> <!-- tf -->
+  <depend stack="image_pipeline" /> <!-- image_proc, depth_image_proc -->
+  <depend stack="diagnostics" /> <!-- diagnostic_updater -->
+
+</stack>
