@@ -1,0 +1,190 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/src/rosconsole/rosconsole.cpp File Reference}
+\label{rosconsole_8cpp}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/src/rosconsole/rosconsole.cpp@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/src/rosconsole/rosconsole.cpp}}
+{\ttfamily \#include \char`\"{}ros/console.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}ros/assert.h\char`\"{}}\par
+{\ttfamily \#include $<$ros/time.h$>$}\par
+{\ttfamily \#include \char`\"{}log4cxx/appenderskeleton.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}log4cxx/spi/loggingevent.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}log4cxx/level.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}log4cxx/propertyconfigurator.h\char`\"{}}\par
+{\ttfamily \#include $<$boost/thread.hpp$>$}\par
+{\ttfamily \#include $<$boost/shared\_\-array.hpp$>$}\par
+{\ttfamily \#include $<$boost/regex.hpp$>$}\par
+{\ttfamily \#include $<$cstdarg$>$}\par
+{\ttfamily \#include $<$cstdlib$>$}\par
+{\ttfamily \#include $<$cstdio$>$}\par
+{\ttfamily \#include $<$memory$>$}\par
+{\ttfamily \#include $<$cstring$>$}\par
+{\ttfamily \#include $<$stdexcept$>$}\par
+Include dependency graph for rosconsole.cpp:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{rosconsole_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf ros::console::FileToken}
+\item 
+struct {\bf ros::console::FixedMapToken}
+\item 
+struct {\bf ros::console::FixedToken}
+\item 
+struct {\bf ros::console::Formatter}
+\item 
+struct {\bf ros::console::FunctionToken}
+\item 
+struct {\bf ros::console::LineToken}
+\item 
+struct {\bf ros::console::LoggerToken}
+\item 
+struct {\bf ros::console::MessageToken}
+\item 
+struct {\bf ros::console::PlaceHolderToken}
+\item 
+class {\bf ros::console::ROSConsoleStdioAppender}
+\item 
+struct {\bf ros::console::SeverityToken}
+\item 
+class {\bf ros::console::StaticInit}
+\item 
+struct {\bf ros::console::ThreadToken}
+\item 
+struct {\bf ros::console::TimeToken}
+\item 
+struct {\bf ros::console::Token}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf ros}
+\item 
+namespace {\bf ros::console}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf COLOR\_\-GREEN}~\char`\"{}$\backslash$033[32m\char`\"{}
+\item 
+\#define {\bf COLOR\_\-NORMAL}~\char`\"{}$\backslash$033[0m\char`\"{}
+\item 
+\#define {\bf COLOR\_\-RED}~\char`\"{}$\backslash$033[31m\char`\"{}
+\item 
+\#define {\bf COLOR\_\-YELLOW}~\char`\"{}$\backslash$033[33m\char`\"{}
+\item 
+\#define {\bf INITIAL\_\-BUFFER\_\-SIZE}~4096
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::map$<$ std::string, std::string $>$ {\bf ros::console::M\_\-string}
+\item 
+typedef boost::shared\_\-ptr$<$ Token $>$ {\bf ros::console::TokenPtr}
+\item 
+typedef std::vector$<$ LogLocation $\ast$ $>$ {\bf ros::console::V\_\-LogLocation}
+\item 
+typedef std::vector$<$ TokenPtr $>$ {\bf ros::console::V\_\-Token}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::checkLogLocationEnabled} (LogLocation $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+void {\bf ros::console::checkLogLocationEnabledNoLock} (LogLocation $\ast$loc)
+\item 
+TokenPtr {\bf ros::console::createTokenFromType} (const std::string \&type)
+\item 
+void {\bf ros::console::do\_\-initialize} ()
+\begin{DoxyCompactList}\small\item\em For internal use only. Does the actual initialization of the rosconsole system. Should only be called once. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::formatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt,...)
+\item 
+ROSCONSOLE\_\-DECL std::string {\bf ros::console::formatToString} (const char $\ast$fmt,...)
+\item 
+static boost::shared\_\-array$<$ char $>$ {\bf ros::console::g\_\-print\_\-buffer} (new char[INITIAL\_\-BUFFER\_\-SIZE])
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::initialize} ()
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Performs any required initialization/configuration. Happens automatically when using the macro API. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::initializeLogLocation} (LogLocation $\ast$loc, const std::string \&name, Level level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::notifyLoggerLevelsChanged} ()
+\begin{DoxyCompactList}\small\item\em Tells the system that a logger's level has changed. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::print} (FilterBase $\ast$filter, log4cxx::Logger $\ast$logger, Level level, const char $\ast$file, int line, const char $\ast$function, const char $\ast$fmt,...) ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE(7
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Use the \doxyref{ROS\_\-LOG()}{p.}{console_8h_a12ee3c39e5966eebc3509a3fbff81a18} macro instead. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void ROSCONSOLE\_\-DECL void {\bf ros::console::print} (FilterBase $\ast$filter, log4cxx::Logger $\ast$logger, Level level, const std::stringstream \&str, const char $\ast$file, int line, const char $\ast$function)
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::registerLogLocation} (LogLocation $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Registers a logging location with the system. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::setFixedFilterToken} (const std::string \&key, const std::string \&val)
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::setLogLocationLevel} (LogLocation $\ast$loc, Level level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::shutdown} ()
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::vformatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt, va\_\-list args)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+M\_\-string {\bf ros::console::g\_\-extra\_\-fixed\_\-tokens}
+\item 
+const char $\ast$ {\bf ros::console::g\_\-format\_\-string} = \char`\"{}[\$\{severity\}] [\$\{time\}]: \$\{message\}\char`\"{}
+\item 
+Formatter {\bf ros::console::g\_\-formatter}
+\item 
+boost::mutex {\bf ros::console::g\_\-init\_\-mutex}
+\item 
+boost::mutex {\bf ros::console::g\_\-locations\_\-mutex}
+\item 
+V\_\-LogLocation {\bf ros::console::g\_\-log\_\-locations}
+\item 
+static size\_\-t {\bf ros::console::g\_\-print\_\-buffer\_\-size} = INITIAL\_\-BUFFER\_\-SIZE
+\item 
+static boost::mutex {\bf ros::console::g\_\-print\_\-mutex}
+\item 
+static boost::thread::id {\bf ros::console::g\_\-printing\_\-thread\_\-id}
+\item 
+bool {\bf ros::console::g\_\-shutting\_\-down} = false
+\item 
+StaticInit {\bf ros::console::g\_\-static\_\-init}
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{rosconsole.cpp@{rosconsole.cpp}!COLOR\_\-GREEN@{COLOR\_\-GREEN}}
+\index{COLOR\_\-GREEN@{COLOR\_\-GREEN}!rosconsole.cpp@{rosconsole.cpp}}
+\subsubsection[{COLOR\_\-GREEN}]{\setlength{\rightskip}{0pt plus 5cm}\#define COLOR\_\-GREEN~\char`\"{}$\backslash$033[32m\char`\"{}}\label{rosconsole_8cpp_afc9149f5de51bd9ac4f5ebbfa153f018}
+
+
+Definition at line 85 of file rosconsole.cpp.
+
+\index{rosconsole.cpp@{rosconsole.cpp}!COLOR\_\-NORMAL@{COLOR\_\-NORMAL}}
+\index{COLOR\_\-NORMAL@{COLOR\_\-NORMAL}!rosconsole.cpp@{rosconsole.cpp}}
+\subsubsection[{COLOR\_\-NORMAL}]{\setlength{\rightskip}{0pt plus 5cm}\#define COLOR\_\-NORMAL~\char`\"{}$\backslash$033[0m\char`\"{}}\label{rosconsole_8cpp_ac366dc6682d1d12bcae1eb1ae8ae09c5}
+
+
+Definition at line 83 of file rosconsole.cpp.
+
+\index{rosconsole.cpp@{rosconsole.cpp}!COLOR\_\-RED@{COLOR\_\-RED}}
+\index{COLOR\_\-RED@{COLOR\_\-RED}!rosconsole.cpp@{rosconsole.cpp}}
+\subsubsection[{COLOR\_\-RED}]{\setlength{\rightskip}{0pt plus 5cm}\#define COLOR\_\-RED~\char`\"{}$\backslash$033[31m\char`\"{}}\label{rosconsole_8cpp_ad86358bf19927183dd7b4ae215a29731}
+
+
+Definition at line 84 of file rosconsole.cpp.
+
+\index{rosconsole.cpp@{rosconsole.cpp}!COLOR\_\-YELLOW@{COLOR\_\-YELLOW}}
+\index{COLOR\_\-YELLOW@{COLOR\_\-YELLOW}!rosconsole.cpp@{rosconsole.cpp}}
+\subsubsection[{COLOR\_\-YELLOW}]{\setlength{\rightskip}{0pt plus 5cm}\#define COLOR\_\-YELLOW~\char`\"{}$\backslash$033[33m\char`\"{}}\label{rosconsole_8cpp_a4534b577b74a58b0f4b7be027af664e0}
+
+
+Definition at line 86 of file rosconsole.cpp.
+
+\index{rosconsole.cpp@{rosconsole.cpp}!INITIAL\_\-BUFFER\_\-SIZE@{INITIAL\_\-BUFFER\_\-SIZE}}
+\index{INITIAL\_\-BUFFER\_\-SIZE@{INITIAL\_\-BUFFER\_\-SIZE}!rosconsole.cpp@{rosconsole.cpp}}
+\subsubsection[{INITIAL\_\-BUFFER\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define INITIAL\_\-BUFFER\_\-SIZE~4096}\label{rosconsole_8cpp_a1d51567e0f6916e91f5bd3719d56cce6}
+
+
+Definition at line 539 of file rosconsole.cpp.
+

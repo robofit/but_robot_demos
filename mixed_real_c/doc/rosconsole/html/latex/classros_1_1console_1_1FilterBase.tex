@@ -1,0 +1,112 @@
+\section{ros::console::FilterBase Class Reference}
+\label{classros_1_1console_1_1FilterBase}\index{ros::console::FilterBase@{ros::console::FilterBase}}
+
+
+Base-\/class for filters. Filters allow full user-\/defined control over whether or not a message should print. The ROS\_\-X\_\-FILTER... macros provide the filtering functionality.  
+
+
+
+
+{\ttfamily \#include $<$console.h$>$}
+
+
+
+Inheritance diagram for ros::console::FilterBase:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{classros_1_1console_1_1FilterBase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool {\bf isEnabled} ()
+\begin{DoxyCompactList}\small\item\em Returns whether or not the log statement should be printed. Called before the log arguments are evaluated and the message is formatted. \end{DoxyCompactList}\item 
+virtual bool {\bf isEnabled} ({\bf FilterParams} \&)
+\begin{DoxyCompactList}\small\item\em Returns whether or not the log statement should be printed. Called once the message has been formatted, and allows you to change the message, logger and severity level if necessary. \end{DoxyCompactList}\item 
+virtual {\bf $\sim$FilterBase} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base-\/class for filters. Filters allow full user-\/defined control over whether or not a message should print. The ROS\_\-X\_\-FILTER... macros provide the filtering functionality. 
+
+Filters get a chance to veto the message from printing at two times: first before the message arguments are evaluated and the message is formatted, and then once the message is formatted before it is printed. It is also possible to change the message, logger and severity level at this stage (see the \doxyref{FilterParams}{p.}{structros_1_1console_1_1FilterParams} struct for more details).
+
+When a ROS\_\-X\_\-FILTER... macro is called, here is the high-\/level view of how it uses the filter passed in: \begin{DoxyVerb}
+if (<logging level is enabled> && filter->isEnabled())
+{
+  <format message>
+  <fill out FilterParams>
+  if (filter->isEnabled(params))
+  {
+    <print message>
+  }
+}
+\end{DoxyVerb}
+ 
+
+Definition at line 202 of file console.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ros::console::FilterBase@{ros::console::FilterBase}!$\sim$FilterBase@{$\sim$FilterBase}}
+\index{$\sim$FilterBase@{$\sim$FilterBase}!ros::console::FilterBase@{ros::console::FilterBase}}
+\subsubsection[{$\sim$FilterBase}]{\setlength{\rightskip}{0pt plus 5cm}virtual ros::console::FilterBase::$\sim$FilterBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline, virtual]}}\label{classros_1_1console_1_1FilterBase_a3bbdc648432369813d96b76b90f3d601}
+
+
+Definition at line 205 of file console.h.
+
+
+
+\subsection{Member Function Documentation}
+\index{ros::console::FilterBase@{ros::console::FilterBase}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!ros::console::FilterBase@{ros::console::FilterBase}}
+\subsubsection[{isEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool ros::console::FilterBase::isEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline, virtual]}}\label{classros_1_1console_1_1FilterBase_ac4a1c9d0ba5672f7cdd0f3e72014fb27}
+
+
+Returns whether or not the log statement should be printed. Called before the log arguments are evaluated and the message is formatted. 
+
+
+
+Reimplemented in {\bf BasicFilter} \doxyref{}{p.}{structBasicFilter_a3180b17ebad03c04aa6cd790f9fad12e}.
+
+
+
+Definition at line 210 of file console.h.
+
+\index{ros::console::FilterBase@{ros::console::FilterBase}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!ros::console::FilterBase@{ros::console::FilterBase}}
+\subsubsection[{isEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool ros::console::FilterBase::isEnabled (
+\begin{DoxyParamCaption}
+\item[{{\bf FilterParams} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline, virtual]}}\label{classros_1_1console_1_1FilterBase_a7b3cbade01659ff3da011a11f0aaae8b}
+
+
+Returns whether or not the log statement should be printed. Called once the message has been formatted, and allows you to change the message, logger and severity level if necessary. 
+
+
+
+Reimplemented in {\bf AdvancedFilter} \doxyref{}{p.}{structAdvancedFilter_a86d2f0f5cf53128b405f045db8e98704}, and {\bf ChangeFilter} \doxyref{}{p.}{structChangeFilter_a58a260b48341ecb60e9bc652bec87157}.
+
+
+
+Definition at line 215 of file console.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/{\bf console.h}\end{DoxyCompactItemize}

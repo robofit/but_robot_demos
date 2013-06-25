@@ -1,0 +1,144 @@
+\section{virtualObject Class Reference}
+\label{classvirtualObject}\index{virtualObject@{virtualObject}}
+
+
+{\ttfamily \#include $<$ins\_\-pub.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+tf::Vector3 {\bf getCent} ()
+\item 
+void {\bf polygonObject} ({\bf Preset} pr)
+\item 
+{\bf virtualObject} (float x, float y, float z, float side)
+\item 
+{\bf virtualObject} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double {\bf intensity}
+\item 
+std::vector$<$ tf::Vector3 $>$ {\bf points}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tf::Vector3 {\bf cent}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Trieda popisujuca virtualny objekt, obsahue zoznam bodov objektu, intenzitu jeho nasnimaneho signalu, popripade tazisko 
+
+Definition at line 50 of file ins\_\-pub.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{virtualObject@{virtualObject}!virtualObject@{virtualObject}}
+\index{virtualObject@{virtualObject}!virtualObject@{virtualObject}}
+\subsubsection[{virtualObject}]{\setlength{\rightskip}{0pt plus 5cm}virtualObject::virtualObject (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z, }
+\item[{float}]{side}
+\end{DoxyParamCaption}
+)}\label{classvirtualObject_aa95fa6088755b7c31fc669ecb9d0990c}
+Konstruktor triedy \doxyref{virtualObject}{p.}{classvirtualObject} vytvarajuci stvorcovy objekt
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Hodnota suradnice x \\
+\hline
+{\em y} & Hodnota suradnice y \\
+\hline
+{\em z} & Hodnota suradnice z \\
+\hline
+{\em side} & Dlzka strany stvorca \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file ins\_\-pub.cpp.
+
+\index{virtualObject@{virtualObject}!virtualObject@{virtualObject}}
+\index{virtualObject@{virtualObject}!virtualObject@{virtualObject}}
+\subsubsection[{virtualObject}]{\setlength{\rightskip}{0pt plus 5cm}virtualObject::virtualObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classvirtualObject_ae0f57a6da984a34dce58f91076baf829}
+
+
+Definition at line 22 of file ins\_\-pub.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{virtualObject@{virtualObject}!getCent@{getCent}}
+\index{getCent@{getCent}!virtualObject@{virtualObject}}
+\subsubsection[{getCent}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 virtualObject::getCent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classvirtualObject_af30ea11f475db774dd4f5109dc2484b1}
+Funkcia vracajuca suradnice taziska objektu
+
+\begin{DoxyReturn}{Returns}
+Vracia vektor taziska 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file ins\_\-pub.cpp.
+
+\index{virtualObject@{virtualObject}!polygonObject@{polygonObject}}
+\index{polygonObject@{polygonObject}!virtualObject@{virtualObject}}
+\subsubsection[{polygonObject}]{\setlength{\rightskip}{0pt plus 5cm}void virtualObject::polygonObject (
+\begin{DoxyParamCaption}
+\item[{{\bf Preset}}]{pr}
+\end{DoxyParamCaption}
+)}\label{classvirtualObject_a187d648eed7e69ce5c7094a78768725a}
+Vytvori polygonalny objekt
+
+
+\begin{DoxyParams}{Parameters}
+{\em pr} & Struktura s nacitanymi datami o virtualnom objekte \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file ins\_\-pub.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{virtualObject@{virtualObject}!cent@{cent}}
+\index{cent@{cent}!virtualObject@{virtualObject}}
+\subsubsection[{cent}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 {\bf virtualObject::cent}\hspace{0.3cm}{\ttfamily  [private]}}\label{classvirtualObject_a24519cbee83b99d1ddccff38a535a783}
+
+
+Definition at line 52 of file ins\_\-pub.h.
+
+\index{virtualObject@{virtualObject}!intensity@{intensity}}
+\index{intensity@{intensity}!virtualObject@{virtualObject}}
+\subsubsection[{intensity}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf virtualObject::intensity}}\label{classvirtualObject_a5f44a64185bda77dea560cb19ae3af31}
+
+
+Definition at line 55 of file ins\_\-pub.h.
+
+\index{virtualObject@{virtualObject}!points@{points}}
+\index{points@{points}!virtualObject@{virtualObject}}
+\subsubsection[{points}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$tf::Vector3$>$ {\bf virtualObject::points}}\label{classvirtualObject_a25815f7e92fc9c5bb35127e32ffcd834}
+
+
+Definition at line 54 of file ins\_\-pub.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+include/mixed\_\-real\_\-c/{\bf ins\_\-pub.h}\item 
+src/{\bf ins\_\-pub.cpp}\end{DoxyCompactItemize}

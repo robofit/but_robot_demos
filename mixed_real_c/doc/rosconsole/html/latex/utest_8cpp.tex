@@ -1,0 +1,448 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/test/utest.cpp File Reference}
+\label{utest_8cpp}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/test/utest.cpp@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/test/utest.cpp}}
+{\ttfamily \#include \char`\"{}ros/console.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}log4cxx/appenderskeleton.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}log4cxx/spi/loggingevent.h\char`\"{}}\par
+{\ttfamily \#include $<$vector$>$}\par
+{\ttfamily \#include $<$stdexcept$>$}\par
+{\ttfamily \#include $<$gtest/gtest.h$>$}\par
+{\ttfamily \#include $<$boost/shared\_\-array.hpp$>$}\par
+Include dependency graph for utest.cpp:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{utest_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf AdvancedFilter}
+\item 
+struct {\bf BasicFilter}
+\item 
+struct {\bf ChangeFilter}
+\item 
+struct {\bf TestAppender::Info}
+\item 
+class {\bf TestAppender}
+\item 
+class {\bf TestAppenderWithThrow}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf DEFINE\_\-COND\_\-TESTS}(name, macro\_\-base, level)
+\item 
+\#define {\bf DEFINE\_\-FILTER\_\-TESTS}(name, macro\_\-base, level)
+\item 
+\#define {\bf DEFINE\_\-LEVEL\_\-TESTS}(name, macro\_\-base, level)
+\item 
+\#define {\bf DEFINE\_\-ONCE\_\-TESTS}(name, macro\_\-base, level)
+\item 
+\#define {\bf DEFINE\_\-THROTTLE\_\-TESTS}(name, macro\_\-base, level)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf main} (int argc, char $\ast$$\ast$argv)
+\item 
+void {\bf onceFunc} ()
+\item 
+void {\bf onceStreamFunc} ()
+\item 
+{\bf TEST} (RosConsole, formatToBufferInitialLargerThanFormat)
+\item 
+{\bf TEST} (RosConsole, formatToBufferInitialZero)
+\item 
+{\bf TEST} (RosConsole, changeFilterStream)
+\item 
+{\bf TEST} (RosConsole, changeFilter)
+\item 
+{\bf TEST} (RosConsole, advancedFilterStream)
+\item 
+{\bf TEST} (RosConsole, formatToString)
+\item 
+{\bf TEST} (RosConsole, basicFilterStream)
+\item 
+{\bf TEST} (RosConsole, basicFilter)
+\item 
+{\bf TEST} (RosConsole, throttleStream)
+\item 
+{\bf TEST} (RosConsole, longPrintfStyleOutput)
+\item 
+{\bf TEST} (RosConsole, changingLevel)
+\item 
+{\bf TEST} (RosConsole, throwingAppender)
+\item 
+{\bf TEST} (RosConsole, advancedFilter)
+\item 
+{\bf TEST} (RosConsole, throttle)
+\item 
+{\bf TEST} (RosConsole, once)
+\item 
+{\bf TEST} (RosConsole, changingLoggerLevel)
+\item 
+{\bf TEST} (RosConsole, onceStream)
+\item 
+{\bf TEST} (RosConsole, loggingLevels)
+\item 
+void {\bf throttleFunc} ()
+\item 
+void {\bf throttleStreamFunc} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\bf BasicFilter} {\bf g\_\-filter} (true)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{utest.cpp@{utest.cpp}!DEFINE\_\-COND\_\-TESTS@{DEFINE\_\-COND\_\-TESTS}}
+\index{DEFINE\_\-COND\_\-TESTS@{DEFINE\_\-COND\_\-TESTS}!utest.cpp@{utest.cpp}}
+\subsubsection[{DEFINE\_\-COND\_\-TESTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINE\_\-COND\_\-TESTS(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{macro\_\-base, }
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_afff61a4dd5f95e2dde2a524fcfaa2bee}
+
+
+Definition at line 106 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!DEFINE\_\-FILTER\_\-TESTS@{DEFINE\_\-FILTER\_\-TESTS}}
+\index{DEFINE\_\-FILTER\_\-TESTS@{DEFINE\_\-FILTER\_\-TESTS}!utest.cpp@{utest.cpp}}
+\subsubsection[{DEFINE\_\-FILTER\_\-TESTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINE\_\-FILTER\_\-TESTS(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{macro\_\-base, }
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a2bd55136572ce7666247f0d4e510970e}
+
+
+Definition at line 242 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!DEFINE\_\-LEVEL\_\-TESTS@{DEFINE\_\-LEVEL\_\-TESTS}}
+\index{DEFINE\_\-LEVEL\_\-TESTS@{DEFINE\_\-LEVEL\_\-TESTS}!utest.cpp@{utest.cpp}}
+\subsubsection[{DEFINE\_\-LEVEL\_\-TESTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINE\_\-LEVEL\_\-TESTS(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{macro\_\-base, }
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a41925585dd1f222512fb978da1a9e219}
+
+
+Definition at line 286 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!DEFINE\_\-ONCE\_\-TESTS@{DEFINE\_\-ONCE\_\-TESTS}}
+\index{DEFINE\_\-ONCE\_\-TESTS@{DEFINE\_\-ONCE\_\-TESTS}!utest.cpp@{utest.cpp}}
+\subsubsection[{DEFINE\_\-ONCE\_\-TESTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINE\_\-ONCE\_\-TESTS(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{macro\_\-base, }
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a41d9133f9191b385182be1c3c6807394}
+
+
+Definition at line 154 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!DEFINE\_\-THROTTLE\_\-TESTS@{DEFINE\_\-THROTTLE\_\-TESTS}}
+\index{DEFINE\_\-THROTTLE\_\-TESTS@{DEFINE\_\-THROTTLE\_\-TESTS}!utest.cpp@{utest.cpp}}
+\subsubsection[{DEFINE\_\-THROTTLE\_\-TESTS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINE\_\-THROTTLE\_\-TESTS(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{macro\_\-base, }
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a662ffadd5b7b262d55521dbe099c57ed}
+
+
+Definition at line 198 of file utest.cpp.
+
+
+
+\subsection{Function Documentation}
+\index{utest.cpp@{utest.cpp}!main@{main}}
+\index{main@{main}!utest.cpp@{utest.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 897 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!onceFunc@{onceFunc}}
+\index{onceFunc@{onceFunc}!utest.cpp@{utest.cpp}}
+\subsubsection[{onceFunc}]{\setlength{\rightskip}{0pt plus 5cm}void onceFunc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ac2d00651c9f6fa1c17ed785bf97fad08}
+
+
+Definition at line 645 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!onceStreamFunc@{onceStreamFunc}}
+\index{onceStreamFunc@{onceStreamFunc}!utest.cpp@{utest.cpp}}
+\subsubsection[{onceStreamFunc}]{\setlength{\rightskip}{0pt plus 5cm}void onceStreamFunc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ab45d9bc93af81be78d2fff98f5f46c3e}
+
+
+Definition at line 691 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{formatToBufferInitialLargerThanFormat}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a4c323ac049d8d835e4ffe6887ca34f71}
+
+
+Definition at line 882 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{formatToBufferInitialZero}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ae41ce6b5efcd96619718355cfa2c369d}
+
+
+Definition at line 873 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{changeFilterStream}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ac5cd89a7adc69e733630dd1ce6abd981}
+
+
+Definition at line 856 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{changeFilter}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a7d1aba3c71be96071d215be6288f49ce}
+
+
+Definition at line 839 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{advancedFilterStream}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a74ec67389ad06dcdd2e2d66d97986d96}
+
+
+Definition at line 809 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{formatToString}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ae28875b3c474ef64da888c958058eda1}
+
+
+Definition at line 891 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{basicFilterStream}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a8e7bb1a38443e0772f92fc8176b074c5}
+
+
+Definition at line 754 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{basicFilter}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a69968faff2907ebc33f21495632a53e5}
+
+
+Definition at line 737 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{throttleStream}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_af742c291da64c3dede24455453e351ad}
+
+
+Definition at line 716 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{longPrintfStyleOutput}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a2d73cdbd0f1dbed277f3c4c7c1cbc34c}
+
+
+Definition at line 602 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{changingLevel}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a5faf7e76294239b161169ba9c8aac9dd}
+
+
+Definition at line 561 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{throwingAppender}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_aad05d5867d41dbf1f8c952283a3c9047}
+
+
+Definition at line 625 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{advancedFilter}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a9d38539d505c79f7bc0f197cec1df953}
+
+
+Definition at line 790 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{throttle}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a9f4418281523f99ddeede1b47ac32b45}
+
+
+Definition at line 670 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{once}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a9ffabe3b2247f2d8cf48028f2ac5fa89}
+
+
+Definition at line 650 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{changingLoggerLevel}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a420ab6e4fc4455ef59ccf72d1c124277}
+
+
+Definition at line 581 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{onceStream}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a55eabe4da72dc710b7a3d0173fb550ab}
+
+
+Definition at line 696 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!utest.cpp@{utest.cpp}}
+\subsubsection[{TEST}]{\setlength{\rightskip}{0pt plus 5cm}TEST (
+\begin{DoxyParamCaption}
+\item[{RosConsole}]{, }
+\item[{loggingLevels}]{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a0a8ce732ca05bca0aa6879d915472fb5}
+
+
+Definition at line 340 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!throttleFunc@{throttleFunc}}
+\index{throttleFunc@{throttleFunc}!utest.cpp@{utest.cpp}}
+\subsubsection[{throttleFunc}]{\setlength{\rightskip}{0pt plus 5cm}void throttleFunc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_a66753d7eae2694b47e8fc137dbf0807d}
+
+
+Definition at line 665 of file utest.cpp.
+
+\index{utest.cpp@{utest.cpp}!throttleStreamFunc@{throttleStreamFunc}}
+\index{throttleStreamFunc@{throttleStreamFunc}!utest.cpp@{utest.cpp}}
+\subsubsection[{throttleStreamFunc}]{\setlength{\rightskip}{0pt plus 5cm}void throttleStreamFunc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{utest_8cpp_ae3e338860dd7b886a27b6f00b068f17d}
+
+
+Definition at line 711 of file utest.cpp.
+
+
+
+\subsection{Variable Documentation}
+\index{utest.cpp@{utest.cpp}!g\_\-filter@{g\_\-filter}}
+\index{g\_\-filter@{g\_\-filter}!utest.cpp@{utest.cpp}}
+\subsubsection[{g\_\-filter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BasicFilter} {\bf g\_\-filter}(true)}\label{utest_8cpp_aa73c70f0df8d5d81ce298c441cd2f459}

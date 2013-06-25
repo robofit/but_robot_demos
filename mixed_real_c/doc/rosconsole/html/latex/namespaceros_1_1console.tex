@@ -1,0 +1,539 @@
+\section{ros::console Namespace Reference}
+\label{namespaceros_1_1console}\index{ros::console@{ros::console}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf levels}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf FileToken}
+\item 
+class {\bf FilterBase}
+\begin{DoxyCompactList}\small\item\em Base-\/class for filters. Filters allow full user-\/defined control over whether or not a message should print. The ROS\_\-X\_\-FILTER... macros provide the filtering functionality. \end{DoxyCompactList}\item 
+struct {\bf FilterParams}
+\begin{DoxyCompactList}\small\item\em Parameter structure passed to \doxyref{FilterBase::isEnabled}{p.}{classros_1_1console_1_1FilterBase_ac4a1c9d0ba5672f7cdd0f3e72014fb27}(...);. Includes both input and output parameters. \end{DoxyCompactList}\item 
+struct {\bf FixedMapToken}
+\item 
+struct {\bf FixedToken}
+\item 
+struct {\bf Formatter}
+\item 
+struct {\bf FunctionToken}
+\item 
+struct {\bf LineToken}
+\item 
+struct {\bf LoggerToken}
+\item 
+struct {\bf LogLocation}
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+struct {\bf MessageToken}
+\item 
+struct {\bf PlaceHolderToken}
+\item 
+class {\bf ROSConsoleStdioAppender}
+\item 
+struct {\bf SeverityToken}
+\item 
+class {\bf StaticInit}
+\item 
+struct {\bf ThreadToken}
+\item 
+struct {\bf TimeToken}
+\item 
+struct {\bf Token}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef {\bf levels::Level} {\bf Level}
+\item 
+typedef std::map$<$ std::string, std::string $>$ {\bf M\_\-string}
+\item 
+typedef boost::shared\_\-ptr$<$ {\bf Token} $>$ {\bf TokenPtr}
+\item 
+typedef std::vector$<$ {\bf LogLocation} $\ast$ $>$ {\bf V\_\-LogLocation}
+\item 
+typedef std::vector$<$ {\bf TokenPtr} $>$ {\bf V\_\-Token}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ROSCONSOLE\_\-DECL void {\bf checkLogLocationEnabled} ({\bf LogLocation} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+void {\bf checkLogLocationEnabledNoLock} ({\bf LogLocation} $\ast$loc)
+\item 
+{\bf TokenPtr} {\bf createTokenFromType} (const std::string \&type)
+\item 
+void {\bf do\_\-initialize} ()
+\begin{DoxyCompactList}\small\item\em For internal use only. Does the actual initialization of the rosconsole system. Should only be called once. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf formatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt,...)
+\item 
+ROSCONSOLE\_\-DECL std::string {\bf formatToString} (const char $\ast$fmt,...)
+\item 
+static boost::shared\_\-array$<$ char $>$ {\bf g\_\-print\_\-buffer} (new char[INITIAL\_\-BUFFER\_\-SIZE])
+\item 
+ROSCONSOLE\_\-DECL void {\bf initialize} ()
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Performs any required initialization/configuration. Happens automatically when using the macro API. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf initializeLogLocation} ({\bf LogLocation} $\ast$loc, const std::string \&name, {\bf Level} level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf notifyLoggerLevelsChanged} ()
+\begin{DoxyCompactList}\small\item\em Tells the system that a logger's level has changed. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void ROSCONSOLE\_\-DECL void {\bf print} ({\bf FilterBase} $\ast$filter, log4cxx::Logger $\ast$logger, {\bf Level} level, const std::stringstream \&str, const char $\ast$file, int line, const char $\ast$function)
+\item 
+ROSCONSOLE\_\-DECL void {\bf print} ({\bf FilterBase} $\ast$filter, log4cxx::Logger $\ast$logger, {\bf Level} level, const char $\ast$file, int line, const char $\ast$function, const char $\ast$fmt,...) ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE(7
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Use the \doxyref{ROS\_\-LOG()}{p.}{console_8h_a12ee3c39e5966eebc3509a3fbff81a18} macro instead. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf registerLogLocation} ({\bf LogLocation} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Registers a logging location with the system. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf setFixedFilterToken} (const std::string \&key, const std::string \&val)
+\item 
+ROSCONSOLE\_\-DECL void {\bf setLogLocationLevel} ({\bf LogLocation} $\ast$loc, {\bf Level} level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf shutdown} ()
+\item 
+ROSCONSOLE\_\-DECL void {\bf vformatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt, va\_\-list args)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\bf M\_\-string} {\bf g\_\-extra\_\-fixed\_\-tokens}
+\item 
+const char $\ast$ {\bf g\_\-format\_\-string} = \char`\"{}[\$\{severity\}] [\$\{time\}]: \$\{message\}\char`\"{}
+\item 
+{\bf Formatter} {\bf g\_\-formatter}
+\item 
+boost::mutex {\bf g\_\-init\_\-mutex}
+\item 
+ROSCONSOLE\_\-DECL bool {\bf g\_\-initialized} = false
+\begin{DoxyCompactList}\small\item\em Only exported because the macros need it. Do not use directly. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL {\bf log4cxx::LevelPtr} {\bf g\_\-level\_\-lookup} [$\,$]
+\item 
+boost::mutex {\bf g\_\-locations\_\-mutex}
+\item 
+{\bf V\_\-LogLocation} {\bf g\_\-log\_\-locations}
+\item 
+static size\_\-t {\bf g\_\-print\_\-buffer\_\-size} = INITIAL\_\-BUFFER\_\-SIZE
+\item 
+static boost::mutex {\bf g\_\-print\_\-mutex}
+\item 
+static boost::thread::id {\bf g\_\-printing\_\-thread\_\-id}
+\item 
+bool {\bf g\_\-shutting\_\-down} = false
+\item 
+{\bf StaticInit} {\bf g\_\-static\_\-init}
+\item 
+struct ROSCONSOLE\_\-DECL {\bf LogLocation}
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{ros::console@{ros::console}!Level@{Level}}
+\index{Level@{Level}!ros::console@{ros::console}}
+\subsubsection[{Level}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf levels::Level} {\bf ros::console::Level}}\label{namespaceros_1_1console_aa8b1a9957d16c30b71aea4ca7c4bffea}
+
+
+Definition at line 107 of file console.h.
+
+\index{ros::console@{ros::console}!M\_\-string@{M\_\-string}}
+\index{M\_\-string@{M\_\-string}!ros::console@{ros::console}}
+\subsubsection[{M\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}typedef std::map$<$std::string, std::string$>$ {\bf ros::console::M\_\-string}}\label{namespaceros_1_1console_a387ec2926c43695eb6db08231094cc6e}
+
+
+Definition at line 97 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!TokenPtr@{TokenPtr}}
+\index{TokenPtr@{TokenPtr}!ros::console@{ros::console}}
+\subsubsection[{TokenPtr}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost::shared\_\-ptr$<${\bf Token}$>$ {\bf ros::console::TokenPtr}}\label{namespaceros_1_1console_ae7bdc6cae17d4785a6211c2cda5eae04}
+
+
+Definition at line 94 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!V\_\-LogLocation@{V\_\-LogLocation}}
+\index{V\_\-LogLocation@{V\_\-LogLocation}!ros::console@{ros::console}}
+\subsubsection[{V\_\-LogLocation}]{\setlength{\rightskip}{0pt plus 5cm}typedef std::vector$<${\bf LogLocation}$\ast$$>$ {\bf ros::console::V\_\-LogLocation}}\label{namespaceros_1_1console_a3c83ab7ee37d2e3eeb5e37ecfc1a5333}
+
+
+Definition at line 665 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!V\_\-Token@{V\_\-Token}}
+\index{V\_\-Token@{V\_\-Token}!ros::console@{ros::console}}
+\subsubsection[{V\_\-Token}]{\setlength{\rightskip}{0pt plus 5cm}typedef std::vector$<${\bf TokenPtr}$>$ {\bf ros::console::V\_\-Token}}\label{namespaceros_1_1console_a5a062b6ca5ae15571bedd44929d98dc2}
+
+
+Definition at line 95 of file rosconsole.cpp.
+
+
+
+\subsection{Function Documentation}
+\index{ros::console@{ros::console}!checkLogLocationEnabled@{checkLogLocationEnabled}}
+\index{checkLogLocationEnabled@{checkLogLocationEnabled}!ros::console@{ros::console}}
+\subsubsection[{checkLogLocationEnabled}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::checkLogLocationEnabled (
+\begin{DoxyParamCaption}
+\item[{LogLocation $\ast$}]{loc}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a884c9b3706de0fd8d59e78d5cc3d4a8b}
+
+
+Internal. 
+
+
+
+Definition at line 705 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!checkLogLocationEnabledNoLock@{checkLogLocationEnabledNoLock}}
+\index{checkLogLocationEnabledNoLock@{checkLogLocationEnabledNoLock}!ros::console@{ros::console}}
+\subsubsection[{checkLogLocationEnabledNoLock}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::checkLogLocationEnabledNoLock (
+\begin{DoxyParamCaption}
+\item[{LogLocation $\ast$}]{loc}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_aa4a7af05d85f462c0500728433ac094e}
+
+
+Definition at line 675 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!createTokenFromType@{createTokenFromType}}
+\index{createTokenFromType@{createTokenFromType}!ros::console@{ros::console}}
+\subsubsection[{createTokenFromType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TokenPtr} ros::console::createTokenFromType (
+\begin{DoxyParamCaption}
+\item[{const std::string \&}]{type}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a002c0a7a505520666bc6e9362677fd93}
+
+
+Definition at line 257 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!do\_\-initialize@{do\_\-initialize}}
+\index{do\_\-initialize@{do\_\-initialize}!ros::console@{ros::console}}
+\subsubsection[{do\_\-initialize}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::do\_\-initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_adc2641e6e31c58933693e5f47037cc52}
+
+
+For internal use only. Does the actual initialization of the rosconsole system. Should only be called once. 
+
+
+
+Definition at line 411 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!formatToBuffer@{formatToBuffer}}
+\index{formatToBuffer@{formatToBuffer}!ros::console@{ros::console}}
+\subsubsection[{formatToBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::formatToBuffer (
+\begin{DoxyParamCaption}
+\item[{boost::shared\_\-array$<$ char $>$ \&}]{buffer, }
+\item[{size\_\-t \&}]{buffer\_\-size, }
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_aadafd1e75eadee20de881b9451469039}
+
+
+Definition at line 514 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!formatToString@{formatToString}}
+\index{formatToString@{formatToString}!ros::console@{ros::console}}
+\subsubsection[{formatToString}]{\setlength{\rightskip}{0pt plus 5cm}std::string ros::console::formatToString (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a67a7d405186df998e72f338dfb00d45e}
+
+
+Definition at line 524 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-print\_\-buffer@{g\_\-print\_\-buffer}}
+\index{g\_\-print\_\-buffer@{g\_\-print\_\-buffer}!ros::console@{ros::console}}
+\subsubsection[{g\_\-print\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}static boost::shared\_\-array$<$char$>$ ros::console::g\_\-print\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{new}]{char[INITIAL\_\-BUFFER\_\-SIZE]}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [static]}}\label{namespaceros_1_1console_af4be0c2b4a4cb9d62e0ef7da854b8406}
+\index{ros::console@{ros::console}!initialize@{initialize}}
+\index{initialize@{initialize}!ros::console@{ros::console}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a046f4e31149b10587dfddaa3c76dc708}
+
+
+Don't call this directly. Performs any required initialization/configuration. Happens automatically when using the macro API. 
+
+If you're going to be using \doxyref{log4cxx}{p.}{namespacelog4cxx} or any of the \doxyref{ros::console}{p.}{namespaceros_1_1console} functions, and need the system to be initialized, use the ROSCONSOLE\_\-AUTOINIT macro. 
+
+Definition at line 476 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!initializeLogLocation@{initializeLogLocation}}
+\index{initializeLogLocation@{initializeLogLocation}!ros::console@{ros::console}}
+\subsubsection[{initializeLogLocation}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::initializeLogLocation (
+\begin{DoxyParamCaption}
+\item[{LogLocation $\ast$}]{loc, }
+\item[{const std::string \&}]{name, }
+\item[{Level}]{level}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a2f7179b1fca591de04a23db5bcee3860}
+
+
+Internal. 
+
+
+
+Definition at line 680 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!notifyLoggerLevelsChanged@{notifyLoggerLevelsChanged}}
+\index{notifyLoggerLevelsChanged@{notifyLoggerLevelsChanged}!ros::console@{ros::console}}
+\subsubsection[{notifyLoggerLevelsChanged}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::notifyLoggerLevelsChanged (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a7d8d9c277994cb315961ddbee540f1e1}
+
+
+Tells the system that a logger's level has changed. 
+
+This must be called if a log4cxx::Logger's level has been changed in the middle of an application run. Because of the way the static guard for enablement works, if a logger's level is changed and this function is not called, only logging statements which are first hit $\ast$after$\ast$ the change will be correct wrt that logger. 
+
+Definition at line 711 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!print@{print}}
+\index{print@{print}!ros::console@{ros::console}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::print (
+\begin{DoxyParamCaption}
+\item[{FilterBase $\ast$}]{filter, }
+\item[{log4cxx::Logger $\ast$}]{logger, }
+\item[{Level}]{level, }
+\item[{const std::stringstream \&}]{str, }
+\item[{const char $\ast$}]{file, }
+\item[{int}]{line, }
+\item[{const char $\ast$}]{function}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a4f7819f70dc5f74ddc92d5d3e55d5281}
+
+
+Definition at line 611 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!print@{print}}
+\index{print@{print}!ros::console@{ros::console}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::print (
+\begin{DoxyParamCaption}
+\item[{FilterBase $\ast$}]{filter, }
+\item[{log4cxx::Logger $\ast$}]{logger, }
+\item[{Level}]{level, }
+\item[{const char $\ast$}]{file, }
+\item[{int}]{line, }
+\item[{const char $\ast$}]{function, }
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a849168d63bfaf3870c4adb2c2d8ac63e}
+
+
+Don't call this directly. Use the \doxyref{ROS\_\-LOG()}{p.}{console_8h_a12ee3c39e5966eebc3509a3fbff81a18} macro instead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Logging level \\
+\hline
+{\em file} & File this logging statement is from (usually generated with \_\-\_\-FILE\_\-\_\-) \\
+\hline
+{\em line} & Line of code this logging statement is from (usually generated with \_\-\_\-LINE\_\-\_\-) \\
+\hline
+{\em fmt} & Format string \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 544 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!registerLogLocation@{registerLogLocation}}
+\index{registerLogLocation@{registerLogLocation}!ros::console@{ros::console}}
+\subsubsection[{registerLogLocation}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::registerLogLocation (
+\begin{DoxyParamCaption}
+\item[{LogLocation $\ast$}]{loc}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a534701de3536891941cbe5e187c34d95}
+
+
+Registers a logging location with the system. 
+
+This is used for the case where a logger's verbosity level changes, and we need to reset the enabled status of all the logging statements. 
+\begin{DoxyParams}{Parameters}
+{\em loc} & The location to add \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 668 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!setFixedFilterToken@{setFixedFilterToken}}
+\index{setFixedFilterToken@{setFixedFilterToken}!ros::console@{ros::console}}
+\subsubsection[{setFixedFilterToken}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::setFixedFilterToken (
+\begin{DoxyParamCaption}
+\item[{const std::string \&}]{key, }
+\item[{const std::string \&}]{val}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_ab9a9f54c436778263e50e146cfd6432b}
+
+
+Definition at line 100 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!setLogLocationLevel@{setLogLocationLevel}}
+\index{setLogLocationLevel@{setLogLocationLevel}!ros::console@{ros::console}}
+\subsubsection[{setLogLocationLevel}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::setLogLocationLevel (
+\begin{DoxyParamCaption}
+\item[{LogLocation $\ast$}]{loc, }
+\item[{Level}]{level}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_ab914a78902eca30bfafdc7b939b6ac20}
+
+
+Internal. 
+
+
+
+Definition at line 699 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!ros::console@{ros::console}}
+\subsubsection[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::shutdown (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_a41c5025d31f7f7d9452496e092c33c85}
+
+
+Definition at line 735 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!vformatToBuffer@{vformatToBuffer}}
+\index{vformatToBuffer@{vformatToBuffer}!ros::console@{ros::console}}
+\subsubsection[{vformatToBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void ros::console::vformatToBuffer (
+\begin{DoxyParamCaption}
+\item[{boost::shared\_\-array$<$ char $>$ \&}]{buffer, }
+\item[{size\_\-t \&}]{buffer\_\-size, }
+\item[{const char $\ast$}]{fmt, }
+\item[{va\_\-list}]{args}
+\end{DoxyParamCaption}
+)}\label{namespaceros_1_1console_adcec0ac23c4cfb333185f57d6c938696}
+
+
+Definition at line 487 of file rosconsole.cpp.
+
+
+
+\subsection{Variable Documentation}
+\index{ros::console@{ros::console}!g\_\-extra\_\-fixed\_\-tokens@{g\_\-extra\_\-fixed\_\-tokens}}
+\index{g\_\-extra\_\-fixed\_\-tokens@{g\_\-extra\_\-fixed\_\-tokens}!ros::console@{ros::console}}
+\subsubsection[{g\_\-extra\_\-fixed\_\-tokens}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\_\-string} {\bf ros::console::g\_\-extra\_\-fixed\_\-tokens}}\label{namespaceros_1_1console_abd7a0df9ad4362790dea4eecd7331f3e}
+
+
+Definition at line 98 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-format\_\-string@{g\_\-format\_\-string}}
+\index{g\_\-format\_\-string@{g\_\-format\_\-string}!ros::console@{ros::console}}
+\subsubsection[{g\_\-format\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf ros::console::g\_\-format\_\-string} = \char`\"{}[\$\{severity\}] [\$\{time\}]: \$\{message\}\char`\"{}}\label{namespaceros_1_1console_abcb8f9842d1aeb1b43c80fe999e78381}
+
+
+Definition at line 88 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-formatter@{g\_\-formatter}}
+\index{g\_\-formatter@{g\_\-formatter}!ros::console@{ros::console}}
+\subsubsection[{g\_\-formatter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Formatter} {\bf ros::console::g\_\-formatter}}\label{namespaceros_1_1console_a7944fe3dd343353cf4c8f07b0cfc80dd}
+
+
+Definition at line 383 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-init\_\-mutex@{g\_\-init\_\-mutex}}
+\index{g\_\-init\_\-mutex@{g\_\-init\_\-mutex}!ros::console@{ros::console}}
+\subsubsection[{g\_\-init\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}boost::mutex {\bf ros::console::g\_\-init\_\-mutex}}\label{namespaceros_1_1console_af19cc59868a5c74b772b290d44bd9f50}
+
+
+Definition at line 66 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-initialized@{g\_\-initialized}}
+\index{g\_\-initialized@{g\_\-initialized}!ros::console@{ros::console}}
+\subsubsection[{g\_\-initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf ros::console::g\_\-initialized} = false}\label{namespaceros_1_1console_abc79881d5516f7bc62f692b48bfbb89a}
+
+
+Only exported because the macros need it. Do not use directly. 
+
+
+
+Definition at line 64 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-level\_\-lookup@{g\_\-level\_\-lookup}}
+\index{g\_\-level\_\-lookup@{g\_\-level\_\-lookup}!ros::console@{ros::console}}
+\subsubsection[{g\_\-level\_\-lookup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf log4cxx::LevelPtr} {\bf ros::console::g\_\-level\_\-lookup}}\label{namespaceros_1_1console_ad3634f27e306e0ec51b7168649c67af1}
+{\bfseries Initial value:}
+\begin{DoxyCode}
+
+{
+  log4cxx::Level::getDebug(),
+  log4cxx::Level::getInfo(),
+  log4cxx::Level::getWarn(),
+  log4cxx::Level::getError(),
+  log4cxx::Level::getFatal(),
+}
+\end{DoxyCode}
+
+
+Definition at line 68 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-locations\_\-mutex@{g\_\-locations\_\-mutex}}
+\index{g\_\-locations\_\-mutex@{g\_\-locations\_\-mutex}!ros::console@{ros::console}}
+\subsubsection[{g\_\-locations\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}boost::mutex {\bf ros::console::g\_\-locations\_\-mutex}}\label{namespaceros_1_1console_aefa405727418caffd459ebf49ecd8693}
+
+
+Definition at line 667 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-log\_\-locations@{g\_\-log\_\-locations}}
+\index{g\_\-log\_\-locations@{g\_\-log\_\-locations}!ros::console@{ros::console}}
+\subsubsection[{g\_\-log\_\-locations}]{\setlength{\rightskip}{0pt plus 5cm}{\bf V\_\-LogLocation} {\bf ros::console::g\_\-log\_\-locations}}\label{namespaceros_1_1console_adfe9ed0f1184db38c8257dd3a2f95b8a}
+
+
+Definition at line 666 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-print\_\-buffer\_\-size@{g\_\-print\_\-buffer\_\-size}}
+\index{g\_\-print\_\-buffer\_\-size@{g\_\-print\_\-buffer\_\-size}!ros::console@{ros::console}}
+\subsubsection[{g\_\-print\_\-buffer\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t {\bf ros::console::g\_\-print\_\-buffer\_\-size} = INITIAL\_\-BUFFER\_\-SIZE\hspace{0.3cm}{\ttfamily  [static]}}\label{namespaceros_1_1console_a07eb1001307c03760842851903fd79f5}
+
+
+Definition at line 542 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-print\_\-mutex@{g\_\-print\_\-mutex}}
+\index{g\_\-print\_\-mutex@{g\_\-print\_\-mutex}!ros::console@{ros::console}}
+\subsubsection[{g\_\-print\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}boost::mutex {\bf ros::console::g\_\-print\_\-mutex}\hspace{0.3cm}{\ttfamily  [static]}}\label{namespaceros_1_1console_ab447510ffb75d7d5571cf5d39f47dcd3}
+
+
+Definition at line 540 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-printing\_\-thread\_\-id@{g\_\-printing\_\-thread\_\-id}}
+\index{g\_\-printing\_\-thread\_\-id@{g\_\-printing\_\-thread\_\-id}!ros::console@{ros::console}}
+\subsubsection[{g\_\-printing\_\-thread\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}boost::thread::id {\bf ros::console::g\_\-printing\_\-thread\_\-id}\hspace{0.3cm}{\ttfamily  [static]}}\label{namespaceros_1_1console_a1599298fdba9d457ad5534d9892434a7}
+
+
+Definition at line 543 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-shutting\_\-down@{g\_\-shutting\_\-down}}
+\index{g\_\-shutting\_\-down@{g\_\-shutting\_\-down}!ros::console@{ros::console}}
+\subsubsection[{g\_\-shutting\_\-down}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf ros::console::g\_\-shutting\_\-down} = false}\label{namespaceros_1_1console_ace6194b19db74c28ef68ba4529af31bb}
+
+
+Definition at line 65 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!g\_\-static\_\-init@{g\_\-static\_\-init}}
+\index{g\_\-static\_\-init@{g\_\-static\_\-init}!ros::console@{ros::console}}
+\subsubsection[{g\_\-static\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StaticInit} {\bf ros::console::g\_\-static\_\-init}}\label{namespaceros_1_1console_acffac61b5b340aa1767782b4abb42291}
+
+
+Definition at line 732 of file rosconsole.cpp.
+
+\index{ros::console@{ros::console}!LogLocation@{LogLocation}}
+\index{LogLocation@{LogLocation}!ros::console@{ros::console}}
+\subsubsection[{LogLocation}]{\setlength{\rightskip}{0pt plus 5cm}struct ROSCONSOLE\_\-DECL {\bf ros::console::LogLocation}}\label{namespaceros_1_1console_a454eb39e226b8820b4f1ce61b6b60980}
+
+
+Definition at line 139 of file console.h.
+

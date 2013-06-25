@@ -1,0 +1,27 @@
+preset_objects:
+
+ -
+  name: boxRoom
+  x: [-3.0, -3.0,  3.0, 3.0]
+  y: [ 3.0, -3.0, -3.0, 3.0]
+  intensity: 101.0
+ -
+  name: couch
+  x: [ 1.0,  1.0,  3.0, 3.0]
+  y: [ 3.0,  2.0,  2.0, 3.0]
+  intensity: 101.0
+ -
+  name: triangle
+  x: [ 1.5, 2.5, 2.5]
+  y: [ 2.0, 2.0, 1.0]
+  intensity: 101.0
+ -
+  name: box
+  x: [ 1.5,  2.5,  2.5,  1.5]
+  y: [-1.0, -1.0, -2.0, -2.0]
+  intensity: 101.0
+ -
+  name: triangle2
+  x: [ 3.0, 3.0, 2.0]
+  y: [ 2.0, 3.0, 3.0]
+  intensity: 101.0

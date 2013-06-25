@@ -1,0 +1,73 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/static\_\-assert.h File Reference}
+\label{static__assert_8h}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/static\_\-assert.h@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/static\_\-assert.h}}
+{\ttfamily \#include $<$boost/static\_\-assert.hpp$>$}\par
+Include dependency graph for static\_\-assert.h:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=370pt]{static__assert_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{static__assert_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf ROS\_\-COMPILE\_\-ASSERT}(cond)~BOOST\_\-STATIC\_\-ASSERT(cond)
+\begin{DoxyCompactList}\small\item\em Compile-\/time assert. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-STATIC\_\-ASSERT}(cond)~BOOST\_\-STATIC\_\-ASSERT(cond)
+\begin{DoxyCompactList}\small\item\em Compile-\/time assert. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{static\_\-assert.h@{static\_\-assert.h}!ROS\_\-COMPILE\_\-ASSERT@{ROS\_\-COMPILE\_\-ASSERT}}
+\index{ROS\_\-COMPILE\_\-ASSERT@{ROS\_\-COMPILE\_\-ASSERT}!static_assert.h@{static\_\-assert.h}}
+\subsubsection[{ROS\_\-COMPILE\_\-ASSERT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-COMPILE\_\-ASSERT(
+\begin{DoxyParamCaption}
+\item[{}]{cond}
+\end{DoxyParamCaption}
+)~BOOST\_\-STATIC\_\-ASSERT(cond)}\label{static__assert_8h_a777481e33e426f3468625fc8ade82387}
+
+
+Compile-\/time assert. 
+
+Only works with compile time statements, ie: \begin{DoxyVerb}
+   struct A
+   {
+     uint32_t a;
+   };
+   ROS_COMPILE_ASSERT(sizeof(A) == 4);
+ \end{DoxyVerb}
+ 
+
+Definition at line 52 of file static\_\-assert.h.
+
+\index{static\_\-assert.h@{static\_\-assert.h}!ROS\_\-STATIC\_\-ASSERT@{ROS\_\-STATIC\_\-ASSERT}}
+\index{ROS\_\-STATIC\_\-ASSERT@{ROS\_\-STATIC\_\-ASSERT}!static_assert.h@{static\_\-assert.h}}
+\subsubsection[{ROS\_\-STATIC\_\-ASSERT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-STATIC\_\-ASSERT(
+\begin{DoxyParamCaption}
+\item[{}]{cond}
+\end{DoxyParamCaption}
+)~BOOST\_\-STATIC\_\-ASSERT(cond)}\label{static__assert_8h_ac8b627bf29794384a9859e5a37e82920}
+
+
+Compile-\/time assert. 
+
+Only works with compile time statements, ie: \begin{DoxyVerb}
+   struct A
+   {
+     uint32_t a;
+   };
+   ROS_STATIC_ASSERT(sizeof(A) == 4);
+ \end{DoxyVerb}
+ 
+
+Definition at line 67 of file static\_\-assert.h.
+

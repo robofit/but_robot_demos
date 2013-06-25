@@ -1,0 +1,182 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/assert.h File Reference}
+\label{assert_8h}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/assert.h@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/assert.h}}
+{\ttfamily \#include \char`\"{}ros/console.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}ros/static\_\-assert.h\char`\"{}}\par
+{\ttfamily \#include $<$ros/platform.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+Include dependency graph for assert.h:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{assert_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{assert_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf ROS\_\-ASSERT}(cond)
+\begin{DoxyCompactList}\small\item\em Asserts that the provided condition evaluates to true. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-ASSERT\_\-CMD}(cond, cmd)
+\begin{DoxyCompactList}\small\item\em Runs a command if the provided condition is false. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-ASSERT\_\-ENABLED}
+\item 
+\#define {\bf ROS\_\-ASSERT\_\-MSG}(cond,...)
+\begin{DoxyCompactList}\small\item\em Asserts that the provided condition evaluates to true. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-BREAK}()
+\begin{DoxyCompactList}\small\item\em Aborts program execution. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-ISSUE\_\-BREAK}()~abort();
+\begin{DoxyCompactList}\small\item\em Always issues a breakpoint instruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition in file {\bf assert.h}.
+
+
+
+\subsection{Define Documentation}
+\index{assert.h@{assert.h}!ROS\_\-ASSERT@{ROS\_\-ASSERT}}
+\index{ROS\_\-ASSERT@{ROS\_\-ASSERT}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-ASSERT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ASSERT(
+\begin{DoxyParamCaption}
+\item[{}]{cond}
+\end{DoxyParamCaption}
+)}\label{assert_8h_a65a06b7a2d1ac8246ceaa95fe845ccaa}
+{\bfseries Value:}
+\begin{DoxyCode}
+do { \
+    if (!(cond)) { \
+      ROS_FATAL("ASSERTION FAILED\n\tfile = %s\n\tline = %d\n\tcond = %s\n", __FI
+      LE__, __LINE__, #cond); \
+      ROS_ISSUE_BREAK() \
+    } \
+  } while (0)
+\end{DoxyCode}
+
+
+Asserts that the provided condition evaluates to true. 
+
+If it is false, program execution will abort, with an informative statement about which assertion failed, in what file. Use ROS\_\-ASSERT instead of assert() itself.
+
+If running inside a debugger, ROS\_\-ASSERT will allow you to step past the assertion. 
+
+Definition at line 120 of file assert.h.
+
+\index{assert.h@{assert.h}!ROS\_\-ASSERT\_\-CMD@{ROS\_\-ASSERT\_\-CMD}}
+\index{ROS\_\-ASSERT\_\-CMD@{ROS\_\-ASSERT\_\-CMD}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-ASSERT\_\-CMD}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ASSERT\_\-CMD(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{cmd}
+\end{DoxyParamCaption}
+)}\label{assert_8h_a0bacd952990c8bf1e2dfab7eee1a4164}
+{\bfseries Value:}
+\begin{DoxyCode}
+do { \
+    if (!cond) { \
+      cmd; \
+    } \
+  } while (0)
+\end{DoxyCode}
+
+
+Runs a command if the provided condition is false. 
+
+For example: \begin{DoxyVerb}
+  ROS_ASSERT_CMD(x > 0, handleError(...));
+\end{DoxyVerb}
+ 
+
+Definition at line 138 of file assert.h.
+
+\index{assert.h@{assert.h}!ROS\_\-ASSERT\_\-ENABLED@{ROS\_\-ASSERT\_\-ENABLED}}
+\index{ROS\_\-ASSERT\_\-ENABLED@{ROS\_\-ASSERT\_\-ENABLED}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-ASSERT\_\-ENABLED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ASSERT\_\-ENABLED}\label{assert_8h_aaf0f068cd5a18d156d2f59cfb51a9653}
+
+
+Definition at line 110 of file assert.h.
+
+\index{assert.h@{assert.h}!ROS\_\-ASSERT\_\-MSG@{ROS\_\-ASSERT\_\-MSG}}
+\index{ROS\_\-ASSERT\_\-MSG@{ROS\_\-ASSERT\_\-MSG}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-ASSERT\_\-MSG}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ASSERT\_\-MSG(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{assert_8h_a2eeab85242198728bd84410513d0cb18}
+{\bfseries Value:}
+\begin{DoxyCode}
+do { \
+    if (!(cond)) { \
+      ROS_FATAL("ASSERTION FAILED\n\tfile = %s\n\tline = %d\n\tcond = %s\n\tmessa
+      ge = ", __FILE__, __LINE__, #cond); \
+      ROS_FATAL(__VA_ARGS__); \
+      ROS_FATAL("\n"); \
+      ROS_ISSUE_BREAK(); \
+    } \
+  } while (0)
+\end{DoxyCode}
+
+
+Asserts that the provided condition evaluates to true. 
+
+If it is false, program execution will abort, with an informative statement about which assertion failed, in what file, and it will print out a printf-\/style message you define. Example usage: \begin{DoxyVerb}
+   ROS_ASSERT_MSG(x > 0, "Uh oh, x went negative.  Value = %d", x);
+ \end{DoxyVerb}
+
+
+If running inside a debugger, ROS\_\-ASSERT will allow you to step past the assertion. 
+
+Definition at line 128 of file assert.h.
+
+\index{assert.h@{assert.h}!ROS\_\-BREAK@{ROS\_\-BREAK}}
+\index{ROS\_\-BREAK@{ROS\_\-BREAK}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-BREAK}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-BREAK(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{assert_8h_a1d50ed3642ded2bcae70dd24e3aac5b8}
+{\bfseries Value:}
+\begin{DoxyCode}
+do { \
+    ROS_FATAL("BREAKPOINT HIT\n\tfile = %s\n\tline=%d\n", __FILE__, __LINE__); \
+    ROS_ISSUE_BREAK() \
+  } while (0)
+\end{DoxyCode}
+
+
+Aborts program execution. 
+
+Aborts program execution with an informative message stating what file and line it was called from. Use ROS\_\-BREAK instead of calling assert(0) or \doxyref{ROS\_\-ASSERT(0)}{p.}{assert_8h_a65a06b7a2d1ac8246ceaa95fe845ccaa}.
+
+If running inside a debugger, ROS\_\-BREAK will allow you to step past the breakpoint. 
+
+Definition at line 114 of file assert.h.
+
+\index{assert.h@{assert.h}!ROS\_\-ISSUE\_\-BREAK@{ROS\_\-ISSUE\_\-BREAK}}
+\index{ROS\_\-ISSUE\_\-BREAK@{ROS\_\-ISSUE\_\-BREAK}!assert.h@{assert.h}}
+\subsubsection[{ROS\_\-ISSUE\_\-BREAK}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ISSUE\_\-BREAK(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~abort();}\label{assert_8h_a5cd72b5640f55ced774ef3c585512227}
+
+
+Always issues a breakpoint instruction. 
+
+This define is mostly for internal use, but is useful if you want to simply issue a break instruction in a cross-\/platform way.
+
+Currently implemented for Windows (any platform), powerpc64, and x86 
+
+Definition at line 106 of file assert.h.
+

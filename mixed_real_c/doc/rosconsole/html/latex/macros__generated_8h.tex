@@ -1,0 +1,1426 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/rosconsole/macros\_\-generated.h File Reference}
+\label{macros__generated_8h}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/rosconsole/macros\_\-generated.h@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/rosconsole/macros\_\-generated.h}}
+This graph shows which files directly or indirectly include this file:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{macros__generated_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf ROS\_\-DEBUG}(...)~ROS\_\-LOG(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-COND}(cond,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-COND\_\-NAMED}(cond, name,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-FILTER}(filter,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-FILTER\_\-NAMED}(filter, name,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-NAMED}(name,...)~ROS\_\-LOG(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-ONCE}(...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-ONCE\_\-NAMED}(name,...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM}(args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-COND}(cond, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED}(cond, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-FILTER}(filter, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED}(filter, name, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-ONCE}(args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE}(rate, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED}(rate, name, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-THROTTLE}(rate,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED}(rate, name,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR}(...)~ROS\_\-LOG(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-COND}(cond,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-COND\_\-NAMED}(cond, name,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-FILTER}(filter,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-FILTER\_\-NAMED}(filter, name,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-NAMED}(name,...)~ROS\_\-LOG(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-ONCE}(...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-ONCE\_\-NAMED}(name,...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM}(args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-COND}(cond, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED}(cond, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-FILTER}(filter, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED}(filter, name, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-ONCE}(args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-THROTTLE}(rate, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED}(rate, name, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-THROTTLE}(rate,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-ERROR\_\-THROTTLE\_\-NAMED}(rate, name,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL}(...)~ROS\_\-LOG(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-COND}(cond,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-COND\_\-NAMED}(cond, name,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-FILTER}(filter,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-FILTER\_\-NAMED}(filter, name,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-NAMED}(name,...)~ROS\_\-LOG(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-ONCE}(...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-ONCE\_\-NAMED}(name,...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM}(args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-COND}(cond, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED}(cond, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-FILTER}(filter, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED}(filter, name, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-ONCE}(args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-THROTTLE}(rate, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED}(rate, name, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-THROTTLE}(rate,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-FATAL\_\-THROTTLE\_\-NAMED}(rate, name,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO}(...)~ROS\_\-LOG(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-COND}(cond,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-COND\_\-NAMED}(cond, name,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-FILTER}(filter,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-FILTER\_\-NAMED}(filter, name,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-NAMED}(name,...)~ROS\_\-LOG(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-ONCE}(...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-ONCE\_\-NAMED}(name,...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM}(args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-COND}(cond, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED}(cond, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-FILTER}(filter, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED}(filter, name, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-ONCE}(args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-THROTTLE}(rate, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED}(rate, name, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-INFO\_\-THROTTLE}(rate,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-INFO\_\-THROTTLE\_\-NAMED}(rate, name,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN}(...)~ROS\_\-LOG(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-COND}(cond,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-COND\_\-NAMED}(cond, name,...)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-FILTER}(filter,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-FILTER\_\-NAMED}(filter, name,...)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-NAMED}(name,...)~ROS\_\-LOG(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-ONCE}(...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-ONCE\_\-NAMED}(name,...)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM}(args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-COND}(cond, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED}(cond, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-FILTER}(filter, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED}(filter, name, args)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-ONCE}(args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED}(name, args)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-THROTTLE}(rate, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED}(rate, name, args)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)
+\item 
+\#define {\bf ROS\_\-WARN\_\-THROTTLE}(rate,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROS\_\-WARN\_\-THROTTLE\_\-NAMED}(rate, name,...)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG@{ROS\_\-DEBUG}}
+\index{ROS\_\-DEBUG@{ROS\_\-DEBUG}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a83228c0b42c80605abdd0f42af64b1f7}
+
+
+Definition at line 54 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-COND@{ROS\_\-DEBUG\_\-COND}}
+\index{ROS\_\-DEBUG\_\-COND@{ROS\_\-DEBUG\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_adfcd1f405714d4edebd32b25d932e3fe}
+
+
+Definition at line 58 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-COND\_\-NAMED@{ROS\_\-DEBUG\_\-COND\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-COND\_\-NAMED@{ROS\_\-DEBUG\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a13567fc987b0bb994f37748edc782c95}
+
+
+Definition at line 60 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-FILTER@{ROS\_\-DEBUG\_\-FILTER}}
+\index{ROS\_\-DEBUG\_\-FILTER@{ROS\_\-DEBUG\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_acb727fdc837e7754fc5fc538c1973fcd}
+
+
+Definition at line 70 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-FILTER\_\-NAMED@{ROS\_\-DEBUG\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-FILTER\_\-NAMED@{ROS\_\-DEBUG\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_acd988f709196b7837c9b16f4330309fd}
+
+
+Definition at line 72 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-NAMED@{ROS\_\-DEBUG\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-NAMED@{ROS\_\-DEBUG\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a59bcbadebdbcf7195c665b66c7d6560f}
+
+
+Definition at line 56 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-ONCE@{ROS\_\-DEBUG\_\-ONCE}}
+\index{ROS\_\-DEBUG\_\-ONCE@{ROS\_\-DEBUG\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_acbec63f14f5cfca92154897ee8c434a6}
+
+
+Definition at line 62 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-ONCE\_\-NAMED@{ROS\_\-DEBUG\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-ONCE\_\-NAMED@{ROS\_\-DEBUG\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a8cbe037cb5b06f14ce393e9187049842}
+
+
+Definition at line 64 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM@{ROS\_\-DEBUG\_\-STREAM}}
+\index{ROS\_\-DEBUG\_\-STREAM@{ROS\_\-DEBUG\_\-STREAM}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_abe3fd4f1f711e3046f7c3a8e3f5757b0}
+
+
+Definition at line 55 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-COND@{ROS\_\-DEBUG\_\-STREAM\_\-COND}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-COND@{ROS\_\-DEBUG\_\-STREAM\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a226ced9d62e521081bbe6f67f86957bf}
+
+
+Definition at line 59 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a0313792bf07e7df0fc423c159b3ddb41}
+
+
+Definition at line 61 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-FILTER@{ROS\_\-DEBUG\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-FILTER@{ROS\_\-DEBUG\_\-STREAM\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a8a770ba8ceb9e8decbe2906731e0b624}
+
+
+Definition at line 71 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_aae1728483ded7fcdeae1b4dc5825a6de}
+
+
+Definition at line 73 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a67a8a979e065dd920dce2108d9b83237}
+
+
+Definition at line 57 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-ONCE@{ROS\_\-DEBUG\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-ONCE@{ROS\_\-DEBUG\_\-STREAM\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_af9ccca34eb63212255ffcee98f8c386f}
+
+
+Definition at line 63 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a880cb3037c198050050b17e4dd8d5b57}
+
+
+Definition at line 65 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE@{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE@{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_af2f5d42ac937fedb792bcc9fb87f5ea1}
+
+
+Definition at line 67 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-STREAM\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a0656d5feda32e6db92c763ed55156f89}
+
+
+Definition at line 69 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-THROTTLE@{ROS\_\-DEBUG\_\-THROTTLE}}
+\index{ROS\_\-DEBUG\_\-THROTTLE@{ROS\_\-DEBUG\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Debug, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a1f16a410f4e2e45fae841ca92f3a09a3}
+
+
+Definition at line 66 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED@{ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED@{ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-DEBUG\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Debug, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a6a979c85b19ee44df84f2a64cb210345}
+
+
+Definition at line 68 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR@{ROS\_\-ERROR}}
+\index{ROS\_\-ERROR@{ROS\_\-ERROR}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a7fb635b03cc608284eadecd2f8becd9a}
+
+
+Definition at line 186 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-COND@{ROS\_\-ERROR\_\-COND}}
+\index{ROS\_\-ERROR\_\-COND@{ROS\_\-ERROR\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a1de1111927b84c6c4f734562c2bf9f31}
+
+
+Definition at line 190 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-COND\_\-NAMED@{ROS\_\-ERROR\_\-COND\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-COND\_\-NAMED@{ROS\_\-ERROR\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_aa1fac22ae94605b5bc5860ae48ee641c}
+
+
+Definition at line 192 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-FILTER@{ROS\_\-ERROR\_\-FILTER}}
+\index{ROS\_\-ERROR\_\-FILTER@{ROS\_\-ERROR\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_af47c5656259b1a16270e78f658050584}
+
+
+Definition at line 202 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-FILTER\_\-NAMED@{ROS\_\-ERROR\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-FILTER\_\-NAMED@{ROS\_\-ERROR\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_adcee5fa654b8849019cdbafacb1fe8ac}
+
+
+Definition at line 204 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-NAMED@{ROS\_\-ERROR\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-NAMED@{ROS\_\-ERROR\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a34e79df0965ccdacd2d9cfc36e0a9c0a}
+
+
+Definition at line 188 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-ONCE@{ROS\_\-ERROR\_\-ONCE}}
+\index{ROS\_\-ERROR\_\-ONCE@{ROS\_\-ERROR\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a9a1fca087ffb37f7c3ab9024be2146f7}
+
+
+Definition at line 194 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-ONCE\_\-NAMED@{ROS\_\-ERROR\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-ONCE\_\-NAMED@{ROS\_\-ERROR\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_accb43e4b5fed1e3dd6a39e120c861221}
+
+
+Definition at line 196 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM@{ROS\_\-ERROR\_\-STREAM}}
+\index{ROS\_\-ERROR\_\-STREAM@{ROS\_\-ERROR\_\-STREAM}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a38824dcde65a2ea65c9d8301b5eac977}
+
+
+Definition at line 187 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-COND@{ROS\_\-ERROR\_\-STREAM\_\-COND}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-COND@{ROS\_\-ERROR\_\-STREAM\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a65a65f39b35b97ed94ac08fb3b17909d}
+
+
+Definition at line 191 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_ad8b1ad0bb6e614ab236d5f63c3457bac}
+
+
+Definition at line 193 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-FILTER@{ROS\_\-ERROR\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-FILTER@{ROS\_\-ERROR\_\-STREAM\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_ab7a3c046a3ba99b91dfeec063692ba5c}
+
+
+Definition at line 203 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a96f8a5b9e373cb2202993d8ac27f59b2}
+
+
+Definition at line 205 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a433ec0953a6a8ef23e505af8402a3562}
+
+
+Definition at line 189 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-ONCE@{ROS\_\-ERROR\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-ONCE@{ROS\_\-ERROR\_\-STREAM\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a4da4b130ee47ae08677d045b91984bec}
+
+
+Definition at line 195 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_abd54a513cad43346f594c02bd35200d6}
+
+
+Definition at line 197 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-THROTTLE@{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE@{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a354241abfad269361ab1adb04a59719e}
+
+
+Definition at line 199 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-STREAM\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a26fe22951b089da7f31b164a0f2d8e5b}
+
+
+Definition at line 201 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-THROTTLE@{ROS\_\-ERROR\_\-THROTTLE}}
+\index{ROS\_\-ERROR\_\-THROTTLE@{ROS\_\-ERROR\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Error, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a1c4cdfdfd4dcc53e6226f0533a0992b7}
+
+
+Definition at line 198 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-ERROR\_\-THROTTLE\_\-NAMED@{ROS\_\-ERROR\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-ERROR\_\-THROTTLE\_\-NAMED@{ROS\_\-ERROR\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-ERROR\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-ERROR\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Error, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_af02edc5b4d2abc583946eba07bfa82d3}
+
+
+Definition at line 200 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL@{ROS\_\-FATAL}}
+\index{ROS\_\-FATAL@{ROS\_\-FATAL}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_af9844cba2577ca518c1f0d23e76bec88}
+
+
+Definition at line 230 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-COND@{ROS\_\-FATAL\_\-COND}}
+\index{ROS\_\-FATAL\_\-COND@{ROS\_\-FATAL\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a908efa871643b34e6a6eb7a5a1f368f9}
+
+
+Definition at line 234 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-COND\_\-NAMED@{ROS\_\-FATAL\_\-COND\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-COND\_\-NAMED@{ROS\_\-FATAL\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_ae2b5f7b1145c34edc057cfde69ba1bf4}
+
+
+Definition at line 236 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-FILTER@{ROS\_\-FATAL\_\-FILTER}}
+\index{ROS\_\-FATAL\_\-FILTER@{ROS\_\-FATAL\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_af42bc0c3c9d309eccd899a7ee0989f12}
+
+
+Definition at line 246 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-FILTER\_\-NAMED@{ROS\_\-FATAL\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-FILTER\_\-NAMED@{ROS\_\-FATAL\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a84273945757633ffca5f9531f13fd032}
+
+
+Definition at line 248 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-NAMED@{ROS\_\-FATAL\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-NAMED@{ROS\_\-FATAL\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_aca43e4e1c82800ed1b078f7ca929237b}
+
+
+Definition at line 232 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-ONCE@{ROS\_\-FATAL\_\-ONCE}}
+\index{ROS\_\-FATAL\_\-ONCE@{ROS\_\-FATAL\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a8f5dd8485ae6ca87d6065b9bc006d9dc}
+
+
+Definition at line 238 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-ONCE\_\-NAMED@{ROS\_\-FATAL\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-ONCE\_\-NAMED@{ROS\_\-FATAL\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a9523d577e51144d9389747dea0312dbc}
+
+
+Definition at line 240 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM@{ROS\_\-FATAL\_\-STREAM}}
+\index{ROS\_\-FATAL\_\-STREAM@{ROS\_\-FATAL\_\-STREAM}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a91d57560f44a262bafce7a7768ebdc50}
+
+
+Definition at line 231 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-COND@{ROS\_\-FATAL\_\-STREAM\_\-COND}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-COND@{ROS\_\-FATAL\_\-STREAM\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_aa2d4a9a730c6b4887bf880d81af4c153}
+
+
+Definition at line 235 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a6cf0a98ff3ce27130545b6feb51bf976}
+
+
+Definition at line 237 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-FILTER@{ROS\_\-FATAL\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-FILTER@{ROS\_\-FATAL\_\-STREAM\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a79a5486e4d9de7ecae0ff3d85e23673d}
+
+
+Definition at line 247 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a695cf89f7d7426f66041a5e4d58d243c}
+
+
+Definition at line 249 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a95655d4079634a02cf191b94de871d1d}
+
+
+Definition at line 233 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-ONCE@{ROS\_\-FATAL\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-ONCE@{ROS\_\-FATAL\_\-STREAM\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_af6e9f54e6f8867185a9db9d3efe1d467}
+
+
+Definition at line 239 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_aac90ede59e762ae8283d014e6569dcef}
+
+
+Definition at line 241 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-THROTTLE@{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE@{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a042ba7f57cb8885baa8ddbab7094862a}
+
+
+Definition at line 243 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-STREAM\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_ab95e4a246b3e02d69352d7173e0a1a7d}
+
+
+Definition at line 245 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-THROTTLE@{ROS\_\-FATAL\_\-THROTTLE}}
+\index{ROS\_\-FATAL\_\-THROTTLE@{ROS\_\-FATAL\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Fatal, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a81b466271dcc605f717d2f26ba774ebb}
+
+
+Definition at line 242 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-FATAL\_\-THROTTLE\_\-NAMED@{ROS\_\-FATAL\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-FATAL\_\-THROTTLE\_\-NAMED@{ROS\_\-FATAL\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-FATAL\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-FATAL\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Fatal, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a2027b28701b189aaf7f1591d1c28b7ab}
+
+
+Definition at line 244 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO@{ROS\_\-INFO}}
+\index{ROS\_\-INFO@{ROS\_\-INFO}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a20d5da22f16df09d52a7577227636a83}
+
+
+Definition at line 98 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-COND@{ROS\_\-INFO\_\-COND}}
+\index{ROS\_\-INFO\_\-COND@{ROS\_\-INFO\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a6823692b4fa97002c5d28b7e24b0b35e}
+
+
+Definition at line 102 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-COND\_\-NAMED@{ROS\_\-INFO\_\-COND\_\-NAMED}}
+\index{ROS\_\-INFO\_\-COND\_\-NAMED@{ROS\_\-INFO\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a5a88d490d2d417d433b0bea9de54d70b}
+
+
+Definition at line 104 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-FILTER@{ROS\_\-INFO\_\-FILTER}}
+\index{ROS\_\-INFO\_\-FILTER@{ROS\_\-INFO\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a5f28db427d6140123518a10c0a274db9}
+
+
+Definition at line 114 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-FILTER\_\-NAMED@{ROS\_\-INFO\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-INFO\_\-FILTER\_\-NAMED@{ROS\_\-INFO\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a3574cca382ac7370fed2e5a1452ce4a6}
+
+
+Definition at line 116 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-NAMED@{ROS\_\-INFO\_\-NAMED}}
+\index{ROS\_\-INFO\_\-NAMED@{ROS\_\-INFO\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a9345481a0e9b941523c79cbcd774153f}
+
+
+Definition at line 100 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-ONCE@{ROS\_\-INFO\_\-ONCE}}
+\index{ROS\_\-INFO\_\-ONCE@{ROS\_\-INFO\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a9a87005cc164d862fb8d51fcd939e9d6}
+
+
+Definition at line 106 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-ONCE\_\-NAMED@{ROS\_\-INFO\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-INFO\_\-ONCE\_\-NAMED@{ROS\_\-INFO\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a7153de8b28726c96fc6c8f5e901222db}
+
+
+Definition at line 108 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM@{ROS\_\-INFO\_\-STREAM}}
+\index{ROS\_\-INFO\_\-STREAM@{ROS\_\-INFO\_\-STREAM}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a75e73a75f728958e0dedd098476aad19}
+
+
+Definition at line 99 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-COND@{ROS\_\-INFO\_\-STREAM\_\-COND}}
+\index{ROS\_\-INFO\_\-STREAM\_\-COND@{ROS\_\-INFO\_\-STREAM\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a5bb566a02d5c68054ceed7de56f45114}
+
+
+Definition at line 103 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED}}
+\index{ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a280f663ae38ee96fcb6a8bc832d5a62b}
+
+
+Definition at line 105 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-FILTER@{ROS\_\-INFO\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-INFO\_\-STREAM\_\-FILTER@{ROS\_\-INFO\_\-STREAM\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_abca848ddb68b4b99e7a9411af8073a94}
+
+
+Definition at line 115 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a599292efc38e628267fc3c18ed450189}
+
+
+Definition at line 117 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-NAMED}}
+\index{ROS\_\-INFO\_\-STREAM\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a1ff8b6ce5a83424e0951da18ab3c1de1}
+
+
+Definition at line 101 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-ONCE@{ROS\_\-INFO\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-INFO\_\-STREAM\_\-ONCE@{ROS\_\-INFO\_\-STREAM\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_ad1371e8123e7c9be932ae48f9682b3a9}
+
+
+Definition at line 107 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_af9607acba24c5946df0835569c109e50}
+
+
+Definition at line 109 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-THROTTLE@{ROS\_\-INFO\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-INFO\_\-STREAM\_\-THROTTLE@{ROS\_\-INFO\_\-STREAM\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a7d35a6882c8e1a3cf1a39d222e98cfb6}
+
+
+Definition at line 111 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-STREAM\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a172177c4fe8b6d6b6e3c52e404042187}
+
+
+Definition at line 113 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-THROTTLE@{ROS\_\-INFO\_\-THROTTLE}}
+\index{ROS\_\-INFO\_\-THROTTLE@{ROS\_\-INFO\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Info, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a470206e22b8977c4781cddfa1b270c7c}
+
+
+Definition at line 110 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-INFO\_\-THROTTLE\_\-NAMED@{ROS\_\-INFO\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-INFO\_\-THROTTLE\_\-NAMED@{ROS\_\-INFO\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-INFO\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-INFO\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Info, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a84d8df60372d0296b76d1e647b1345c9}
+
+
+Definition at line 112 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN@{ROS\_\-WARN}}
+\index{ROS\_\-WARN@{ROS\_\-WARN}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_abcf5fc1b8d85f44e883971abef7689a5}
+
+
+Definition at line 142 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-COND@{ROS\_\-WARN\_\-COND}}
+\index{ROS\_\-WARN\_\-COND@{ROS\_\-WARN\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a4d0b80f879cd2ce7343b856a6405d302}
+
+
+Definition at line 146 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-COND\_\-NAMED@{ROS\_\-WARN\_\-COND\_\-NAMED}}
+\index{ROS\_\-WARN\_\-COND\_\-NAMED@{ROS\_\-WARN\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(cond, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a933ee805cf4992b43888d7cdaec74d8a}
+
+
+Definition at line 148 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-FILTER@{ROS\_\-WARN\_\-FILTER}}
+\index{ROS\_\-WARN\_\-FILTER@{ROS\_\-WARN\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a9410d4a2b2ea92cbf8a241a1be2dfe9d}
+
+
+Definition at line 158 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-FILTER\_\-NAMED@{ROS\_\-WARN\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-WARN\_\-FILTER\_\-NAMED@{ROS\_\-WARN\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-FILTER(filter, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a8ab6b34e825d951a0e2889db40ce1e4a}
+
+
+Definition at line 160 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-NAMED@{ROS\_\-WARN\_\-NAMED}}
+\index{ROS\_\-WARN\_\-NAMED@{ROS\_\-WARN\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a03cd72844a8e0790d3d3901a21859d02}
+
+
+Definition at line 144 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-ONCE@{ROS\_\-WARN\_\-ONCE}}
+\index{ROS\_\-WARN\_\-ONCE@{ROS\_\-WARN\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_ab9bc891468bcd6feb4386188a32d4648}
+
+
+Definition at line 150 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-ONCE\_\-NAMED@{ROS\_\-WARN\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-WARN\_\-ONCE\_\-NAMED@{ROS\_\-WARN\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-ONCE(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_a6d216c4f5eb9f795c049f3983cdce895}
+
+
+Definition at line 152 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM@{ROS\_\-WARN\_\-STREAM}}
+\index{ROS\_\-WARN\_\-STREAM@{ROS\_\-WARN\_\-STREAM}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a3d27da6eade31481520b6b4a59aa0e05}
+
+
+Definition at line 143 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-COND@{ROS\_\-WARN\_\-STREAM\_\-COND}}
+\index{ROS\_\-WARN\_\-STREAM\_\-COND@{ROS\_\-WARN\_\-STREAM\_\-COND}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a6bdc9dce4cab4621e72eb4f60671c33b}
+
+
+Definition at line 147 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED}}
+\index{ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-COND\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(cond, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_acdafa12c2fd6f93d7ef55b8a5af2ec8a}
+
+
+Definition at line 149 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-FILTER@{ROS\_\-WARN\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-WARN\_\-STREAM\_\-FILTER@{ROS\_\-WARN\_\-STREAM\_\-FILTER}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a2250065411f0e1b11b3cc65b2bdd6ee7}
+
+
+Definition at line 159 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED}}
+\index{ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-FILTER\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-FILTER(filter, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_ae9a644ad709dae00d4a3f16441530311}
+
+
+Definition at line 161 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-NAMED}}
+\index{ROS\_\-WARN\_\-STREAM\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a3416ae64738de22735d33b470b50086e}
+
+
+Definition at line 145 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-ONCE@{ROS\_\-WARN\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-WARN\_\-STREAM\_\-ONCE@{ROS\_\-WARN\_\-STREAM\_\-ONCE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a0fa77780d57bc1d0532ff7d6a35ed509}
+
+
+Definition at line 151 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED}}
+\index{ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-ONCE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-ONCE(::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a75541930d8f40180ef663f5859936ff9}
+
+
+Definition at line 153 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-THROTTLE@{ROS\_\-WARN\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-WARN\_\-STREAM\_\-THROTTLE@{ROS\_\-WARN\_\-STREAM\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, args)}\label{macros__generated_8h_a3cf4b4bb01f4da11ba4a9d75e213565c}
+
+
+Definition at line 155 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED@{ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-STREAM\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-THROTTLE(rate, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, args)}\label{macros__generated_8h_a051eef82fc3659c5099402df60a4724d}
+
+
+Definition at line 157 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-THROTTLE@{ROS\_\-WARN\_\-THROTTLE}}
+\index{ROS\_\-WARN\_\-THROTTLE@{ROS\_\-WARN\_\-THROTTLE}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Warn, ROSCONSOLE\_\-DEFAULT\_\-NAME, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_aba8c1e9cfdff2c20c7fcfd5270a47fb4}
+
+
+Definition at line 154 of file macros\_\-generated.h.
+
+\index{macros\_\-generated.h@{macros\_\-generated.h}!ROS\_\-WARN\_\-THROTTLE\_\-NAMED@{ROS\_\-WARN\_\-THROTTLE\_\-NAMED}}
+\index{ROS\_\-WARN\_\-THROTTLE\_\-NAMED@{ROS\_\-WARN\_\-THROTTLE\_\-NAMED}!macros_generated.h@{macros\_\-generated.h}}
+\subsubsection[{ROS\_\-WARN\_\-THROTTLE\_\-NAMED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-WARN\_\-THROTTLE\_\-NAMED(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-THROTTLE(rate, ::ros::console::levels::Warn, std::string(ROSCONSOLE\_\-NAME\_\-PREFIX) + \char`\"{}.\char`\"{} + name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{macros__generated_8h_ae2abbe48103f353440aaf724e5ed3814}
+
+
+Definition at line 156 of file macros\_\-generated.h.
+
