@@ -1,0 +1,265 @@
+\section{insertObj Class Reference}
+\label{classinsertObj}\index{insertObj@{insertObj}}
+
+
+{\ttfamily \#include $<$ins\_\-pub.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf addObj} (float x, float y, float z, float side)
+\item 
+void {\bf addPolygon} ({\bf Preset} pr)
+\item 
+void {\bf loadObjects} ()
+\item 
+void {\bf startIns} (sensor\_\-msgs::LaserScan $\ast$sc\_\-msg)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+tf::Vector3 {\bf cross} (tf::Vector3 o1, tf::Vector3 o2, tf::Vector3 l1, tf::Vector3 l2)
+\item 
+tf::Vector3 {\bf getLaserVector} (int laserNo, float len)
+\item 
+tf::Vector3 {\bf getPosition} ()
+\item 
+void {\bf setFrontVector} ()
+\item 
+double {\bf setObjAngle} (tf::Vector3 base, tf::Vector3 point)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tf::Vector3 {\bf front}
+\item 
+tf::Vector3 {\bf laserPos}
+\item 
+tf::StampedTransform {\bf transform}
+\item 
+std::vector$<$ {\bf virtualObject} $>$ {\bf vObjects}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Treda zastresuje hlavnu funkcnost aplikacie, nacita virtualne objekty, vypocita ich polohua upravi data 
+
+Definition at line 66 of file ins\_\-pub.h.
+
+
+
+\subsection{Member Function Documentation}
+\index{insertObj@{insertObj}!addObj@{addObj}}
+\index{addObj@{addObj}!insertObj@{insertObj}}
+\subsubsection[{addObj}]{\setlength{\rightskip}{0pt plus 5cm}void insertObj::addObj (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z, }
+\item[{float}]{side}
+\end{DoxyParamCaption}
+)}\label{classinsertObj_ae3d19248a0b2e09712591e26201e2f3d}
+Funkcia vklada do zoznamu objektov stvorcovy objekt
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Hodnota suradnice x \\
+\hline
+{\em y} & Hodnota suradnice y \\
+\hline
+{\em z} & Hodnota suradnice z \\
+\hline
+{\em side} & Dlzka strany stvorca \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!addPolygon@{addPolygon}}
+\index{addPolygon@{addPolygon}!insertObj@{insertObj}}
+\subsubsection[{addPolygon}]{\setlength{\rightskip}{0pt plus 5cm}void insertObj::addPolygon (
+\begin{DoxyParamCaption}
+\item[{{\bf Preset}}]{pr}
+\end{DoxyParamCaption}
+)}\label{classinsertObj_a107fed1a876c44ef1ae1b15fbb249050}
+Funkcia vklada do zoznamu objektov polygonalny objekt
+
+
+\begin{DoxyParams}{Parameters}
+{\em pr} & Struktura s nacitanymi datami o virtualnom objekte \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!cross@{cross}}
+\index{cross@{cross}!insertObj@{insertObj}}
+\subsubsection[{cross}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 insertObj::cross (
+\begin{DoxyParamCaption}
+\item[{tf::Vector3}]{o1, }
+\item[{tf::Vector3}]{o2, }
+\item[{tf::Vector3}]{l1, }
+\item[{tf::Vector3}]{l2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a1ccc793f6ab7d75fd435fca9c99347b3}
+Funkcia pocita prienik priamok zadany dvoma bodmi
+
+
+\begin{DoxyParams}{Parameters}
+{\em o1} & Vektor prveho bodu prvej priamky(objektu) \\
+\hline
+{\em o2} & Vektor druheho bodu prvej priamky(objektu) \\
+\hline
+{\em l1} & Vektor prveho bodu druhej priamky(laser) \\
+\hline
+{\em l2} & Vektor druheho bodu druhej priamky(laser)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vracia vektor prieniku 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!getLaserVector@{getLaserVector}}
+\index{getLaserVector@{getLaserVector}!insertObj@{insertObj}}
+\subsubsection[{getLaserVector}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 insertObj::getLaserVector (
+\begin{DoxyParamCaption}
+\item[{int}]{laserNo, }
+\item[{float}]{len}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a59bf7255f360d6cc125db4f1a96f7589}
+Funkcia pocita vektor do bodu prieniku laseroveho luca vychadzajuceho zo suradnic zadaneho dlzkou len 
+\begin{DoxyParams}{Parameters}
+{\em laserNo} & Poradove cislo pocitaneho laseroveh luca \\
+\hline
+{\em len} & Dlzka pocitaneho laseroveho luca\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vracia vektor bodu kde konci laserovy luc 
+\end{DoxyReturn}
+
+
+Definition at line 333 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!insertObj@{insertObj}}
+\subsubsection[{getPosition}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 insertObj::getPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a6eba3fa96a46ea20a664b16dc215f3b6}
+Funkcia zisti polohu robota v priestore
+
+\begin{DoxyReturn}{Returns}
+Vracia vektor polohy laseru 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!loadObjects@{loadObjects}}
+\index{loadObjects@{loadObjects}!insertObj@{insertObj}}
+\subsubsection[{loadObjects}]{\setlength{\rightskip}{0pt plus 5cm}void insertObj::loadObjects (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classinsertObj_ad48c7154cadd680369fb588bc962301d}
+Funkcia nacitava objekty z konfiguraneho suboru 
+
+Definition at line 106 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!setFrontVector@{setFrontVector}}
+\index{setFrontVector@{setFrontVector}!insertObj@{insertObj}}
+\subsubsection[{setFrontVector}]{\setlength{\rightskip}{0pt plus 5cm}void insertObj::setFrontVector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_aef41c13e090deba4ea26b43156a15d6a}
+Funkcia nastavuje vektor urcujuci smer robota 
+
+Definition at line 266 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!setObjAngle@{setObjAngle}}
+\index{setObjAngle@{setObjAngle}!insertObj@{insertObj}}
+\subsubsection[{setObjAngle}]{\setlength{\rightskip}{0pt plus 5cm}double insertObj::setObjAngle (
+\begin{DoxyParamCaption}
+\item[{tf::Vector3}]{base, }
+\item[{tf::Vector3}]{point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a2048ebc91ec0d38fd50589720acb30cd}
+Funkcia vracia uhol medzi dvoma vektormi
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & Prvy vektor \\
+\hline
+{\em point} & Druhy vektor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vracia hodnotu uhla medzi zadanymi vektormi 
+\end{DoxyReturn}
+
+
+Definition at line 308 of file ins\_\-pub.cpp.
+
+\index{insertObj@{insertObj}!startIns@{startIns}}
+\index{startIns@{startIns}!insertObj@{insertObj}}
+\subsubsection[{startIns}]{\setlength{\rightskip}{0pt plus 5cm}void insertObj::startIns (
+\begin{DoxyParamCaption}
+\item[{sensor\_\-msgs::LaserScan $\ast$}]{sc\_\-msg}
+\end{DoxyParamCaption}
+)}\label{classinsertObj_ad1a3e167b26acbcc11917cfa81fa24da}
+Funkcia vykonavajuca hlavnu funkcnost vytovrenia virtualnych objetov v datach robota
+
+
+\begin{DoxyParams}{Parameters}
+{\em sc\_\-msg} & Ukazovatel na upravovanu spravu \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 395 of file ins\_\-pub.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{insertObj@{insertObj}!front@{front}}
+\index{front@{front}!insertObj@{insertObj}}
+\subsubsection[{front}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 {\bf insertObj::front}\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a44513d0ad67e585997cd2a9ecee23872}
+
+
+Definition at line 69 of file ins\_\-pub.h.
+
+\index{insertObj@{insertObj}!laserPos@{laserPos}}
+\index{laserPos@{laserPos}!insertObj@{insertObj}}
+\subsubsection[{laserPos}]{\setlength{\rightskip}{0pt plus 5cm}tf::Vector3 {\bf insertObj::laserPos}\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a51ae3575c9c8582e3cebfce2933a66fb}
+
+
+Definition at line 70 of file ins\_\-pub.h.
+
+\index{insertObj@{insertObj}!transform@{transform}}
+\index{transform@{transform}!insertObj@{insertObj}}
+\subsubsection[{transform}]{\setlength{\rightskip}{0pt plus 5cm}tf::StampedTransform {\bf insertObj::transform}\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a5ee7e4a6cceb58b0eb65b00f2e2e7b5e}
+
+
+Definition at line 71 of file ins\_\-pub.h.
+
+\index{insertObj@{insertObj}!vObjects@{vObjects}}
+\index{vObjects@{vObjects}!insertObj@{insertObj}}
+\subsubsection[{vObjects}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<${\bf virtualObject}$>$ {\bf insertObj::vObjects}\hspace{0.3cm}{\ttfamily  [private]}}\label{classinsertObj_a8eb9b78d63dde25f040707798b32aa30}
+
+
+Definition at line 68 of file ins\_\-pub.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+include/mixed\_\-real\_\-c/{\bf ins\_\-pub.h}\item 
+src/{\bf ins\_\-pub.cpp}\end{DoxyCompactItemize}

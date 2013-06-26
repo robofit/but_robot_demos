@@ -1,0 +1,13 @@
+<launch>
+	
+	<!-- -->
+	<node pkg="mixed_real_c" type="mixedReality" name="mixedReality" output="screen">
+
+		<rosparam file="$(find mixed_real_c)/config/presetObjects.yaml" command="load" />
+		<param name="topic_in" value="scan" type="string"/>
+                <param name="topic_out" value="mixed_scan" type="string"/>
+		<param name="test_out" value="2" type="int"/>
+		<param name="noise" value="0.007" type="double"/>
+	</node>
+  
+</launch>

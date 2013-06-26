@@ -1,0 +1,174 @@
+\section{include/mixed\_\-real\_\-c/ins\_\-pub.h File Reference}
+\label{ins__pub_8h}\index{include/mixed\_\-real\_\-c/ins\_\-pub.h@{include/mixed\_\-real\_\-c/ins\_\-pub.h}}
+
+
+Hlavickovy subor aplikacie na vkladanie virtualnych objektov do dat robota.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}sensor\_\-msgs/LaserScan.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}tf/transform\_\-listener.h\char`\"{}}\par
+Include dependency graph for ins\_\-pub.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=378pt]{ins__pub_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{ins__pub_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bf insertObj}
+\item 
+struct {\bf preset}
+\item 
+class {\bf virtualObject}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf DIS\_\-STRENGTH}~0.008
+\item 
+\#define {\bf doNotCross}~1
+\item 
+\#define {\bf LEN\_\-FRONT\_\-VECT}~2
+\item 
+\#define {\bf PI}~3.14159265359
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct {\bf preset} {\bf Preset}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double {\bf las\_\-ang\_\-max} = PI$\ast$0.75
+\item 
+double {\bf las\_\-ang\_\-min} = -\/PI$\ast$0.75
+\item 
+double {\bf MAX\_\-ANGLE} = 2$\ast$PI/0.75
+\item 
+sensor\_\-msgs::LaserScan {\bf mixed\_\-scan}
+\item 
+double {\bf noise} = DIS\_\-STRENGTH
+\item 
+{\bf insertObj} $\ast$ {\bf pIObj}
+\item 
+int {\bf test\_\-info} = 0
+\item 
+double {\bf UNIT\_\-BTW\_\-LAS} = (PI/360.0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hlavickovy subor aplikacie na vkladanie virtualnych objektov do dat robota. \begin{DoxyAuthor}{Author}
+Jakub Fisla (xfisla00) 
+\end{DoxyAuthor}
+
+
+Definition in file {\bf ins\_\-pub.h}.
+
+
+
+\subsection{Define Documentation}
+\index{ins\_\-pub.h@{ins\_\-pub.h}!DIS\_\-STRENGTH@{DIS\_\-STRENGTH}}
+\index{DIS\_\-STRENGTH@{DIS\_\-STRENGTH}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{DIS\_\-STRENGTH}]{\setlength{\rightskip}{0pt plus 5cm}\#define DIS\_\-STRENGTH~0.008}\label{ins__pub_8h_abedab1b196d80411e1ed102f2a367ccd}
+
+
+Definition at line 28 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!doNotCross@{doNotCross}}
+\index{doNotCross@{doNotCross}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{doNotCross}]{\setlength{\rightskip}{0pt plus 5cm}\#define doNotCross~1}\label{ins__pub_8h_a1f597718bbb741b6773d45c36555b214}
+
+
+Definition at line 24 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!LEN\_\-FRONT\_\-VECT@{LEN\_\-FRONT\_\-VECT}}
+\index{LEN\_\-FRONT\_\-VECT@{LEN\_\-FRONT\_\-VECT}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{LEN\_\-FRONT\_\-VECT}]{\setlength{\rightskip}{0pt plus 5cm}\#define LEN\_\-FRONT\_\-VECT~2}\label{ins__pub_8h_afa7a11fe6808d6f2d83b138660cfe938}
+
+
+Definition at line 26 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!PI@{PI}}
+\index{PI@{PI}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{PI}]{\setlength{\rightskip}{0pt plus 5cm}\#define PI~3.14159265359}\label{ins__pub_8h_a598a3330b3c21701223ee0ca14316eca}
+
+
+Definition at line 27 of file ins\_\-pub.h.
+
+
+
+\subsection{Typedef Documentation}
+\index{ins\_\-pub.h@{ins\_\-pub.h}!Preset@{Preset}}
+\index{Preset@{Preset}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{Preset}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf preset} {\bf Preset}}\label{ins__pub_8h_aba266741f5e08c118d22f0da93fe9e4a}
+Struktura obsahujuca data virtualneho objektu. Obsahuje meno (name), x suradnice, y suradnice, a intenzitu nasnimaneho signalu 
+
+\subsection{Variable Documentation}
+\index{ins\_\-pub.h@{ins\_\-pub.h}!las\_\-ang\_\-max@{las\_\-ang\_\-max}}
+\index{las\_\-ang\_\-max@{las\_\-ang\_\-max}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{las\_\-ang\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf las\_\-ang\_\-max} = PI$\ast$0.75}\label{ins__pub_8h_ab83311036cf2c6243184887da554a036}
+
+
+Definition at line 32 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!las\_\-ang\_\-min@{las\_\-ang\_\-min}}
+\index{las\_\-ang\_\-min@{las\_\-ang\_\-min}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{las\_\-ang\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf las\_\-ang\_\-min} = -\/PI$\ast$0.75}\label{ins__pub_8h_a160d940f8bd263498c1641fca83f2585}
+
+
+Definition at line 33 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!MAX\_\-ANGLE@{MAX\_\-ANGLE}}
+\index{MAX\_\-ANGLE@{MAX\_\-ANGLE}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{MAX\_\-ANGLE}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf MAX\_\-ANGLE} = 2$\ast$PI/0.75}\label{ins__pub_8h_ac32ec987dfc5022ee8e26d4f2fd05732}
+
+
+Definition at line 31 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!mixed\_\-scan@{mixed\_\-scan}}
+\index{mixed\_\-scan@{mixed\_\-scan}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{mixed\_\-scan}]{\setlength{\rightskip}{0pt plus 5cm}sensor\_\-msgs::LaserScan {\bf mixed\_\-scan}}\label{ins__pub_8h_aad1de035bfed6f3c908d6f72a2ec2d1e}
+
+
+Definition at line 87 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!noise@{noise}}
+\index{noise@{noise}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{noise}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf noise} = DIS\_\-STRENGTH}\label{ins__pub_8h_aedb3acb007b8cca8efc63eed08f45705}
+
+
+Definition at line 88 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!pIObj@{pIObj}}
+\index{pIObj@{pIObj}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{pIObj}]{\setlength{\rightskip}{0pt plus 5cm}{\bf insertObj}$\ast$ {\bf pIObj}}\label{ins__pub_8h_aba39bde455b1a2ce9784bec3b52ebd49}
+
+
+Definition at line 86 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!test\_\-info@{test\_\-info}}
+\index{test\_\-info@{test\_\-info}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{test\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf test\_\-info} = 0}\label{ins__pub_8h_aba44f1379e8e30d4041e9f6d07fc33e0}
+
+
+Definition at line 89 of file ins\_\-pub.h.
+
+\index{ins\_\-pub.h@{ins\_\-pub.h}!UNIT\_\-BTW\_\-LAS@{UNIT\_\-BTW\_\-LAS}}
+\index{UNIT\_\-BTW\_\-LAS@{UNIT\_\-BTW\_\-LAS}!ins_pub.h@{ins\_\-pub.h}}
+\subsubsection[{UNIT\_\-BTW\_\-LAS}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf UNIT\_\-BTW\_\-LAS} = (PI/360.0)}\label{ins__pub_8h_aa4a18312d42e276842d0bcd85bd42532}
+
+
+Definition at line 30 of file ins\_\-pub.h.
+

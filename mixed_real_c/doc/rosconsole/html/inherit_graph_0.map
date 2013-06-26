@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classros_1_1console_1_1FilterBase.html" title="Base&#45;class for filters. Filters allow full user&#45;defined control over whether or not a message should ..." alt="" coords="5,59,165,88"/>
+<area shape="rect" id="node3" href="$structAdvancedFilter.html" title="AdvancedFilter" alt="" coords="213,5,323,35"/>
+<area shape="rect" id="node5" href="$structBasicFilter.html" title="BasicFilter" alt="" coords="227,59,309,88"/>
+<area shape="rect" id="node7" href="$structChangeFilter.html" title="ChangeFilter" alt="" coords="220,112,316,141"/>
+</map>
