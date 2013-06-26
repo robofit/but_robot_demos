@@ -1,0 +1,773 @@
+\section{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/console.h File Reference}
+\label{console_8h}\index{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/console.h@{/home/jakub/ros/ros\_\-comm/tools/rosconsole/include/ros/console.h}}
+{\ttfamily \#include $<$cstdio$>$}\par
+{\ttfamily \#include $<$sstream$>$}\par
+{\ttfamily \#include $<$ros/time.h$>$}\par
+{\ttfamily \#include $<$cstdarg$>$}\par
+{\ttfamily \#include $<$ros/macros.h$>$}\par
+{\ttfamily \#include $<$log4cxx/logger.h$>$}\par
+{\ttfamily \#include \char`\"{}rosconsole/macros\_\-generated.h\char`\"{}}\par
+Include dependency graph for console.h:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{console_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{console_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bf ros::console::FilterBase}
+\begin{DoxyCompactList}\small\item\em Base-\/class for filters. Filters allow full user-\/defined control over whether or not a message should print. The ROS\_\-X\_\-FILTER... macros provide the filtering functionality. \end{DoxyCompactList}\item 
+struct {\bf ros::console::FilterParams}
+\begin{DoxyCompactList}\small\item\em Parameter structure passed to \doxyref{FilterBase::isEnabled}{p.}{classros_1_1console_1_1FilterBase_ac4a1c9d0ba5672f7cdd0f3e72014fb27}(...);. Includes both input and output parameters. \end{DoxyCompactList}\item 
+struct {\bf ros::console::LogLocation}
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf boost}
+\item 
+namespace {\bf log4cxx}
+\item 
+namespace {\bf log4cxx::helpers}
+\item 
+namespace {\bf ros}
+\item 
+namespace {\bf ros::console}
+\item 
+namespace {\bf ros::console::levels}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf \_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-}~\char`\"{}\char`\"{}
+\item 
+\#define {\bf ROS\_\-LIKELY}(x)~\_\-\_\-builtin\_\-expect((x),1)
+\item 
+\#define {\bf ROS\_\-LOG}(level, name,...)~ROS\_\-LOG\_\-COND(true, level, name, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-COND}(cond, level, name,...)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, only if a given condition has been met, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-FILTER}(filter, level, name,...)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, with user-\/defined filtering, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-ONCE}(level, name,...)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, only the first time it is hit when enabled, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-STREAM}(level, name, args)~ROS\_\-LOG\_\-STREAM\_\-COND(true, level, name, args)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, with stream-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-STREAM\_\-COND}(cond, level, name, args)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, only if a given condition has been met, with stream-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-STREAM\_\-FILTER}(filter, level, name, args)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, with user-\/defined filtering, with stream-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-STREAM\_\-ONCE}(level, name, args)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, only the first time it is hit when enabled, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-STREAM\_\-THROTTLE}(rate, level, name, args)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, limited to a specific rate of printing, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-LOG\_\-THROTTLE}(rate, level, name,...)
+\begin{DoxyCompactList}\small\item\em Log to a given named logger at a given verbosity level, limited to a specific rate of printing, with printf-\/style formatting. \end{DoxyCompactList}\item 
+\#define {\bf ROS\_\-UNLIKELY}(x)~\_\-\_\-builtin\_\-expect((x),0)
+\item 
+\#define {\bf ROSCONSOLE\_\-AUTOINIT}
+\begin{DoxyCompactList}\small\item\em Initializes the rosconsole library. Usually unnecessary to call directly. \end{DoxyCompactList}\item 
+\#define {\bf ROSCONSOLE\_\-DECL}
+\item 
+\#define {\bf ROSCONSOLE\_\-DEFAULT\_\-NAME}~ROSCONSOLE\_\-NAME\_\-PREFIX
+\item 
+\#define {\bf ROSCONSOLE\_\-DEFINE\_\-LOCATION}(cond, level, name)
+\item 
+\#define {\bf ROSCONSOLE\_\-MIN\_\-SEVERITY}~ROSCONSOLE\_\-SEVERITY\_\-DEBUG
+\item 
+\#define {\bf ROSCONSOLE\_\-NAME\_\-PREFIX}~ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME \char`\"{}.\char`\"{} ROSCONSOLE\_\-PACKAGE\_\-NAME
+\item 
+\#define {\bf ROSCONSOLE\_\-PACKAGE\_\-NAME}~\char`\"{}unknown\_\-package\char`\"{}
+\item 
+\#define {\bf ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION}(...)~ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(0, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}(filter,...)~::ros::console::print(filter, loc.logger\_\-, loc.level\_\-, \_\-\_\-FILE\_\-\_\-, \_\-\_\-LINE\_\-\_\-, \_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-, \_\-\_\-VA\_\-ARGS\_\-\_\-)
+\item 
+\#define {\bf ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION}(args)~ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(0, args)
+\item 
+\#define {\bf ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}(filter, args)
+\item 
+\#define {\bf ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE}(a, b)
+\item 
+\#define {\bf ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME}~\char`\"{}ros\char`\"{}
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-DEBUG}~0
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-ERROR}~3
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-FATAL}~4
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-INFO}~1
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-NONE}~5
+\item 
+\#define {\bf ROSCONSOLE\_\-SEVERITY\_\-WARN}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef levels::Level {\bf ros::console::Level}
+\item 
+typedef helpers::ObjectPtrT$<$ Level $>$ {\bf log4cxx::LevelPtr}
+\item 
+typedef helpers::ObjectPtrT$<$ Logger $>$ {\bf log4cxx::LoggerPtr}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf ros::console::levels::Level} \{ \par
+{\bf ros::console::levels::Debug}, 
+{\bf ros::console::levels::Info}, 
+{\bf ros::console::levels::Warn}, 
+{\bf ros::console::levels::Error}, 
+\par
+{\bf ros::console::levels::Fatal}, 
+{\bf ros::console::levels::Count}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::checkLogLocationEnabled} (LogLocation $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::formatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt,...)
+\item 
+ROSCONSOLE\_\-DECL std::string {\bf ros::console::formatToString} (const char $\ast$fmt,...)
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::initialize} ()
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Performs any required initialization/configuration. Happens automatically when using the macro API. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::initializeLogLocation} (LogLocation $\ast$loc, const std::string \&name, Level level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::notifyLoggerLevelsChanged} ()
+\begin{DoxyCompactList}\small\item\em Tells the system that a logger's level has changed. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void ROSCONSOLE\_\-DECL void {\bf ros::console::print} (FilterBase $\ast$filter, log4cxx::Logger $\ast$logger, Level level, const std::stringstream \&str, const char $\ast$file, int line, const char $\ast$function)
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::print} (FilterBase $\ast$filter, log4cxx::Logger $\ast$logger, Level level, const char $\ast$file, int line, const char $\ast$function, const char $\ast$fmt,...) ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE(7
+\begin{DoxyCompactList}\small\item\em Don't call this directly. Use the \doxyref{ROS\_\-LOG()}{p.}{console_8h_a12ee3c39e5966eebc3509a3fbff81a18} macro instead. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::registerLogLocation} (LogLocation $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Registers a logging location with the system. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::setFixedFilterToken} (const std::string \&key, const std::string \&val)
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::setLogLocationLevel} (LogLocation $\ast$loc, Level level)
+\begin{DoxyCompactList}\small\item\em Internal. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::shutdown} ()
+\item 
+ROSCONSOLE\_\-DECL void {\bf ros::console::vformatToBuffer} (boost::shared\_\-array$<$ char $>$ \&buffer, size\_\-t \&buffer\_\-size, const char $\ast$fmt, va\_\-list args)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ROSCONSOLE\_\-DECL bool {\bf ros::console::g\_\-initialized} = false
+\begin{DoxyCompactList}\small\item\em Only exported because the macros need it. Do not use directly. \end{DoxyCompactList}\item 
+ROSCONSOLE\_\-DECL {\bf log4cxx::LevelPtr} {\bf ros::console::g\_\-level\_\-lookup} [$\,$]
+\item 
+struct ROSCONSOLE\_\-DECL {\bf ros::console::LogLocation}
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{console.h@{console.h}!\_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-@{\_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-}}
+\index{\_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-@{\_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-}!console.h@{console.h}}
+\subsubsection[{\_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-~\char`\"{}\char`\"{}}\label{console_8h_a64f5f44da6981395bab521f90de7e989}
+
+
+Definition at line 263 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LIKELY@{ROS\_\-LIKELY}}
+\index{ROS\_\-LIKELY@{ROS\_\-LIKELY}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LIKELY}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LIKELY(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~\_\-\_\-builtin\_\-expect((x),1)}\label{console_8h_a24512cfdc3c1a61526ba3dae664d073d}
+
+
+Definition at line 254 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG@{ROS\_\-LOG}}
+\index{ROS\_\-LOG@{ROS\_\-LOG}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG(
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-COND(true, level, name, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{console_8h_a12ee3c39e5966eebc3509a3fbff81a18}
+
+
+Log to a given named logger at a given verbosity level, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 493 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-COND@{ROS\_\-LOG\_\-COND}}
+\index{ROS\_\-LOG\_\-COND@{ROS\_\-LOG\_\-COND}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{console_8h_a19f21b3e8da652bbada690adb266e228}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(cond, level, name); \
+    \
+    if (ROS_UNLIKELY(enabled)) \
+    { \
+      ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, only if a given condition has been met, with printf-\/style formatting. 
+
+\begin{DoxyNote}{Note}
+The condition will only be evaluated if this logging statement is enabled
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em cond} & Boolean condition to be evaluated \\
+\hline
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 347 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-FILTER@{ROS\_\-LOG\_\-FILTER}}
+\index{ROS\_\-LOG\_\-FILTER@{ROS\_\-LOG\_\-FILTER}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{console_8h_a38157460dbd2e52e06992059ccdd7dc2}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    if (ROS_UNLIKELY(enabled) && (filter)->isEnabled()) \
+    { \
+      ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER(filter, __VA_ARGS__); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, with user-\/defined filtering, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter} & pointer to the filter to be used \\
+\hline
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 460 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-ONCE@{ROS\_\-LOG\_\-ONCE}}
+\index{ROS\_\-LOG\_\-ONCE@{ROS\_\-LOG\_\-ONCE}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{console_8h_aaa323dddd06ca0e41a57d1ed31efaffe}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    static bool hit = false; \
+    if (ROS_UNLIKELY(enabled) && ROS_UNLIKELY(!hit)) \
+    { \
+      hit = true; \
+      ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, only the first time it is hit when enabled, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 383 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-STREAM@{ROS\_\-LOG\_\-STREAM}}
+\index{ROS\_\-LOG\_\-STREAM@{ROS\_\-LOG\_\-STREAM}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-STREAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-STREAM(
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROS\_\-LOG\_\-STREAM\_\-COND(true, level, name, args)}\label{console_8h_af5c620bd5850fa5c886b4528de09e536}
+
+
+Log to a given named logger at a given verbosity level, with stream-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 500 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-STREAM\_\-COND@{ROS\_\-LOG\_\-STREAM\_\-COND}}
+\index{ROS\_\-LOG\_\-STREAM\_\-COND@{ROS\_\-LOG\_\-STREAM\_\-COND}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-STREAM\_\-COND}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-STREAM\_\-COND(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\label{console_8h_ad7852fdd4756254bdde60383eab8973f}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(cond, level, name); \
+    if (ROS_UNLIKELY(enabled)) \
+    { \
+      ROSCONSOLE_PRINT_STREAM_AT_LOCATION(args); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, only if a given condition has been met, with stream-\/style formatting. 
+
+\begin{DoxyNote}{Note}
+The condition will only be evaluated if this logging statement is enabled
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em cond} & Boolean condition to be evaluated \\
+\hline
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 367 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-STREAM\_\-FILTER@{ROS\_\-LOG\_\-STREAM\_\-FILTER}}
+\index{ROS\_\-LOG\_\-STREAM\_\-FILTER@{ROS\_\-LOG\_\-STREAM\_\-FILTER}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-STREAM\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-STREAM\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\label{console_8h_a087ee85a17b9a8fa2c4dc772c139d04f}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    if (ROS_UNLIKELY(enabled) && (filter)->isEnabled()) \
+    { \
+      ROSCONSOLE_PRINT_STREAM_AT_LOCATION_WITH_FILTER(filter, args); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, with user-\/defined filtering, with stream-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cond} & Boolean condition to be evaluated \\
+\hline
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 477 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-STREAM\_\-ONCE@{ROS\_\-LOG\_\-STREAM\_\-ONCE}}
+\index{ROS\_\-LOG\_\-STREAM\_\-ONCE@{ROS\_\-LOG\_\-STREAM\_\-ONCE}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-STREAM\_\-ONCE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-STREAM\_\-ONCE(
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\label{console_8h_a242fef623e81290e911f98e17728cc74}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    static bool hit = false; \
+    if (ROS_UNLIKELY(enabled) && ROS_UNLIKELY(!hit)) \
+    { \
+      hit = true; \
+      ROSCONSOLE_PRINT_STREAM_AT_LOCATION(args); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, only the first time it is hit when enabled, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 401 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-STREAM\_\-THROTTLE@{ROS\_\-LOG\_\-STREAM\_\-THROTTLE}}
+\index{ROS\_\-LOG\_\-STREAM\_\-THROTTLE@{ROS\_\-LOG\_\-STREAM\_\-THROTTLE}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-STREAM\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-STREAM\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\label{console_8h_a67926b9c9f686b0e1cf82c73901d93db}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    static double last_hit = 0.0; \
+    ::ros::Time now = ::ros::Time::now(); \
+    if (ROS_UNLIKELY(enabled) && ROS_UNLIKELY(last_hit + rate <= now.toSec())) \
+    { \
+      last_hit = now.toSec(); \
+      ROSCONSOLE_PRINT_STREAM_AT_LOCATION(args); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, limited to a specific rate of printing, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+{\em rate} & The rate it should actually trigger at \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 440 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-LOG\_\-THROTTLE@{ROS\_\-LOG\_\-THROTTLE}}
+\index{ROS\_\-LOG\_\-THROTTLE@{ROS\_\-LOG\_\-THROTTLE}!console.h@{console.h}}
+\subsubsection[{ROS\_\-LOG\_\-THROTTLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-LOG\_\-THROTTLE(
+\begin{DoxyParamCaption}
+\item[{}]{rate, }
+\item[{}]{level, }
+\item[{}]{name, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{console_8h_abcd24e58d38c9018c49118ea6619020e}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    ROSCONSOLE_DEFINE_LOCATION(true, level, name); \
+    static double last_hit = 0.0; \
+    ::ros::Time now = ::ros::Time::now(); \
+    if (ROS_UNLIKELY(enabled) && ROS_UNLIKELY(last_hit + rate <= now.toSec())) \
+    { \
+      last_hit = now.toSec(); \
+      ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Log to a given named logger at a given verbosity level, limited to a specific rate of printing, with printf-\/style formatting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & One of the levels specified in \doxyref{ros::console::levels::Level}{p.}{namespaceros_1_1console_1_1levels_a3ff2daf7f0090b1dcfb5c2622d9c140d} \\
+\hline
+{\em name} & Name of the logger. Note that this is the fully qualified name, and does NOT include \char`\"{}ros.$<$package\_\-name$>$\char`\"{}. Use ROSCONSOLE\_\-DEFAULT\_\-NAME if you would like to use the default name. \\
+\hline
+{\em rate} & The rate it should actually trigger at \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 420 of file console.h.
+
+\index{console.h@{console.h}!ROS\_\-UNLIKELY@{ROS\_\-UNLIKELY}}
+\index{ROS\_\-UNLIKELY@{ROS\_\-UNLIKELY}!console.h@{console.h}}
+\subsubsection[{ROS\_\-UNLIKELY}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROS\_\-UNLIKELY(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~\_\-\_\-builtin\_\-expect((x),0)}\label{console_8h_a802f643e61e95e21d9db03f831bb8002}
+
+
+Definition at line 255 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-AUTOINIT@{ROSCONSOLE\_\-AUTOINIT}}
+\index{ROSCONSOLE\_\-AUTOINIT@{ROSCONSOLE\_\-AUTOINIT}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-AUTOINIT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-AUTOINIT}\label{console_8h_a497510f03945df6a8475fd9289eaee4e}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    if (ROS_UNLIKELY(!::ros::console::g_initialized)) \
+    { \
+      ::ros::console::initialize(); \
+    } \
+  } while(0)
+\end{DoxyCode}
+
+
+Initializes the rosconsole library. Usually unnecessary to call directly. 
+
+
+
+Definition at line 298 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-DECL@{ROSCONSOLE\_\-DECL}}
+\index{ROSCONSOLE\_\-DECL@{ROSCONSOLE\_\-DECL}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-DECL}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-DECL}\label{console_8h_a2bdbb7f3e20f0f639ec9228fed7c1672}
+
+
+Definition at line 50 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-DEFAULT\_\-NAME@{ROSCONSOLE\_\-DEFAULT\_\-NAME}}
+\index{ROSCONSOLE\_\-DEFAULT\_\-NAME@{ROSCONSOLE\_\-DEFAULT\_\-NAME}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-DEFAULT\_\-NAME}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-DEFAULT\_\-NAME~ROSCONSOLE\_\-NAME\_\-PREFIX}\label{console_8h_a6a3b59ce181efc20128b71f2254f6ca6}
+
+
+Definition at line 275 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-DEFINE\_\-LOCATION@{ROSCONSOLE\_\-DEFINE\_\-LOCATION}}
+\index{ROSCONSOLE\_\-DEFINE\_\-LOCATION@{ROSCONSOLE\_\-DEFINE\_\-LOCATION}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-DEFINE\_\-LOCATION}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-DEFINE\_\-LOCATION(
+\begin{DoxyParamCaption}
+\item[{}]{cond, }
+\item[{}]{level, }
+\item[{}]{name}
+\end{DoxyParamCaption}
+)}\label{console_8h_a0f904d70b0c9d729b0e6682b5656f38a}
+{\bfseries Value:}
+\begin{DoxyCode}
+ROSCONSOLE_AUTOINIT; \
+  static ::ros::console::LogLocation loc = {false, false,
+       ::ros::console::levels::Count, 0}; /* Initialized at compile-time */ \
+  if (ROS_UNLIKELY(!loc.initialized_)) \
+  { \
+    initializeLogLocation(&loc, name, level); \
+  } \
+  if (ROS_UNLIKELY(loc.level_ != level)) \
+  { \
+    setLogLocationLevel(&loc, level); \
+    checkLogLocationEnabled(&loc); \
+  } \
+  bool enabled = loc.logger_enabled_ && (cond);
+\end{DoxyCode}
+
+
+Definition at line 307 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-MIN\_\-SEVERITY@{ROSCONSOLE\_\-MIN\_\-SEVERITY}}
+\index{ROSCONSOLE\_\-MIN\_\-SEVERITY@{ROSCONSOLE\_\-MIN\_\-SEVERITY}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-MIN\_\-SEVERITY}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-MIN\_\-SEVERITY~ROSCONSOLE\_\-SEVERITY\_\-DEBUG}\label{console_8h_a04b0645007bb4da73c87daa2f10c0268}
+Define ROSCONSOLE\_\-MIN\_\-SEVERITY=ROSCONSOLE\_\-SEVERITY\_\-[DEBUG$|$INFO$|$WARN$|$ERROR$|$FATAL] in your build options to compile out anything below that severity 
+
+Definition at line 291 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-NAME\_\-PREFIX@{ROSCONSOLE\_\-NAME\_\-PREFIX}}
+\index{ROSCONSOLE\_\-NAME\_\-PREFIX@{ROSCONSOLE\_\-NAME\_\-PREFIX}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-NAME\_\-PREFIX}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-NAME\_\-PREFIX~ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME \char`\"{}.\char`\"{} ROSCONSOLE\_\-PACKAGE\_\-NAME}\label{console_8h_a67ebcfd4a10a0842f9d1165484008a6d}
+
+
+Definition at line 274 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PACKAGE\_\-NAME@{ROSCONSOLE\_\-PACKAGE\_\-NAME}}
+\index{ROSCONSOLE\_\-PACKAGE\_\-NAME@{ROSCONSOLE\_\-PACKAGE\_\-NAME}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PACKAGE\_\-NAME}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PACKAGE\_\-NAME~\char`\"{}unknown\_\-package\char`\"{}}\label{console_8h_a47948aef4a358eaff24a597088062f25}
+
+
+Definition at line 270 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION@{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION}}
+\index{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION@{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION(
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(0, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{console_8h_ac1e202d0355273fdc5ca5f01289bd640}
+
+
+Definition at line 324 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER@{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}}
+\index{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER@{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PRINT\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~::ros::console::print(filter, loc.logger\_\-, loc.level\_\-, \_\-\_\-FILE\_\-\_\-, \_\-\_\-LINE\_\-\_\-, \_\-\_\-ROSCONSOLE\_\-FUNCTION\_\-\_\-, \_\-\_\-VA\_\-ARGS\_\-\_\-)}\label{console_8h_a6483cd4792e42d01ab4e76017f56701b}
+
+
+Definition at line 321 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION@{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION}}
+\index{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION@{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION(
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)~ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(0, args)}\label{console_8h_a3256bbd495c864deacd411c9309ba482}
+
+
+Definition at line 335 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER@{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}}
+\index{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER@{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PRINT\_\-STREAM\_\-AT\_\-LOCATION\_\-WITH\_\-FILTER(
+\begin{DoxyParamCaption}
+\item[{}]{filter, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\label{console_8h_a46c6549d016d46c9ff1f6e40901df2b1}
+{\bfseries Value:}
+\begin{DoxyCode}
+do \
+  { \
+    std::stringstream ss; \
+    ss << args; \
+    ::ros::console::print(filter, loc.logger_, loc.level_, ss, __FILE__, __LINE__
+      , __ROSCONSOLE_FUNCTION__); \
+  } while (0)
+\end{DoxyCode}
+
+
+Definition at line 327 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE@{ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE}}
+\index{ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE@{ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-PRINTF\_\-ATTRIBUTE(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)}\label{console_8h_aea1b5b69b6f637a378a02a94c1f80974}
+
+
+Definition at line 64 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME@{ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME}}
+\index{ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME@{ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-ROOT\_\-LOGGER\_\-NAME~\char`\"{}ros\char`\"{}}\label{console_8h_a77ccb804d3c873b84751bad51a617e72}
+
+
+Definition at line 273 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-DEBUG@{ROSCONSOLE\_\-SEVERITY\_\-DEBUG}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-DEBUG@{ROSCONSOLE\_\-SEVERITY\_\-DEBUG}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-DEBUG}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-DEBUG~0}\label{console_8h_a3c070057662df60abf4f966898dd9671}
+
+
+Definition at line 278 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-ERROR@{ROSCONSOLE\_\-SEVERITY\_\-ERROR}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-ERROR@{ROSCONSOLE\_\-SEVERITY\_\-ERROR}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-ERROR}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-ERROR~3}\label{console_8h_a37d9ef3db9d79132e65a3dd5528d4526}
+
+
+Definition at line 281 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-FATAL@{ROSCONSOLE\_\-SEVERITY\_\-FATAL}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-FATAL@{ROSCONSOLE\_\-SEVERITY\_\-FATAL}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-FATAL}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-FATAL~4}\label{console_8h_a5a452c9e16c5a097a0ceb68186310c7c}
+
+
+Definition at line 282 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-INFO@{ROSCONSOLE\_\-SEVERITY\_\-INFO}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-INFO@{ROSCONSOLE\_\-SEVERITY\_\-INFO}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-INFO}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-INFO~1}\label{console_8h_a291747a679c0b39672513c3cd2f07ecc}
+
+
+Definition at line 279 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-NONE@{ROSCONSOLE\_\-SEVERITY\_\-NONE}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-NONE@{ROSCONSOLE\_\-SEVERITY\_\-NONE}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-NONE}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-NONE~5}\label{console_8h_a57118d8b9087017967380122e6bbf968}
+
+
+Definition at line 283 of file console.h.
+
+\index{console.h@{console.h}!ROSCONSOLE\_\-SEVERITY\_\-WARN@{ROSCONSOLE\_\-SEVERITY\_\-WARN}}
+\index{ROSCONSOLE\_\-SEVERITY\_\-WARN@{ROSCONSOLE\_\-SEVERITY\_\-WARN}!console.h@{console.h}}
+\subsubsection[{ROSCONSOLE\_\-SEVERITY\_\-WARN}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROSCONSOLE\_\-SEVERITY\_\-WARN~2}\label{console_8h_a04ec221c130d53ba08e44605b4d8b8b0}
+
+
+Definition at line 280 of file console.h.
+

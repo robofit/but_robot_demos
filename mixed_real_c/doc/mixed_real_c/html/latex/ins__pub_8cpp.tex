@@ -1,0 +1,99 @@
+\section{src/ins\_\-pub.cpp File Reference}
+\label{ins__pub_8cpp}\index{src/ins\_\-pub.cpp@{src/ins\_\-pub.cpp}}
+
+
+Implementacia aplikacie vkladania virtualnych objektov do dat robota v ROS-\/e.  
+
+
+{\ttfamily \#include \char`\"{}mixed\_\-real\_\-c/ins\_\-pub.h\char`\"{}}\par
+Include dependency graph for ins\_\-pub.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=378pt]{ins__pub_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bf isLeft} (tf::Vector3 a, tf::Vector3 b, tf::Vector3 c)
+\item 
+int {\bf main} (int argc, char $\ast$$\ast$argv)
+\item 
+void {\bf scanCallback} (const sensor\_\-msgs::LaserScan::ConstPtr \&scan)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementacia aplikacie vkladania virtualnych objektov do dat robota v ROS-\/e. \begin{DoxyAuthor}{Author}
+Jakub Fisla (xfisla00) 
+\end{DoxyAuthor}
+
+
+Definition in file {\bf ins\_\-pub.cpp}.
+
+
+
+\subsection{Function Documentation}
+\index{ins\_\-pub.cpp@{ins\_\-pub.cpp}!isLeft@{isLeft}}
+\index{isLeft@{isLeft}!ins_pub.cpp@{ins\_\-pub.cpp}}
+\subsubsection[{isLeft}]{\setlength{\rightskip}{0pt plus 5cm}bool isLeft (
+\begin{DoxyParamCaption}
+\item[{tf::Vector3}]{a, }
+\item[{tf::Vector3}]{b, }
+\item[{tf::Vector3}]{c}
+\end{DoxyParamCaption}
+)}\label{ins__pub_8cpp_ac25751b0a6fa470844bfcce02c481fc4}
+Funkcia urcuje polhu bodu c voci usecke $|$ab$|$
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Vektor bodu a \\
+\hline
+{\em b} & Vektor bodu b \\
+\hline
+{\em c} & Vektor bodu c\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vracia true ak je bod c vlavo od usecky $|$ab$|$, inac vracia false 
+\end{DoxyReturn}
+
+
+Definition at line 292 of file ins\_\-pub.cpp.
+
+\index{ins\_\-pub.cpp@{ins\_\-pub.cpp}!main@{main}}
+\index{main@{main}!ins_pub.cpp@{ins\_\-pub.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{ins__pub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+Hlavna funkcia programu, spusta vsetky ostatne funkcie
+
+\begin{DoxyReturn}{Returns}
+Vracai navratovu hodnotu programu 
+\end{DoxyReturn}
+
+
+Definition at line 530 of file ins\_\-pub.cpp.
+
+\index{ins\_\-pub.cpp@{ins\_\-pub.cpp}!scanCallback@{scanCallback}}
+\index{scanCallback@{scanCallback}!ins_pub.cpp@{ins\_\-pub.cpp}}
+\subsubsection[{scanCallback}]{\setlength{\rightskip}{0pt plus 5cm}void scanCallback (
+\begin{DoxyParamCaption}
+\item[{const sensor\_\-msgs::LaserScan::ConstPtr \&}]{scan}
+\end{DoxyParamCaption}
+)}\label{ins__pub_8cpp_abe3232211edb2291f70f7fee36aefe12}
+Funkcia v ktorej je spristupnena odoberana sprava z topiku
+
+
+\begin{DoxyParams}{Parameters}
+{\em scan} & Ukazovatel na prijatu spravu \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 499 of file ins\_\-pub.cpp.
+

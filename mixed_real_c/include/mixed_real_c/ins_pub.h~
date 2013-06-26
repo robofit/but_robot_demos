@@ -1,0 +1,61 @@
+#include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
+#include "tf/transform_listener.h"
+
+#define doNotCross 1
+
+#define LEN_FRONT_VECT 2
+#define PI 3.14159265359
+#define DIS_STRENGTH 0.008
+
+double UNIT_BTW_LAS = (PI/360.0);
+double MAX_ANGLE = 2*PI/0.75;
+double las_ang_max =  PI*0.75;
+double las_ang_min = -PI*0.75;
+
+typedef struct preset{
+	std::string name;
+	std::vector<double> x;
+	std::vector<double> y;
+	double intensity;
+}Preset;
+
+class virtualObject{
+	private:
+		tf::Vector3 cent;
+	public:
+		std::vector<tf::Vector3> points;
+		double intensity;
+
+		virtualObject(float x, float y, float z, float side);	//recangle
+		virtualObject();	//polygon
+		void polygonObject(Preset pr);
+		tf::Vector3 getCent();
+};
+
+class insertObj{
+	private:
+		std::vector<virtualObject> vObjects;
+		tf::Vector3 front;
+		tf::Vector3 laserPos;
+		tf::StampedTransform transform;
+
+		tf::Vector3 getPosition();
+		void setFrontVector();
+		double setObjAngle(tf::Vector3 base, tf::Vector3 point);
+		tf::Vector3 getLaserVector(int laserNo, float len);
+		tf::Vector3 cross(tf::Vector3 o1, tf::Vector3 o2, tf::Vector3 l1, tf::Vector3 l2);
+	public:
+		void addObj(float x, float y, float z, float side);
+		void addPolygon(Preset pr);
+		void loadObjects();
+		void startIns(sensor_msgs::LaserScan * sc_msg);
+};
+
+//Global variables
+insertObj * pIObj;
+sensor_msgs::LaserScan mixed_scan;
+double noise = DIS_STRENGTH;
+int test_info = 0;
+
+
