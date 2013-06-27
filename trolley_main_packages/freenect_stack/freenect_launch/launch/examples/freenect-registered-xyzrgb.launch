@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+    <!-- supply appropriate processing constellation -->
+    <arg name="processing_constellation_file"
+      value="$(find freenect_launch)/launch/examples/includes/produce-xyzrgb.launch" />
+    <arg name="depth_registration" default="true" />
+  </include>
+</launch>

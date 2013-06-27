@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<Trolley>
+    <!-- Settings for trolley -->
+    <Control>
+        <PID p="0.0005" i="0.00013" d="0.0">Linear</PID>
+	<PID p="0.0021" i="0.0011" d="0.0">Angle</PID>
+	<Distance>1200</Distance>
+    </Control>
+
+    <Motor>
+        <MaxSpeed value="2.0">Linear</MaxSpeed>
+	<MaxSpeed value="2.0">Angle</MaxSpeed>
+        <MaxAcceleration value="2.0">Linear</MaxAcceleration>
+	<MaxAcceleration value="2.0">Angle</MaxAcceleration>	
+	<MotorTopic>cmd_vel</MotorTopic> 
+	<PositionTopic>odom</PositionTopic> 
+    </Motor>
+
+    <Audio>
+        <Topic>audio</Topic>
+    </Audio>
+
+    <Strategy>
+        <Type>1</Type>
+    </Strategy>
+</Trolley>

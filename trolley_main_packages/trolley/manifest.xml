@@ -1,0 +1,22 @@
+<package>
+  <description brief="trolley">
+
+     trolley
+
+  </description>
+  <author>xkurat00</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/trolley</url>
+  <depend package="std_msgs"/>
+  <depend package="openni"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="geometry_msgs"/>
+  <depend package="kinect_motor"/>
+  <depend package="kinect_audio"/>
+  <depend package="nav_msgs"/>
+ <depend package="tinyxml"/> 
+</package>
+
+
