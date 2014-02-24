@@ -1,0 +1,10 @@
+(cl:defpackage BP-srv
+  (:use )
+  (:export
+   "DETECTBALLS"
+   "<DETECTBALLS-REQUEST>"
+   "DETECTBALLS-REQUEST"
+   "<DETECTBALLS-RESPONSE>"
+   "DETECTBALLS-RESPONSE"
+  ))
+

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="BP" type="mover" name="mover" output="screen">
+    <remap from="goal_coords" to="/goal_coords" />
+  </node>
+</launch>
