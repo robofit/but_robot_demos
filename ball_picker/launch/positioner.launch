@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="ball_picker" type="positioner" name="positioner" output="screen">
+    <remap from="depth_rect" to="/camera/depth_registered/image_raw" />
+    <remap from="cam_info" to="/camera/depth_registered/camera_info" />
+  </node>
+</launch>

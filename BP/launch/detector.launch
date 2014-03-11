@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <node pkg="BP" type="detector" name="detector" output="screen">
-    <remap from="kinect_data" to="/camera/rgb/image_rect_color" />
-    <remap from="detect_balls" to="/ball_detections" />
-  </node>
-</launch>
