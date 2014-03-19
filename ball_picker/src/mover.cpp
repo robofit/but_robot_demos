@@ -132,7 +132,7 @@ int main (int argc, char** argv)
   //create node
   ros::NodeHandle n;
 
-  //create detector object
+  //create mover object
   Mover m(n);
 
   //keep the node alive

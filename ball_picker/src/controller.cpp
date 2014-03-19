@@ -116,7 +116,7 @@ int main (int argc, char** argv)
   //create node
   ros::NodeHandle n;
 
-  //create detector object
+  //create controller object
   Controller c(n);
 
   //keep the node alive

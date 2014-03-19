@@ -14,4 +14,7 @@
     <remap from="depth_rect" to="/camera/depth_registered/image_raw" />
     <remap from="cam_info" to="/camera/depth_registered/camera_info" />
   </node>
+  <node pkg="ball_picker" type="twister" name="twister" output="screen">
+    <remap from="cmd_vel" to="/cmd_vel" />
+  </node>
 </launch>
