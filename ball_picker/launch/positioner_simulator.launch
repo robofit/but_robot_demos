@@ -1,7 +1,17 @@
 <?xml version="1.0"?>
 <launch>
   <node pkg="ball_picker" type="positioner" name="positioner" output="screen">
-    <remap from="depth_rect" to="/camera/depth/points" />
+    <!--
+    <remap from="depth_rect" to="/cam3d/depth/image_raw" />
+    <remap from="cam_info" to="/cam3d/depth/camera_info" />
+    <remap from="goal_coords" to="/goal_coords" />
+
+    -->
+
+    <remap from="depth_rect" to="/camera/depth/image_raw" />
     <remap from="cam_info" to="/camera/depth/camera_info" />
+
+
+    <remap from="costmap_custom_obstacles" to="/costmap_custom_obstacles" />
   </node>
 </launch>

@@ -30,12 +30,16 @@ Positioner::Positioner(ros::NodeHandle& node): nh(node), it(node)
   depth_sub = it.subscribe("depth_rect", 1, &Positioner::depthImageCallback, this);
   cam_info_sub = nh.subscribe("cam_info", 1, &Positioner::camInfoCallback, this);
   control_sub = nh.subscribe("flow_commands", 1, &Positioner::controlCallback, this);
+  odom_sub = nh.subscribe("odom", 1, &Positioner::odometryCallback, this);
   
-  goal_pub = nh.advertise<ball_picker::GoalCoords>("goal_coords", 1);
+  goal_pub = nh.advertise<geometry_msgs::Pose>("goal_coords", 1);
+  costmap_pub = nh.advertise<ball_picker::Detections>("costmap_custom_obstacles", 1);
 
   depth_img.reset();
 
   detected_balls.clear();
+
+  odometry_recieved = false;
 
   ROS_INFO_STREAM("Positioner initialized.");
 
@@ -72,6 +76,10 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
 
   bool ballfound = false;
   Point3f point3d;
+  geometry_msgs::Pose msg_goal;
+  ball_picker::Detections msg_costmap;
+  msg_costmap.type = ball_picker::Detections::BALL;
+  ball_picker::PointOfInterest obstacle;
 
   if (!detected_balls.empty())
   {
@@ -81,14 +89,65 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     {
       //LADICI vypisy - pozdeji smazat
       cout << "-------------" << endl;
+      cout << iter->point.x << endl;
+      cout << iter->point.y << endl;
       cout << iter->point.z << endl;
       cout << iter->count << endl;
 
+
+
+      //transformation from camera coordinates to robot coordinates system
+      geometry_msgs::PoseStamped ps;
+      ps.header.frame_id = cam_model.tfFrame();
+      ps.header.stamp = ros::Time::now();
+
+      ps.pose.position.x = iter->point.x;
+      ps.pose.position.y = iter->point.y;
+      ps.pose.position.z = iter->point.z;
+
+      ps.pose.orientation.x = 0.0;
+      ps.pose.orientation.y = 0.0;
+      ps.pose.orientation.z = 0.0;
+      ps.pose.orientation.w = 1.0;
+
+      if (!tfl.waitForTransform("/map", ps.header.frame_id, ps.header.stamp, ros::Duration(0.5)))
+      {
+        ROS_WARN_THROTTLE(1.0,"Transform not available!");
+        detected_balls.clear();
+        timer.start();
+        limit.start();
+        return;
+      }
+
+      try
+      {
+        tfl.transformPose("/map", ps, ps);
+      }
+      catch (tf::TransformException& ex)
+      {
+        ROS_ERROR("TF exception:\n%s", ex.what());
+        return;
+      }
+ 
+      if (iter->count > 1)
+      {
+        obstacle.x = ps.pose.position.x;
+        obstacle.y = ps.pose.position.y;
+        msg_costmap.ballcenters.push_back(obstacle);
+      }
+
       if ((iter->point.z < point3d.z) && (iter->count >= 5))
       {
-        point3d.x = iter->point.x;
-        point3d.y = iter->point.y;
         point3d.z = iter->point.z;
+
+        msg_goal.position.x = ps.pose.position.x;
+        msg_goal.position.y = ps.pose.position.y;
+        msg_goal.position.z = ps.pose.position.z;
+
+        msg_goal.orientation.x = 0.0;
+        msg_goal.orientation.y = 0.0;
+        msg_goal.orientation.z = 0.0;
+        msg_goal.orientation.w = 1.0;
 
         ballfound = true;
       }
@@ -99,53 +158,70 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
   //if any valid detections found, start with transform
   if (ballfound)
   {
-    //transformation from camera coordinates to robot coordinates system
-    geometry_msgs::PoseStamped ps;
-    ps.header.frame_id = cam_model.tfFrame();
-    ps.header.stamp = ros::Time::now();
-
-    ps.pose.position.x = point3d.x;
-    ps.pose.position.y = point3d.y;
-    ps.pose.position.z = point3d.z;
-
-    ps.pose.orientation.x = 0;
-    ps.pose.orientation.y = 0;
-    ps.pose.orientation.z = 0;
-    ps.pose.orientation.w = 1;
-
-    if (!tfl.waitForTransform("/map", ps.header.frame_id, ps.header.stamp, ros::Duration(0.5)))
-    {
-      ROS_WARN_THROTTLE(1.0,"Transform not available!");
-      detected_balls.clear();
-      timer.start();
-      limit.start();
-      return;
-    }
-
-    try
-    {
-      tfl.transformPose("/map", ps, ps);
-    }
-    catch (tf::TransformException& ex)
-    {
-      ROS_ERROR("TF exception:\n%s", ex.what());
-      return;
-    }
-
     //LADICI vypis - pozdeji smazat
-    cout << "the nearest ball is on the position --> x: " << ps.pose.position.x << ", y: " << ps.pose.position.y << ", z: " << ps.pose.position.z << endl; 
+    cout << "the nearest ball is on the position --> x: " << msg_goal.position.x << ", y: " << msg_goal.position.y << ", z: " << msg_goal.position.z << endl; 
+
+
+
+    int modif_x = 1;
+    int modif_y = 1;
+    double base_angle = 0;
+    double angle = 0;
+
+    if (msg_goal.position.x >= origin.x)
+    {
+      //II. quadrant
+      if (msg_goal.position.y >= origin.y)
+      {
+        modif_x = 1;
+        modif_y = 1;
+      }
+      //I. quadrant
+      else
+      {
+        modif_x = 1;
+        modif_y = -1;
+      }
+      
+      base_angle = 0;
+    }
+    else
+    {
+      //IV. quadrant
+      if (msg_goal.position.y <= origin.y)
+      {
+        modif_x = -1;
+        modif_y = -1;
+      }
+      //III. quadrant
+      else
+      {
+        modif_x = -1;
+        modif_y = 1;
+      }
+
+      base_angle = PI;
+    }
+
+    geometry_msgs::Point diff = getDistance(abs((modif_x)*msg_goal.position.x-(modif_x)*origin.x), abs((modif_y)*msg_goal.position.y-(modif_y)*origin.y));
+    msg_goal.position.x = origin.x + ((modif_x)*diff.x);
+    msg_goal.position.y = origin.y + ((modif_y)*diff.y);
+    
+    angle = atan(abs((modif_y)*msg_goal.position.y-(modif_y)*origin.y)/abs((modif_x)*msg_goal.position.x-(modif_x)*origin.x));    
+
+    angle = (modif_x)*(modif_y)*(angle - base_angle);
+
+     tf::Quaternion q;
+     q.setRPY(0.0, 0.0, angle);
+     tf::quaternionTFToMsg(q, msg_goal.orientation);
+
 
 
     //advertise the result on goal_coords topic
-    ball_picker::GoalCoords msg_goal;
-    msg_goal.x = ps.pose.position.x;
-    msg_goal.y = ps.pose.position.y;
-    msg_goal.z = ps.pose.position.z;
-
     goal_pub.publish(msg_goal);
     ros::spinOnce();
  
-    //change positive state into control service
+    //send positive state into control service
     srv.request.state = true;
   }
   else
@@ -154,6 +230,12 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     ROS_INFO("No tennis ball found.");
     //send negative state into control service
     srv.request.state = false;
+  }
+
+  if (!msg_costmap.ballcenters.empty())
+  {
+    costmap_pub.publish(msg_costmap);
+    ros::spinOnce();
   }
 
   //call the control service
@@ -219,8 +301,8 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
         for (std::vector<DetCoords>::iterator iter = detected_balls.begin() ; iter != detected_balls.end(); iter++)
         {
           if ( (abs(iter->point.x - dcoords.point.x) < 0.01) &&
-               (abs(iter->point.y - dcoords.point.y) < 0.01) &&
-               (abs(iter->point.z - dcoords.point.z) < 0.2e-37) )
+               (abs(iter->point.y - dcoords.point.y) < 0.01) /*&&
+               (abs(iter->point.z - dcoords.point.z) < 0.2e-37) */)
           {
             iter->point.x = ((iter->point.x + dcoords.point.x)/2);
             iter->point.y = ((iter->point.y + dcoords.point.y)/2);
@@ -267,6 +349,34 @@ bool Positioner::cameraTo3D(int center_x, int center_y, Point3f* point3d)
 
 }
 
+
+/**
+ * counts the x and y distance of the goal position
+ */
+geometry_msgs::Point Positioner::getDistance(double a, double b)
+{
+  geometry_msgs::Point result;
+
+  double distance = sqrt(a*a+b*b) - SPACE;
+  
+  if (a == 0)
+  {
+    result.x = 0;
+    result.y = distance;
+    return result;
+  }
+  
+  if (b == 0)
+  {
+    result.x = distance;
+    result.y = 0;
+    return result;
+  }
+ 
+  result.x = sqrt((a*a*distance*distance)/(a*a+b*b));
+  result.y = (b/a)*result.x;
+  return result;
+}
 
 /**
  * callback on incoming camera info msg
@@ -319,6 +429,15 @@ void Positioner::controlCallback(const ball_picker::FlowCommands& msg)
     limit.start();
   }
 
+}
+
+void Positioner::odometryCallback(const nav_msgs::Odometry& msg)
+{
+  origin.x = msg.pose.pose.position.x;
+  origin.y = msg.pose.pose.position.y;
+  origin.z = msg.pose.pose.position.z;
+
+  odometry_recieved = true;
 }
 
 

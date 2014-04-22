@@ -21,7 +21,7 @@ Mover::Mover(ros::NodeHandle& node): nh(node), action_client("move_base", true)
 {
 
   constflowid = ball_picker::FlowCommands::MOVETOBALL;
-  goal_recieved = false;
+  goal_recieved = true;
 
   //define subscription on goal coordinates
   goal_sub = nh.subscribe("goal_coords", 1, &Mover::goalCoordinatesCallback, this);
@@ -48,17 +48,17 @@ void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
   ROS_INFO_ONCE("Goal coordinates received.");
 
   //fill the goal for the robot
-  goal.target_pose.header.frame_id = "map";
+  goal.target_pose.header.frame_id = "base_link";
   goal.target_pose.header.stamp = ros::Time::now();
 
   goal.target_pose.pose.position.x = msg.position.x;
   goal.target_pose.pose.position.y = msg.position.y;
   goal.target_pose.pose.position.z = msg.position.z;
 
-  goal.target_pose.pose.orientation.x = msg.orientation.x;
-  goal.target_pose.pose.orientation.y = msg.orientation.y;
-  goal.target_pose.pose.orientation.z = msg.orientation.z;
-  goal.target_pose.pose.orientation.w = msg.orientation.w;
+  goal.target_pose.pose.orientation.x = 0.0;
+  goal.target_pose.pose.orientation.y = 0.0;
+  goal.target_pose.pose.orientation.z = 0.0;
+  goal.target_pose.pose.orientation.w = 1.0;
 
   goal_recieved = true;
 }
@@ -77,7 +77,7 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
     ROS_INFO("Starting the move process.");
 
     //wait for the action server to come up
-    if(!action_client.waitForServer(ros::Duration(5.0)))
+    if(!action_client.waitForServer(ros::Duration(15.0)))
     {
       ROS_WARN_THROTTLE(1.0, "Move base server not available!");
       return;
@@ -91,8 +91,21 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
 
     //send the goal to the robot
     ROS_INFO("Sending goal");
+
+    goal.target_pose.header.frame_id = "map";
+  goal.target_pose.header.stamp = ros::Time::now();
+
+  goal.target_pose.pose.position.x = 1.0;
+  goal.target_pose.pose.position.y = 1.0;
+  goal.target_pose.pose.position.z = 0.0;
+
+  goal.target_pose.pose.orientation.x = 0.0;
+  goal.target_pose.pose.orientation.y = 0.0;
+  goal.target_pose.pose.orientation.z = 0.0;
+  goal.target_pose.pose.orientation.w = 1.0;
+
     action_client.sendGoal(goal);
-    action_client.waitForResult(ros::Duration(15.0));
+    action_client.waitForResult(ros::Duration(120.0));
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
@@ -105,6 +118,8 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
     else
     {
       ROS_INFO("The base failed to move to the target.");
+
+      printf("Current State: %s\n", action_client.getState().toString().c_str());
       srv.request.state = false;
 
       //cancel all goals

@@ -15,12 +15,17 @@
 #include <image_geometry/pinhole_camera_model.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
+#include <nav_msgs/Odometry.h>
 #include <tf/transform_listener.h>
+#include <geometry_msgs/Pose.h>
 
 #include <ball_picker/DetectBalls.h>
-#include <ball_picker/GoalCoords.h>
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
+#include <ball_picker/Detections.h>
+
+#define PI 3.14159265
+#define SPACE 0.5
 
 namespace ball_picker {
 
@@ -57,21 +62,28 @@ namespace ball_picker {
 
       ros::Subscriber cam_info_sub;
       ros::Subscriber control_sub;
+      ros::Subscriber odom_sub;
+
 
       cv_bridge::CvImagePtr depth_img;
 
       tf::TransformListener tfl;
 
+      geometry_msgs::Point origin;
+      bool odometry_recieved;
+
       ros::Publisher goal_pub;
+      ros::Publisher costmap_pub;
 
       void timerCallback(const ros::WallTimerEvent& event);
       void limitCallback(const ros::WallTimerEvent& event);
       void depthImageCallback(const sensor_msgs::ImageConstPtr& msg);
       void camInfoCallback(const sensor_msgs::CameraInfoConstPtr& msg);
       void controlCallback(const ball_picker::FlowCommands& msg);
+      void odometryCallback(const nav_msgs::Odometry& msg);
       
       bool cameraTo3D(int center_x, int center_y, cv::Point3f* point3d);
-
+      geometry_msgs::Point getDistance(double a, double b);
    };
 
 

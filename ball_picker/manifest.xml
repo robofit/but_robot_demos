@@ -22,6 +22,12 @@
   <depend package="move_base_msgs"/>
   <depend package="actionlib"/>
 
+  <depend package="costmap_2d"/>
+  <depend package="dynamic_reconfigure"/>
+
+  <export>
+    <costmap_2d plugin="${prefix}/costmap_plugins.xml"/>
+  </export>
 
 
 </package>

@@ -34,3 +34,7 @@ rosbuild_add_executable(positioner src/positioner.cpp)
 rosbuild_add_executable(mover src/mover.cpp)
 rosbuild_add_executable(controller src/controller.cpp)
 rosbuild_add_executable(twister src/twister.cpp)
+rosbuild_add_executable(mover_test src/mover_test.cpp)
+rosbuild_add_executable(orientation_test src/orientation.cpp)
+
+rosbuild_add_library(ball_picker_layer src/ball_picker_layer.cpp)

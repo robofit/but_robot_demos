@@ -14,7 +14,8 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 
-#include <ball_picker/GoalCoords.h>
+#include <geometry_msgs/Pose.h>
+
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 
@@ -41,7 +42,7 @@ namespace ball_picker {
       actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> action_client;
       move_base_msgs::MoveBaseGoal goal;
 
-      void goalCoordinatesCallback(const ball_picker::GoalCoords& msg);
+      void goalCoordinatesCallback(const geometry_msgs::Pose& msg);
       void controlCallback(const ball_picker::FlowCommands& msg);
 
 

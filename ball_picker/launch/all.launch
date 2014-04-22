@@ -1,20 +1,9 @@
 <?xml version="1.0"?>
 <launch>
   <param name="use_sim_time" value="true"></param>
-  <node pkg="ball_picker" type="controller" name="controller" output="screen">
-  </node>
-  <node pkg="ball_picker" type="detector" name="detector" output="screen">
-    <remap from="kinect_data" to="/camera/rgb/image_rect_color" />
-    <remap from="detect_balls" to="/ball_detections" />
-  </node>
-  <node pkg="ball_picker" type="mover" name="mover" output="screen">
-    <remap from="goal_coords" to="/goal_coords" />
-  </node>
-  <node pkg="ball_picker" type="positioner" name="positioner" output="screen">
-    <remap from="depth_rect" to="/camera/depth_registered/image_raw" />
-    <remap from="cam_info" to="/camera/depth_registered/camera_info" />
-  </node>
-  <node pkg="ball_picker" type="twister" name="twister" output="screen">
-    <remap from="cmd_vel" to="/cmd_vel" />
-  </node>
+  <include file="$(find ball_picker)/launch/controller.launch"/>
+  <include file="$(find ball_picker)/launch/detector.launch"/>
+  <include file="$(find ball_picker)/launch/positioner.launch"/>
+  <include file="$(find ball_picker)/launch/mover.launch"/>
+  <include file="$(find ball_picker)/launch/twister.launch"/>
 </launch>

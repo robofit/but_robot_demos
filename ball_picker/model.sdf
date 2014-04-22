@@ -7,7 +7,7 @@
     <collision name="col_ball">
       <geometry>
         <sphere>
-          <radius>0.03</radius>
+          <radius>0.032</radius>
         </sphere>
       </geometry>
     </collision>
@@ -15,16 +15,20 @@
     <visual name="vis_ball">
       <geometry>
         <sphere>
-          <radius>0.03</radius>
+          <radius>0.032</radius>
         </sphere>
       </geometry>
       <material>
-        <ambient>0.75 1.0 0 1</ambient>
-        <diffuse>0.75 1.0 0 1</diffuse>
+        <ambient>0.79 1.0 0 1</ambient>
+        <diffuse>0.79 1.0 0 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <emissive>0 0 0 0</emissive>
       </material>
    </visual>
+
+   <inertial name="iner_ball">
+      <mass value="0.057"/>
+   </inertial>
 
   </link>
 </model>

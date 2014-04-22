@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <launch>
   <node pkg="ball_picker" type="twister" name="twister" output="screen">
-    <remap from="cmd_vel" to="/cmd_vel_mux/input/teleop" />
+  <!--
+
+
+  <remap from="cmd_vel" to="/cmd_vel" />
+  -->
+
+  <remap from="cmd_vel" to="/cmd_vel_mux/input/teleop" />
   </node>
 </launch>

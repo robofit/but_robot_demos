@@ -56,19 +56,67 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
       return;
     }
 
+    tfl.waitForTransform("base_link", "odom", ros::Time(0), ros::Duration(1.0));
+
+    tf::StampedTransform start_transform;
+    tf::StampedTransform current_transform;
+
+    tfl.lookupTransform("base_link", "odom", ros::Time(0), start_transform);
+
+
     geometry_msgs::Twist vel;
 
     vel.angular.z = 1.0;
 
-    //send the turn command to the robot
-    ROS_INFO("Sending the command to turn around.");
-    twist_pub.publish(vel);
+    ros::Rate rate(30.0);
+    bool done = false;
 
-    ros::spinOnce();
- 
+    while(!done && nh.ok())
+    {
+      //send the turn command to the robot
+      ROS_INFO_THROTTLE(2.0, "Sending the command to turn around.");
+      twist_pub.publish(vel);
+
+      ros::spinOnce();
+      rate.sleep();
+
+
+      try
+      {
+        tfl.lookupTransform("base_link", "odom", ros::Time(0), current_transform);
+      }
+      catch (tf::TransformException ex)
+      {
+        ROS_ERROR("TF exception:\n%s", ex.what());
+	return;
+      }
+
+      tf::Transform relative_transform = start_transform.inverse() * current_transform;
+      tf::Vector3 actual_turn_axis = relative_transform.getRotation().getAxis();
+      double angle_turned = relative_transform.getRotation().getAngle();
+
+      if (fabs(angle_turned) < 1.0e-2)
+        continue;
+
+      tf::Vector3 desired_turn_axis(0,0,1);
+      if (actual_turn_axis.dot(desired_turn_axis) < 0)
+        angle_turned = 2 * PI - angle_turned;
+
+      if (angle_turned > PI/3)
+        done = true;
+
+    }
+
+
+    ros::Duration(4.0).sleep();
+
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
-    srv.request.state = true;
+
+    if (done)
+      srv.request.state = true;
+    else
+      srv.request.state = false;
 
     //call the control service
     if (!control_client.call(srv))
