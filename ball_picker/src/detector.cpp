@@ -23,10 +23,26 @@ Detector::Detector(ros::NodeHandle& node): nh(node), it(node)
   rgb_sub = it.subscribe("kinect_data", 10, &Detector::rgbImageCallback, this);
 
   //create a service for getting detections and register its callback function
-  service_server = nh.advertiseService("detect_balls", &Detector::detect, this);
+  detect_ball_srv = nh.advertiseService("detect_balls", &Detector::detectBalls, this);
+  detect_hand_srv = nh.advertiseService("detect_hands", &Detector::detectHands, this);
+
+  ros::NodeHandle n_private("~");
+  string handclassifier;
+
+  if (n_private.getParam((string)"handclassifier", handclassifier))
+  {
+    ROS_INFO("Loading hand classifier.");
+    hand_cascade = (CvHaarClassifierCascade*)cvLoad(handclassifier.c_str(), 0, 0, 0);
+
+    if (hand_cascade == NULL)
+      ROS_ERROR("Cannot load haar clasifier for hand detection.");
+  }
+  else
+    ROS_ERROR("Cannot get the param value of classifier xml file location.");
 
   image_recieved_flag = false;
-  detection_ready_flag = false;
+  ball_detection_ready_flag = false;
+  hand_detection_ready_flag = false;
 
   ROS_INFO_STREAM("Detector initialized.");
 }
@@ -64,10 +80,16 @@ void Detector::rgbImageCallback(const sensor_msgs::ImageConstPtr& msg)
   IplImage img = rgb_img->image;
   IplImage * imgptr = &img;
 
-  if (detection_ready_flag)
+  if (ball_detection_ready_flag)
   {
-    cvCircle(imgptr, center, 3, Scalar(0,255,0), -1, 8, 0 );
-    cvCircle(imgptr, center, radius, Scalar(0,0,255), 3, 8, 0 );
+    cvCircle(imgptr, center, 3, CV_RGB(0,255,0), -1, 8, 0 );
+    cvCircle(imgptr, center, radius, CV_RGB(255,0,0), 3, 8, 0 );
+  }
+
+  if (hand_detection_ready_flag)
+  {
+    cvCircle(imgptr, cvPoint(rect->x + rect->width/2, rect->y + 2*rect->height/3), 3, CV_RGB(0,255,0), -1, 8, 0);
+    cvRectangle(imgptr, cvPoint(rect->x, rect->y), cvPoint(rect->x + rect->width, rect->y + rect->height), CV_RGB(0,0,255), 3, 8, 0);
   }
 
   cvShowImage("Original rgb image from kinect", imgptr);
@@ -77,9 +99,60 @@ void Detector::rgbImageCallback(const sensor_msgs::ImageConstPtr& msg)
 
 
 /**
+ * service which detects hands and fills data into the response
+ */
+bool Detector::detectHands(ball_picker::DetectObjects::Request &req, ball_picker::DetectObjects::Response &res)
+{
+  //check if any image frame is prepared for detection
+  if (!image_recieved_flag)
+    return false;
+
+  IplImage img = rgb_img->image;
+
+  //get the size of the image frame
+  Size size = cvGetSize(&img);
+
+  //transform into gray shades
+  IplImage *gray = cvCreateImage(size, IPL_DEPTH_8U, 1);
+  cvCvtColor(&img, gray, CV_BGR2GRAY);
+
+  IplImage *edge = cvCreateImage(size, IPL_DEPTH_8U, 1);
+  cvThreshold(gray, gray, 100, 255, CV_THRESH_BINARY);
+  cvSmooth(gray, gray, CV_GAUSSIAN, 11, 11);
+  cvCanny(gray, edge, 1.0, 3.0, 5);
+
+  CvMemStorage * storage = cvCreateMemStorage(0);
+  CvSeq * hands = cvHaarDetectObjects(&img, hand_cascade, storage, 1.2, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(100, 100));
+
+
+  //fill the response with type
+  res.detections.type = ball_picker::Detections::HAND;
+
+  hand_detection_ready_flag = false;
+
+  for(int i = 0; i < (int)hands->total; i++)
+  {
+    rect = (CvRect*)cvGetSeqElem(hands, i);
+
+    ball_picker::PointOfInterest det;
+    det.x = rect->x + rect->width/2;
+    det.y = rect->y + 2*rect->height/3;
+
+    res.detections.objectcenters.push_back(det);
+
+    hand_detection_ready_flag = true;
+  }
+
+  ROS_INFO_STREAM_ONCE("Response of detection service set.");
+
+  return true;
+
+}
+
+/**
  * service which detects tennis balls and fills data into the response
  */
-bool Detector::detect(ball_picker::DetectBalls::Request &req, ball_picker::DetectBalls::Response &res)
+bool Detector::detectBalls(ball_picker::DetectObjects::Request &req, ball_picker::DetectObjects::Response &res)
 {
   //check if any image frame is prepared for detection
   if (!image_recieved_flag)
@@ -119,7 +192,7 @@ bool Detector::detect(ball_picker::DetectBalls::Request &req, ball_picker::Detec
   res.detections.type = ball_picker::Detections::BALL;
 
 
-  detection_ready_flag = false;
+  ball_detection_ready_flag = false;
 
   //fill the response with centers of balls
   for(int i = 0; i < (int)circles->total; i++)
@@ -134,9 +207,9 @@ bool Detector::detect(ball_picker::DetectBalls::Request &req, ball_picker::Detec
     center.y = cvRound(p[1]);
     radius = cvRound(p[2]);
 
-    res.detections.ballcenters.push_back(det);
+    res.detections.objectcenters.push_back(det);
 
-    detection_ready_flag = true;
+    ball_detection_ready_flag = true;
   }
 
   ROS_INFO_STREAM_ONCE("Response of detection service set.");

@@ -45,7 +45,7 @@ Mover::~Mover() {}
  */
 void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 {
-  ROS_INFO_ONCE("Goal coordinates received.");
+  ROS_INFO("Goal coordinates received.");
 
   //fill the goal for the robot
   goal.target_pose.header.frame_id = "map";
@@ -70,10 +70,12 @@ void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 void Mover::controlCallback(const ball_picker::FlowCommands& msg)
 {
 
-  ROS_INFO("Control command recieved.");
-
-  if (msg.flowid == constflowid)
+  if ((msg.flowid == ball_picker::FlowCommands::MOVETOBALL) ||
+      (msg.flowid == ball_picker::FlowCommands::MOVETOHAND))
   {
+
+    constflowid = msg.flowid;
+
     ROS_INFO("Starting the move process.");
 
     //wait for the action server to come up
@@ -83,16 +85,23 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
       return;
     }
 
+
     if (!control_client.waitForExistence(ros::Duration(0.5)))
     {
       ROS_WARN_THROTTLE(1.0, "Control service not available.");
       return;
     }
 
+    if (!goal_recieved)
+    {
+      ROS_ERROR("Goal coordinates not recieved.");
+      return;
+    }
+
     //send the goal to the robot
     ROS_INFO("Sending goal");
     action_client.sendGoal(goal);
-    action_client.waitForResult(ros::Duration(15.0));
+    action_client.waitForResult(ros::Duration(30.0));
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
@@ -101,6 +110,7 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
     {
       ROS_INFO("The base moved to the target.");
       srv.request.state = true;
+      goal_recieved = false;
     }
     else
     {

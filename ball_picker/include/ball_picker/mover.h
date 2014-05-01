@@ -19,7 +19,6 @@
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 
-
 namespace ball_picker {
 
   class Mover 

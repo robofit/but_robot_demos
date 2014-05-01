@@ -7,6 +7,8 @@
 #include <dynamic_reconfigure/server.h>
 
 #include <ball_picker/Detections.h>
+#include <std_srvs/Empty.h>
+#include <tf/transform_listener.h>
 
 namespace costmap_2d
 {
@@ -34,9 +36,19 @@ namespace costmap_2d
 
 
       std::vector<ball_picker::PointOfInterest> obstacle_buffer; 
+
+      tf::TransformListener tfl;
+
+      std::string robot_base_frame_;
+      std::string global_frame_;
+
+      bool clear_flag;
       ros::Subscriber obstacles_sub;
+      ros::ServiceServer clear_srv;
 
       void obstaclesIncomeCallback(const ball_picker::Detections& obstacles);
+      bool clearObstacles(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
+      bool getRobotPose(tf::Stamped<tf::Pose>& global_pose) const;
 
   };
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="ball_picker" type="manipulator" name="manipulator" output="screen">
+    <remap from="right_finger_command" to="/dynamixel/right_finger_controller/command" />
+    <remap from="left_finger_command" to="/dynamixel/left_finger_controller/command" />
+  </node>
+</launch>

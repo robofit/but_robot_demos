@@ -17,7 +17,7 @@ using namespace std;
  * constructor of controller
  * establishes service and publisher for control
  */
-Controller::Controller(ros::NodeHandle& node): nh(node), state(ball_picker::FlowCommands::SEARCH)
+Controller::Controller(ros::NodeHandle& node): nh(node), state(ball_picker::FlowCommands::INITPREPARE)
 {
   //advertise service for checking the state
   service_server = nh.advertiseService("flow_control", &Controller::controlflow, this);
@@ -26,6 +26,22 @@ Controller::Controller(ros::NodeHandle& node): nh(node), state(ball_picker::Flow
   control_pub = nh.advertise<ball_picker::FlowCommands>("flow_commands", 1);
 
   ROS_INFO_STREAM("Controller initialized.");
+
+
+  ROS_INFO_STREAM("Starting the loop.");
+
+  //publish the initial state into control topic
+  ball_picker::FlowCommands msg;
+  msg.flowid = state;
+
+  while(control_pub.getNumSubscribers() < SUBSCRIBERS)
+    ROS_INFO_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
+
+  control_pub.publish(msg);
+  ros::spinOnce();
+
+
+
 }
 
 
@@ -40,6 +56,7 @@ Controller::~Controller() {}
  */
 bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker::FlowControl::Response &res)
 {
+  ROS_INFO("Controller: Request recieved.");
 
   //check if the goal was completed and set new state
   if (req.flowcmd.flowid != ball_picker::FlowCommands::QUERY)
@@ -53,47 +70,90 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
 
     switch(state)
     {
-      case ball_picker::FlowCommands::SEARCH:
+      case ball_picker::FlowCommands::INITPREPARE:
+	if (req.state)
+          state = ball_picker::FlowCommands::SEARCHBALL;
+//          state = ball_picker::FlowCommands::CHECKBALL;
+	else
+	  state = ball_picker::FlowCommands::INITPREPARE;
+	break;
+      case ball_picker::FlowCommands::SEARCHBALL:
         if (req.state)
           state = ball_picker::FlowCommands::MOVETOBALL;
         else
-          state = ball_picker::FlowCommands::TURN;
+          state = ball_picker::FlowCommands::TURNBALL;
         break;
-      case ball_picker::FlowCommands::TURN:
+      case ball_picker::FlowCommands::TURNBALL:
         if (req.state)
-          state = ball_picker::FlowCommands::SEARCH;
+          state = ball_picker::FlowCommands::SEARCHBALL;
         else
-          state = ball_picker::FlowCommands::TURN;
+          state = ball_picker::FlowCommands::TURNBALL;
         break;
       case ball_picker::FlowCommands::MOVETOBALL:
         if (req.state)
-          state = ball_picker::FlowCommands::PICKBALL;
+          state = ball_picker::FlowCommands::CHECKBALL;
         else
           state = ball_picker::FlowCommands::MOVETOBALL;
         break;
+      case ball_picker::FlowCommands::CHECKBALL:
+	if (req.state)
+	  state = ball_picker::FlowCommands::PICKBALL;
+	else
+	  state = ball_picker::FlowCommands::SEARCHBALL;
+//          state = ball_picker::FlowCommands::CHECKBALL;
+	break;
       case ball_picker::FlowCommands::PICKBALL:
         if (req.state)
-          state = ball_picker::FlowCommands::MOVETOSTORAGE;
+          state = ball_picker::FlowCommands::SEARCHHAND;
+//          state = ball_picker::FlowCommands::INITPREPARE;
         else
-          state = ball_picker::FlowCommands::PICKBALL;
+          state = ball_picker::FlowCommands::CHECKBALL;
         break;
-      case ball_picker::FlowCommands::MOVETOSTORAGE:
+      case ball_picker::FlowCommands::SEARCHHAND:
+	if (req.state)
+	  state = ball_picker::FlowCommands::MOVETOHAND;
+	else
+	  state = ball_picker::FlowCommands::TURNHAND;
+	break;
+      case ball_picker::FlowCommands::TURNHAND:
+	if (req.state)
+	  state = ball_picker::FlowCommands::SEARCHHAND;
+	else
+	  state = ball_picker::FlowCommands::TURNHAND;
+	break;
+      case ball_picker::FlowCommands::MOVETOHAND:
         if (req.state)
-          state = ball_picker::FlowCommands::DROPBALL;
+          state = ball_picker::FlowCommands::CHECKHAND;
         else
-          state = ball_picker::FlowCommands::MOVETOSTORAGE;
+          state = ball_picker::FlowCommands::MOVETOHAND;
+        break;
+      case ball_picker::FlowCommands::CHECKHAND:
+	if (req.state)
+	  state = ball_picker::FlowCommands::PLACEBALL;
+	else
+	  state = ball_picker::FlowCommands::SEARCHHAND;
+	break;
+      case ball_picker::FlowCommands::PLACEBALL:
+        if (req.state)
+          state = ball_picker::FlowCommands::INITPREPARE;
+        else
+          state = ball_picker::FlowCommands::DROPBALL;
         break;
       case ball_picker::FlowCommands::DROPBALL:
-        if (req.state)
-          state = ball_picker::FlowCommands::SEARCH;
-        else
-          state = ball_picker::FlowCommands::DROPBALL;
-        break;
+	if (req.state)
+	  state = ball_picker::FlowCommands::INITPREPARE;
+	else
+	  state = ball_picker::FlowCommands::DROPBALL;
+	break;
     }
  
     //publish the changed state into control topic
     ball_picker::FlowCommands msg;
     msg.flowid = state;
+
+    while(control_pub.getNumSubscribers() < SUBSCRIBERS)
+      ROS_INFO_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
+
     control_pub.publish(msg);
     ros::spinOnce();
   }

@@ -14,6 +14,8 @@
 #include <ball_picker/FlowControl.h>
 #include <ball_picker/FlowCommands.h>
 
+#define SUBSCRIBERS 4
+
 namespace ball_picker {
 
   class Controller 

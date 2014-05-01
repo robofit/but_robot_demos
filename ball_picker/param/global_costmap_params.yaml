@@ -15,9 +15,8 @@ global_costmap:
       name: obstacle_layer
       type: "costmap_2d::ObstacleLayer"
     -
-      name: inflation_layer
-      type: "costmap_2d::InflationLayer"
-    -
       name: ball_picker_layer
       type: "costmap_2d::BallPickerLayer"
-
+    -
+      name: inflation_layer
+      type: "costmap_2d::InflationLayer"

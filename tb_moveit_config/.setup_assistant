@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: tb_description
+    relative_path: robots/turtlebot.urdf.xacro
+  SRDF:
+    relative_path: config/btb.srdf
+  CONFIG:
+    generated_timestamp: 1398691136

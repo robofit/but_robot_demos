@@ -10,6 +10,8 @@
 #ifndef POSITIONER_H_
 #define POSITIONER_H_
 
+#include <string>
+
 #include <ros/ros.h>
 #include <image_transport/image_transport.h>
 #include <image_geometry/pinhole_camera_model.h>
@@ -18,14 +20,19 @@
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_listener.h>
 #include <geometry_msgs/Pose.h>
+#include <std_msgs/Float64.h>
 
-#include <ball_picker/DetectBalls.h>
+#include <ball_picker/DetectObjects.h>
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 #include <ball_picker/Detections.h>
 
 #define PI 3.14159265
-#define SPACE 0.5
+#define SPACE 0.35
+#define FALSEANGLE 0.6 
+#define HEIGHT 0.05
+#define PITCH 0.0
+
 
 namespace ball_picker {
 
@@ -48,12 +55,14 @@ namespace ball_picker {
       int32_t constflowid;
 
       ros::NodeHandle nh;
-      ros::ServiceClient detection_client;
+      ros::ServiceClient ball_detection_client;
+      ros::ServiceClient hand_detection_client;
       ros::ServiceClient control_client;
       ros::WallTimer timer;
       ros::WallTimer limit;
 
-      std::vector<DetCoords> detected_balls;
+      std::vector<DetCoords> detected_targets;
+      std::vector<DetCoords> detected_obstacles;
 
       image_transport::ImageTransport it;
       image_transport::Subscriber depth_sub;
@@ -74,6 +83,16 @@ namespace ball_picker {
 
       ros::Publisher goal_pub;
       ros::Publisher costmap_pub;
+      ros::Publisher kinect_pub;
+
+
+      double space;
+      double height;
+      double falseangle;
+      double pitch;
+      std::string transformframe;
+
+      float kinectposition;
 
       void timerCallback(const ros::WallTimerEvent& event);
       void limitCallback(const ros::WallTimerEvent& event);

@@ -17,7 +17,7 @@
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 
-#include <ball_picker/DetectBalls.h>
+#include <ball_picker/DetectObjects.h>
 #include <ball_picker/Detections.h>
 
 namespace ball_picker {
@@ -33,18 +33,24 @@ namespace ball_picker {
       cv_bridge::CvImagePtr rgb_img;
       bool image_recieved_flag;
 
+      CvHaarClassifierCascade * hand_cascade;
+
       cv::Point center;
       int radius;
-      bool detection_ready_flag;
+      CvRect * rect;
+      bool ball_detection_ready_flag;
+      bool hand_detection_ready_flag;
 
       ros::NodeHandle nh;
       image_transport::ImageTransport it;
 
       image_transport::Subscriber rgb_sub;
-      ros::ServiceServer service_server;
+      ros::ServiceServer detect_ball_srv;
+      ros::ServiceServer detect_hand_srv;
 
       void rgbImageCallback(const sensor_msgs::ImageConstPtr& msg);
-      bool detect(ball_picker::DetectBalls::Request &req, ball_picker::DetectBalls::Response &res);
+      bool detectBalls(ball_picker::DetectObjects::Request &req, ball_picker::DetectObjects::Response &res);
+      bool detectHands(ball_picker::DetectObjects::Request &req, ball_picker::DetectObjects::Response &res);
       void cvOpen(const CvArr *source, CvArr *dest, IplConvKernel *element);
       void cvClose(const CvArr *source, CvArr *dest, IplConvKernel *element);
 

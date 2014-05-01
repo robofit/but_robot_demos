@@ -20,7 +20,7 @@ using namespace std;
 Twister::Twister(ros::NodeHandle& node): nh(node)
 {
 
-  constflowid = ball_picker::FlowCommands::TURN;
+  constflowid = ball_picker::FlowCommands::TURNBALL;
 
   twist_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 
@@ -44,10 +44,12 @@ Twister::~Twister() {}
 void Twister::controlCallback(const ball_picker::FlowCommands& msg)
 {
 
-  ROS_INFO("Control command recieved.");
-
-  if (msg.flowid == constflowid)
+  if ((msg.flowid == ball_picker::FlowCommands::TURNBALL) ||
+      (msg.flowid == ball_picker::FlowCommands::TURNHAND))
   {
+
+    constflowid = msg.flowid;
+    
     ROS_INFO("Starting to turn around.");
 
     if (!control_client.waitForExistence(ros::Duration(0.5)))
@@ -68,7 +70,7 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
 
     vel.angular.z = 1.0;
 
-    ros::Rate rate(30.0);
+    ros::Rate rate(10.0);
     bool done = false;
 
     while(!done && nh.ok())
@@ -108,7 +110,7 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
     }
 
 
-    ros::Duration(4.0).sleep();
+    ros::Duration(2.0).sleep();
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
@@ -140,7 +142,7 @@ int main (int argc, char** argv)
   ros::NodeHandle n;
 
   //create twister object
-  Twister m(n);
+  Twister t(n);
 
   //keep the node alive
   ros::spin();
