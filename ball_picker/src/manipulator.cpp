@@ -160,7 +160,7 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
     else
       srv.request.state = false;
 
-    ros::Duration(2.0).sleep();
+    ros::Duration(3.0).sleep();
 
     left_finger_pub.publish(gripvalue);
     gripvalue.data = -gripvalue.data;
@@ -171,7 +171,7 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
     //if we are picking the ball and everything went well, get into the default position
     if ((constflowid == ball_picker::FlowCommands::PICKBALL) && (srv.request.state == true))
     {
-      ros::Duration(0.4).sleep();
+      ros::Duration(1.0).sleep();
       arm.setNamedTarget("cobra");
       if (arm.asyncMove())
         srv.request.state = true;

@@ -68,9 +68,9 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
 
     geometry_msgs::Twist vel;
 
-    vel.angular.z = 1.0;
+    vel.angular.z = 50.0;
 
-    ros::Rate rate(10.0);
+    ros::Rate rate(5.0);
     bool done = false;
 
     while(!done && nh.ok())
@@ -104,13 +104,16 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
       if (actual_turn_axis.dot(desired_turn_axis) < 0)
         angle_turned = 2 * PI - angle_turned;
 
-      if (angle_turned > PI/3)
+      if (angle_turned > PI/4)
+      {
         done = true;
+        ROS_INFO("Turn complete.");
+      }
 
     }
 
 
-    ros::Duration(2.0).sleep();
+    ros::Duration(4.0).sleep();
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
