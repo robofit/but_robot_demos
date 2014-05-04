@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find ball_picker)/launch/includes/gmapping.xml"/>
+  <include file="$(find ball_picker)/launch/includes/amcl.launch.xml"/>
+  <include file="$(find ball_picker)/launch/includes/move_base.xml"/>
+</launch>

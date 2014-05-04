@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="ball_picker" type="positioner" name="positioner" output="screen">
+    <remap from="depth_rect" to="/camera/depth_registered/image_raw" />
+    <remap from="cam_info" to="/camera/depth_registered/camera_info" />
+    <remap from="goal_coords" to="/goal_coords" />
+    <remap from="costmap_custom_obstacles" to="/costmap_custom_obstacles" />
+    <remap from="kinect_servo" to="/dynamixel/kinect_controller/command" />
+  </node>
+</launch>

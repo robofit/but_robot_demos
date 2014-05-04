@@ -1,0 +1,17 @@
+controller_list:
+  - name: dynamixel/arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - shoulder_pan_joint
+      - shoulder_pitch_joint
+      - elbow_flex_joint
+      - wrist_roll_joint
+#  - name: dynamixel/gripper_controller
+#    action_ns: gripper_action
+#    type: GripperCommand
+#    default: true
+#    joints:
+#      - left_finger_joint
+#      - right_finger_joint
