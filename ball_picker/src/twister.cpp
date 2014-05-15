@@ -68,10 +68,11 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
 
     geometry_msgs::Twist vel;
 
-    vel.angular.z = 50.0;
+    vel.angular.z = 5.0;
 
     ros::Rate rate(5.0);
     bool done = false;
+
 
     while(!done && nh.ok())
     {
@@ -104,6 +105,19 @@ void Twister::controlCallback(const ball_picker::FlowCommands& msg)
       if (actual_turn_axis.dot(desired_turn_axis) < 0)
         angle_turned = 2 * PI - angle_turned;
 
+
+      if (angle_turned > PI/6)
+      {
+        vel.angular.z = 0.5;
+        ROS_INFO("Slowing down.");
+      }
+      
+      if (angle_turned > PI/5)
+      {
+        vel.angular.z = 0.1;
+        ROS_INFO("Slowing down a lot.");
+      }
+      
       if (angle_turned > PI/4)
       {
         done = true;

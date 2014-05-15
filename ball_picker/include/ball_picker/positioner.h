@@ -21,18 +21,18 @@
 #include <tf/transform_listener.h>
 #include <geometry_msgs/Pose.h>
 #include <std_msgs/Float64.h>
-
+ 
 #include <ball_picker/DetectObjects.h>
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 #include <ball_picker/Detections.h>
 
 #define PI 3.14159265
-#define SPACE 0.35
-#define FALSEANGLE 0.6 
-#define HEIGHT 0.05
-#define PITCH 0.0
+#define SPACE 0.55
+#define FALSEANGLE 0.0
 
+#define PRESHOULDER 0.05
+#define FIXEDSHOULDER 0.1383
 
 namespace ball_picker {
 
@@ -79,17 +79,18 @@ namespace ball_picker {
       tf::TransformListener tfl;
 
       geometry_msgs::Point origin;
+      double yaw;
       bool odometry_recieved;
 
       ros::Publisher goal_pub;
+      ros::Publisher angle_pub;
+      ros::Publisher distance_pub;
       ros::Publisher costmap_pub;
       ros::Publisher kinect_pub;
 
 
       double space;
-      double height;
       double falseangle;
-      double pitch;
       std::string transformframe;
 
       float kinectposition;

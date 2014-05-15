@@ -72,8 +72,8 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
     {
       case ball_picker::FlowCommands::INITPREPARE:
 	if (req.state)
-          state = ball_picker::FlowCommands::SEARCHBALL;
-//          state = ball_picker::FlowCommands::CHECKBALL;
+//          state = ball_picker::FlowCommands::SEARCHBALL;
+          state = ball_picker::FlowCommands::CHECKBALL;
 	else
 	  state = ball_picker::FlowCommands::INITPREPARE;
 	break;
@@ -99,13 +99,13 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
 	if (req.state)
 	  state = ball_picker::FlowCommands::PICKBALL;
 	else
-	  state = ball_picker::FlowCommands::SEARCHBALL;
-//          state = ball_picker::FlowCommands::CHECKBALL;
+//	  state = ball_picker::FlowCommands::SEARCHBALL;
+          state = ball_picker::FlowCommands::CHECKBALL;
 	break;
       case ball_picker::FlowCommands::PICKBALL:
         if (req.state)
-          state = ball_picker::FlowCommands::SEARCHHAND;
-//          state = ball_picker::FlowCommands::INITPREPARE;
+//          state = ball_picker::FlowCommands::SEARCHHAND;
+          state = ball_picker::FlowCommands::INITPREPARE;
         else
           state = ball_picker::FlowCommands::CHECKBALL;
         break;

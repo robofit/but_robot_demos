@@ -25,10 +25,6 @@
   <depend package="costmap_2d"/>
   <depend package="dynamic_reconfigure"/>
 
-  <depend package="moveit_core" />
-  <depend package="moveit_ros_planning_interface"/>
-
-
   <export>
     <costmap_2d plugin="${prefix}/costmap_plugins.xml"/>
   </export>

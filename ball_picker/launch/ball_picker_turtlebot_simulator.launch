@@ -6,4 +6,5 @@
   <include file="$(find ball_picker)/launch/positioner_turtlebot_simulator.launch"/>
   <include file="$(find ball_picker)/launch/mover.launch"/>
   <include file="$(find ball_picker)/launch/twister_turtlebot_simulator.launch"/>
+  <include file="$(find ball_picker)/launch/manipulator.launch"/>
 </launch>

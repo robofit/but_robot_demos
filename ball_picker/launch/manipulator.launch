@@ -3,5 +3,9 @@
   <node pkg="ball_picker" type="manipulator" name="manipulator" output="screen">
     <remap from="right_finger_command" to="/dynamixel/right_finger_controller/command" />
     <remap from="left_finger_command" to="/dynamixel/left_finger_controller/command" />
+    <remap from="shoulder_pan_command" to="/dynamixel/shoulder_pan_controller/command" />
+    <remap from="shoulder_pitch_command" to="/dynamixel/shoulder_pitch_controller/command" />
+    <remap from="elbow_flex_command" to="/dynamixel/elbow_flex_controller/command" />
+    <remap from="wrist_roll_command" to="/dynamixel/wrist_roll_controller/command" />
   </node>
 </launch>

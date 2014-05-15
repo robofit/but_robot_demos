@@ -36,15 +36,15 @@ Positioner::Positioner(ros::NodeHandle& node): nh(node), it(node)
   goal_pub = nh.advertise<geometry_msgs::Pose>("goal_coords", 1);
   costmap_pub = nh.advertise<ball_picker::Detections>("costmap_custom_obstacles", 1);
   kinect_pub = nh.advertise<std_msgs::Float64>("kinect_servo",1);
+  angle_pub = nh.advertise<std_msgs::Float64>("angle", 1);
+  distance_pub = nh.advertise<std_msgs::Float64>("goal_distance", 1);
 
   depth_img.reset();
 
   odometry_recieved = false;
 
   space = SPACE;
-  height = 0.0;
   falseangle = 0.0;
-  pitch = 0.0;
   transformframe = "/map";
 
   kinectposition = 0.0;
@@ -85,6 +85,8 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
   bool ballfound = false;
   Point3f point3d;
   geometry_msgs::Pose msg_goal;
+  std_msgs::Float64 angle_msg;
+  std_msgs::Float64 distance_msg;
   ball_picker::Detections msg_costmap;
   msg_costmap.type = ball_picker::Detections::BALL;
   ball_picker::PointOfInterest obstacle;
@@ -96,7 +98,7 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       //transformation from camera coordinates to robot coordinates system
       geometry_msgs::PoseStamped ps;
       ps.header.frame_id = cam_model.tfFrame();
-      ps.header.stamp = ros::Time::now();
+      ps.header.stamp = ros::Time(0);
 
       ps.pose.position.x = iter->point.x;
       ps.pose.position.y = iter->point.y;
@@ -157,7 +159,7 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       //transformation from camera coordinates to robot coordinates system
       geometry_msgs::PoseStamped ps;
       ps.header.frame_id = cam_model.tfFrame();
-      ps.header.stamp = ros::Time::now();
+      ps.header.stamp = ros::Time(0);
 
       ps.pose.position.x = iter->point.x;
       ps.pose.position.y = iter->point.y;
@@ -230,6 +232,13 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     while (!odometry_recieved)
       ;
 
+    if ((constflowid == ball_picker::FlowCommands::CHECKBALL) || (constflowid == ball_picker::FlowCommands::CHECKHAND))
+    {
+      msg_goal.position.x = msg_goal.position.x - PRESHOULDER*cos(yaw);
+      msg_goal.position.y = msg_goal.position.y - PRESHOULDER*sin(yaw);
+    }
+
+
     if (msg_goal.position.x >= origin.x)
     {
       //II. quadrant
@@ -277,14 +286,31 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
 
     angle = (modif_x)*(modif_y)*(angle - base_angle);
 
-
     angle = angle - falseangle;
 
-     tf::Quaternion q;
-     q.setRPY(0.0, pitch, angle);
-     tf::quaternionTFToMsg(q, msg_goal.orientation);
+    cout << "uhel " << angle << endl;
+    cout << "yaw " << yaw << endl;
 
-    //msg_goal.position.z = msg_goal.position.z + height;
+    angle_msg.data = angle - yaw;
+
+    if (angle_msg.data > PI)
+      angle_msg.data = angle_msg.data - 2*PI;
+    else if (angle_msg.data < -PI)
+      angle_msg.data = angle_msg.data + 2*PI;
+
+    cout << "pan angle: " << angle_msg.data << endl;
+
+    angle_pub.publish(angle_msg);
+
+
+    distance_msg.data = sqrt(diff.x*diff.x+diff.y*diff.y);
+    distance_msg.data = distance_msg.data - FIXEDSHOULDER;
+    distance_pub.publish(distance_msg);
+
+
+     tf::Quaternion q;
+     q.setRPY(0.0, 0.0, angle);
+     tf::quaternionTFToMsg(q, msg_goal.orientation);
 
     //advertise the result on goal_coords topic
     goal_pub.publish(msg_goal);
@@ -541,34 +567,26 @@ void Positioner::controlCallback(const ball_picker::FlowCommands& msg)
     {
       case ball_picker::FlowCommands::SEARCHBALL:
 	space = SPACE;
-	height = 0.0;
 	falseangle = FALSEANGLE;
-	pitch = 0.0;
 	transformframe = "/map";
         kinect_msg.data = -0.6;
         break;
       case ball_picker::FlowCommands::CHECKBALL:
 	space = 0.0;
-	height = HEIGHT;
 	falseangle = 0.0;
-	pitch = PITCH;
-	transformframe = "/odom";
+	transformframe = "/map";
 	kinect_msg.data = -1.0;
         break;
       case ball_picker::FlowCommands::SEARCHHAND:
         space = SPACE;
-	height = 0.0;
 	falseangle = 0.0;
-	pitch = 0.0;
 	transformframe = "/map";
 	kinect_msg.data = -0.4;
         break;
       case ball_picker::FlowCommands::CHECKHAND:
        	space = 0.0;
-	height = HEIGHT;
 	falseangle = 0.0;
-	pitch = PITCH;
-	transformframe = "/odom";
+	transformframe = "/map";
 	kinect_msg.data = -0.6;
         break;
    }
@@ -601,6 +619,22 @@ void Positioner::odometryCallback(const nav_msgs::Odometry& msg)
   origin.x = msg.pose.pose.position.x;
   origin.y = msg.pose.pose.position.y;
   origin.z = msg.pose.pose.position.z;
+
+  if ((constflowid == ball_picker::FlowCommands::CHECKBALL) || (constflowid == ball_picker::FlowCommands::CHECKHAND))
+  {
+
+    tf::Quaternion quat;
+    tf::quaternionMsgToTF(msg.pose.pose.orientation, quat);
+
+    double roll, pitch;
+    tf::Matrix3x3(quat).getRPY(roll, pitch, yaw);
+
+    //origin.x = origin.x + PRESHOULDER*cos(yaw);
+    //origin.y = origin.y + PRESHOULDER*sin(yaw);
+
+    
+
+  }
 
   odometry_recieved = true;
 }
