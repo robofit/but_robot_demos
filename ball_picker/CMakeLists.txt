@@ -35,5 +35,6 @@ rosbuild_add_executable(mover src/mover.cpp)
 rosbuild_add_executable(controller src/controller.cpp)
 rosbuild_add_executable(twister src/twister.cpp)
 rosbuild_add_executable(manipulator src/manipulator.cpp)
+rosbuild_add_executable(kinect_repeater src/kinect_repeater.cpp)
 
 rosbuild_add_library(ball_picker_layer src/ball_picker_layer.cpp)

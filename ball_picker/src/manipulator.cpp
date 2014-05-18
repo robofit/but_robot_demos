@@ -20,15 +20,12 @@ using namespace std;
 Manipulator::Manipulator(ros::NodeHandle& node): nh(node)
 {
 
-  constflowid = ball_picker::FlowCommands::INITPREPARE;
+  constflowid = 0;
   goal_recieved = false;
   angle_recieved = false;
-  goal_coordinates_recieved = false;
-
 
   goal_coord_sub = nh.subscribe("goal_coords", 1, &Manipulator::goalCoordinatesCallback, this);
-  goal_sub = nh.subscribe("goal_distance", 1, &Manipulator::goalDistanceCallback, this); 
-  angle_sub = nh.subscribe("angle", 1, &Manipulator::angleCallback, this);
+  angle_sub = nh.subscribe("goal_angle", 1, &Manipulator::angleCallback, this);
 
   control_sub = nh.subscribe("flow_commands", 1, &Manipulator::controlCallback, this);
 
@@ -44,7 +41,6 @@ Manipulator::Manipulator(ros::NodeHandle& node): nh(node)
   elbow_flex_pub = nh.advertise<std_msgs::Float64>("elbow_flex_command", 1);
   wrist_roll_pub = nh.advertise<std_msgs::Float64>("writs_roll_command", 1);
 
-
   ROS_INFO_STREAM("Manipulator initialized.");
 
 }
@@ -55,18 +51,6 @@ Manipulator::Manipulator(ros::NodeHandle& node): nh(node)
  */
 Manipulator::~Manipulator() {}
 
-
-/**
- * callback function called after new message appears in the topic with goal distance
- */
-void Manipulator::goalDistanceCallback(const std_msgs::Float64& msg)
-{
-  ROS_INFO("Goal distance received.");
-
-  goal = msg;
-  goal_recieved = true;
-}
-
 /**
  * callback function called after new message appears in the topic with angle value
  */
@@ -74,8 +58,11 @@ void Manipulator::angleCallback(const std_msgs::Float64& msg)
 {
   ROS_INFO("Angle received.");
 
-  angle = msg;
+  goal_angle = msg.data;
   angle_recieved = true;
+  
+  //LADICI VYPIS - smazat
+  cout << "goal_angle: " << goal_angle << endl;
 }
 
 /**
@@ -83,10 +70,38 @@ void Manipulator::angleCallback(const std_msgs::Float64& msg)
  */
 void Manipulator::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 {
-  ROS_INFO("Goal coordinates received.");
+  if ((constflowid == ball_picker::FlowCommands::CHECKBALL) || (constflowid == ball_picker::FlowCommands::CHECKHAND))
+  {
+    ROS_INFO("Goal coordinates received.");
 
-  goal_height = msg.position.z;
-  goal_coordinates_recieved = true;
+    while ((!getLength( "arm_shoulder_pitch_link", "arm_elbow_flex_link", &shoulder1)) ||
+      (!getLength( "arm_elbow_flex_link", "arm_wrist_roll_link", &shoulder2)) ||
+      (!getLength( "base_footprint", "arm_shoulder_pan_link", &armheight)) ||
+      (!getLength( "arm_shoulder_pan_link", "arm_shoulder_pitch_link", &fixedshoulder)))
+    {
+      ROS_WARN_THROTTLE(1.0,"Cannot get arm parameters.");
+    }
+
+    shoulder2 = shoulder2 + GRIPPERLENGTH;
+
+    goal_distance = sqrt(msg.position.x*msg.position.x + msg.position.y*msg.position.y);
+
+    //we must consider the fixed part of arm    
+    goal_distance = goal_distance - fixedshoulder;
+  
+    goal_recieved = true;
+
+    //LADICI VYPISY - smazat
+    cout << "parametry ruky v poradi armheight, fixedshoulder, shoulder1, shoulder2 vcetne gripperu" << endl;
+    cout << armheight << endl;
+    cout << fixedshoulder << endl;
+    cout << shoulder1 << endl;
+    cout << shoulder2 << endl;
+
+    cout << "goal_height: " << goal_height << endl;
+    cout << "goal_distance: " << goal_distance << endl;
+
+  }
 }
 
 
@@ -95,13 +110,14 @@ void Manipulator::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
  */
 void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
 {
-  if ((msg.flowid == ball_picker::FlowCommands::INITPREPARE) ||
+   constflowid = msg.flowid;
+
+   if ((msg.flowid == ball_picker::FlowCommands::INITPREPARE) ||
       (msg.flowid == ball_picker::FlowCommands::PICKBALL) ||
       (msg.flowid == ball_picker::FlowCommands::PLACEBALL) ||
       (msg.flowid == ball_picker::FlowCommands::DROPBALL))
   {
 
-    constflowid = msg.flowid;
 
     ROS_INFO("Starting the manipulation.");
 
@@ -137,11 +153,13 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
     elbowvalue.data = 0.0;
     wristvalue.data = 0.0;
 
-    double temp, alpha, beta;
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
     srv.request.state = true;   
+
+    double shoulder_pitch_angle;
+    double elbow_flex_angle;
 
     switch(constflowid)
     {
@@ -171,7 +189,7 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
         pitchvalue.data = 0.15;
         elbowvalue.data = -1.5;
         wristvalue.data = 0.0;
-
+ 
         shoulder_pan_pub.publish(panvalue);
         shoulder_pitch_pub.publish(pitchvalue);
         elbow_flex_pub.publish(elbowvalue);
@@ -190,55 +208,28 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
 
       case ball_picker::FlowCommands::PICKBALL:
         ROS_INFO("Trying to pick the ball.");
-        if (!goal_recieved)
-        {
-          ROS_ERROR("Goal distance not recieved.");
-	  return;
-        }
-
         if (!angle_recieved)
         {
           ROS_ERROR("Angle not recieved.");
 	  return;
         }
 
-        if (!goal_coordinates_recieved)
+        if (!goal_recieved)
         {
           ROS_ERROR("Goal coordinates not recieved");
           return;
         }
 
-	//LADICI vypisy - smazat
-        cout << "distance: " << goal.data << endl;
-        cout << "height: " << goal_height << endl;
 
-        if (goal_height <= ARMHEIGHT)
-        {
-          temp = sqrt((ARMHEIGHT-goal_height)*(ARMHEIGHT-goal_height) + goal.data*goal.data);
-          alpha = ((acos((temp*temp + SHOULDER1*SHOULDER1 - SHOULDER2*SHOULDER2)/(2*temp*SHOULDER1))) + (atan(goal.data/(ARMHEIGHT - goal_height)))) - PI/2;
-        }
-        else
-        {
-          temp = sqrt((goal_height-ARMHEIGHT)*(goal_height-ARMHEIGHT) + goal.data*goal.data);
-          alpha = ((acos((temp*temp + SHOULDER1*SHOULDER1 - SHOULDER2*SHOULDER2)/(2*temp*SHOULDER1))) + (atan(goal.data/(goal_height - ARMHEIGHT))));
-        }
+        getAngles(&shoulder_pitch_angle, &elbow_flex_angle);
 
-        beta = acos((SHOULDER1*SHOULDER1 + SHOULDER2*SHOULDER2 - temp*temp)/(2*SHOULDER2*SHOULDER1));
-        wristvalue.data = 0.0;
-
-        //LADICI vypisy - smazat
-        cout << "alpha: " << alpha << endl;
-        cout << "beta: " << beta << endl;
-
-        //if ((alpha > 1.9) || (alpha < 0.0) || (beta > 1.9) || (beta < 1.88) || (alpha != alpha) || (beta != beta))
-        if ((alpha != alpha) || (beta != beta))
+        //check for NAN value
+        if ((shoulder_pitch_angle != shoulder_pitch_angle) || (elbow_flex_angle != elbow_flex_angle))
         {
           ROS_WARN("Invalid position of manipulator. Cannot reach the ball.");
           srv.request.state = false;
           break;
         }
-
-
 
 	//open the gripper
 	gripvalue.data = 0.5;
@@ -249,16 +240,17 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
         ros::Duration(0.2).sleep();
 
         //get the arm to the ball
-        panvalue.data = angle.data;
-        pitchvalue.data = alpha;
-        elbowvalue.data = -beta;
+        panvalue.data = goal_angle;
+        pitchvalue.data = shoulder_pitch_angle;
+        elbowvalue.data = -elbow_flex_angle;
+        wristvalue.data = 0.0;
 
         shoulder_pan_pub.publish(panvalue);
         shoulder_pitch_pub.publish(pitchvalue);
         elbow_flex_pub.publish(elbowvalue);
         wrist_roll_pub.publish(wristvalue);
         ros::spinOnce();
-        ros::Duration(2.0).sleep();
+        ros::Duration(3.0).sleep();
 
         //close the gripper
 	gripvalue.data = 0.035;
@@ -296,37 +288,10 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
           ROS_ERROR("Angle not recieved.");
           return;
         }
+       
+        getAngles(&shoulder_pitch_angle, &elbow_flex_angle);
 
-        if (!goal_coordinates_recieved)
-        {
-          ROS_ERROR("Goal coordinates not recieved");
-          return;
-        }
-
-	//LADICI vypisy - smazat
-        cout << "distance: " << goal.data << endl;
-
-
-        if (goal_height <= ARMHEIGHT)
-        {
-          temp = sqrt((ARMHEIGHT-goal_height)*(ARMHEIGHT-goal_height) + goal.data*goal.data);
-          alpha = ((acos((temp*temp + SHOULDER1*SHOULDER1 - SHOULDER2*SHOULDER2)/(2*temp*SHOULDER1))) + (atan(goal.data/(ARMHEIGHT - goal_height)))) - PI/2;
-        }
-        else
-        {
-          temp = sqrt((goal_height-ARMHEIGHT)*(goal_height-ARMHEIGHT) + goal.data*goal.data);
-          alpha = ((acos((temp*temp + SHOULDER1*SHOULDER1 - SHOULDER2*SHOULDER2)/(2*temp*SHOULDER1))) + (atan(goal.data/(goal_height - ARMHEIGHT))));
-        }
-
-
-        beta = -acos((SHOULDER1*SHOULDER1 + SHOULDER2*SHOULDER2 - temp*temp)/(2*SHOULDER2*SHOULDER1));
-        wristvalue.data = 0.0;
-
-        //LADICI vypisy - smazat
-        cout << "alpha: " << alpha << endl;
-        cout << "beta: " << beta << endl;
-
-        if ((alpha > 1.9) || (alpha < 0.0) || (beta > 1.9) || (beta < 1.88) || (alpha != alpha) || (beta != beta))
+        if ((shoulder_pitch_angle != shoulder_pitch_angle) || (elbow_flex_angle != elbow_flex_angle))
         {
           ROS_WARN("Invalid position of manipulator. Cannot reach the hand.");
           srv.request.state = false;
@@ -334,12 +299,10 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
         }
 
 
-
-
         //get the arm to the ball
-        panvalue.data = angle.data;
-        pitchvalue.data = alpha;
-        elbowvalue.data = -beta;
+        panvalue.data = goal_angle;
+        pitchvalue.data = shoulder_pitch_angle;
+        elbowvalue.data = -elbow_flex_angle;
         wristvalue.data = 0.0;
 
         shoulder_pan_pub.publish(panvalue);
@@ -368,7 +331,10 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
       clear_localmap_client.call(emptysrv);
     }
 
-
+ 
+    //clean and prepare for next use
+    goal_recieved = false;
+    angle_recieved = false;
 
     //call the control service
     if (!control_client.call(srv))
@@ -377,9 +343,60 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
       return;
     }
 
-
-
   }
+}
+
+/**
+ * Counts angles of shoulder_pitch_joint and elbow_flex_joint for picking detected balls.
+ */
+void Manipulator::getAngles(double * pitch, double * elbow)
+{
+  double alpha = atan(goal_height/goal_distance);
+
+  if (goal_height < 0)
+    alpha = -alpha;
+
+  double real_distance = sqrt(goal_height*goal_height + goal_distance*goal_distance);
+  *pitch = acos((real_distance*real_distance + shoulder1*shoulder1 - shoulder2*shoulder2)/(2*real_distance*shoulder1)) + alpha;
+  *elbow = acos((shoulder1*shoulder1 + shoulder2*shoulder2 - real_distance*real_distance)/(2*shoulder2*shoulder1));
+
+  //LADICI VYPIS - smazat
+  cout << "real_distance: " << real_distance << endl;
+  cout << "pitch_angle: " << *pitch << endl;
+  cout << "elbow_angle: " << *elbow << endl;
+}
+
+/**
+ * Function for counting distance between two coordinate frames, used for getting size parameters of arm.
+ */
+bool Manipulator::getLength(const string source, const string dest, double * length)
+{
+
+  tf::StampedTransform robot_transform;
+  tf::TransformListener tfl;
+
+  if (!tfl.waitForTransform(dest, source, ros::Time(0), ros::Duration(1.0)))
+  {
+    ROS_WARN_THROTTLE(1.0, "Manipulator: Transform not available!");
+    return false;
+  }
+
+  try
+  {
+    tfl.lookupTransform(dest, source, ros::Time(0), robot_transform);
+  }
+  catch (tf::TransformException& ex)
+  {
+    ROS_ERROR("TF exception:\n%s", ex.what());
+    return false;
+  }
+
+  *length = sqrt(
+    robot_transform.getOrigin().x()*robot_transform.getOrigin().x() + 
+    robot_transform.getOrigin().y()*robot_transform.getOrigin().y() +
+    robot_transform.getOrigin().z()*robot_transform.getOrigin().z()               );
+
+  return true;
 }
 
 

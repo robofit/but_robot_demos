@@ -15,15 +15,13 @@
 #include <std_msgs/Float64.h>
 #include <geometry_msgs/Pose.h>
 #include <std_srvs/Empty.h>
+#include <tf/transform_listener.h>
 
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 
 #define PI 3.14159
-
-#define SHOULDER1 0.1891
-#define SHOULDER2 0.1877
-#define ARMHEIGHT 0.17
+#define GRIPPERLENGTH 0.15
 
 namespace ball_picker {
 
@@ -38,10 +36,8 @@ namespace ball_picker {
       int32_t constflowid;
       bool goal_recieved;
       bool angle_recieved;
-      bool goal_coordinates_recieved;
 
       ros::NodeHandle nh;
-      ros::Subscriber goal_sub;
       ros::Subscriber angle_sub;
       ros::Subscriber goal_coord_sub;
       ros::Subscriber control_sub;
@@ -50,9 +46,14 @@ namespace ball_picker {
       ros::ServiceClient clear_globalmap_client;
       ros::ServiceClient clear_localmap_client;
 
-      std_msgs::Float64 goal;
-      std_msgs::Float64 angle;
+      double goal_angle;
       double goal_height;
+      double goal_distance;
+
+      double shoulder1;
+      double shoulder2;
+      double armheight;
+      double fixedshoulder;
 
       ros::Publisher right_finger_pub;
       ros::Publisher left_finger_pub;
@@ -62,9 +63,11 @@ namespace ball_picker {
       ros::Publisher wrist_roll_pub;
 
       void controlCallback(const ball_picker::FlowCommands& msg);
-      void goalDistanceCallback(const std_msgs::Float64& msg);
       void angleCallback(const std_msgs::Float64& msg);
       void goalCoordinatesCallback(const geometry_msgs::Pose& msg);
+      
+      void getAngles(double* pitch, double* elbow);
+      bool getLength(const std::string source, const std::string dest, double * length);
    };
 
 }

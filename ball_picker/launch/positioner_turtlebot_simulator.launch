@@ -4,6 +4,7 @@
     <remap from="depth_rect" to="/camera/depth/image_raw" />
     <remap from="cam_info" to="/camera/depth/camera_info" />
     <remap from="goal_coords" to="/goal_coords" />
+    <remap from="goal_angle" to="/goal_angle" />
     <remap from="costmap_custom_obstacles" to="/costmap_custom_obstacles" />
     <remap from="kinect_servo" to="/dynamixel/kinect_controller/command" />
   </node>
