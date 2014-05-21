@@ -20,7 +20,7 @@ using namespace std;
 Mover::Mover(ros::NodeHandle& node): nh(node), action_client("move_base", true)
 {
 
-  constflowid = ball_picker::FlowCommands::MOVETOBALL;
+  constflowid = 0;
   goal_recieved = false;
 
   //define subscription on goal coordinates
@@ -45,22 +45,26 @@ Mover::~Mover() {}
  */
 void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 {
-  ROS_INFO("Goal coordinates received.");
+  if ((constflowid == ball_picker::FlowCommands::SEARCHBALL) || (constflowid == ball_picker::FlowCommands::SEARCHHAND))
+  {
+    ROS_INFO("Goal coordinates received.");
 
-  //fill the goal for the robot
-  goal.target_pose.header.frame_id = "map";
-  goal.target_pose.header.stamp = ros::Time::now();
+    //fill the goal for the robot
+    goal.target_pose.header.frame_id = "base_footprint";
+    goal.target_pose.header.stamp = ros::Time::now();
 
-  goal.target_pose.pose.position.x = msg.position.x;
-  goal.target_pose.pose.position.y = msg.position.y;
-  goal.target_pose.pose.position.z = msg.position.z;
+    goal.target_pose.pose.position.x = msg.position.x;
+    goal.target_pose.pose.position.y = msg.position.y;
+    goal.target_pose.pose.position.z = msg.position.z;
 
-  goal.target_pose.pose.orientation.x = msg.orientation.x;
-  goal.target_pose.pose.orientation.y = msg.orientation.y;
-  goal.target_pose.pose.orientation.z = msg.orientation.z;
-  goal.target_pose.pose.orientation.w = msg.orientation.w;
+    goal.target_pose.pose.orientation.x = msg.orientation.x;
+    goal.target_pose.pose.orientation.y = msg.orientation.y;
+    goal.target_pose.pose.orientation.z = msg.orientation.z;
+    goal.target_pose.pose.orientation.w = msg.orientation.w;
 
-  goal_recieved = true;
+    goal_recieved = true;
+
+  }
 }
 
 
@@ -70,12 +74,11 @@ void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 void Mover::controlCallback(const ball_picker::FlowCommands& msg)
 {
 
+  constflowid = msg.flowid;
+ 
   if ((msg.flowid == ball_picker::FlowCommands::MOVETOBALL) ||
       (msg.flowid == ball_picker::FlowCommands::MOVETOHAND))
   {
-
-    constflowid = msg.flowid;
-
     ROS_INFO("Starting the move process.");
 
     //wait for the action server to come up

@@ -21,18 +21,15 @@
 #include <tf/transform_listener.h>
 #include <geometry_msgs/Pose.h>
 #include <std_msgs/Float64.h>
-
+ 
 #include <ball_picker/DetectObjects.h>
 #include <ball_picker/FlowCommands.h>
 #include <ball_picker/FlowControl.h>
 #include <ball_picker/Detections.h>
 
 #define PI 3.14159265
-#define SPACE 0.35
-#define FALSEANGLE 0.6 
-#define HEIGHT 0.05
-#define PITCH 0.0
-
+#define SPACE 0.45
+#define FALSEANGLE 0.46
 
 namespace ball_picker {
 
@@ -61,8 +58,8 @@ namespace ball_picker {
       ros::WallTimer timer;
       ros::WallTimer limit;
 
-      std::vector<DetCoords> detected_targets;
-      std::vector<DetCoords> detected_obstacles;
+      std::vector<DetCoords> detected_balls;
+      std::vector<DetCoords> detected_hands;
 
       image_transport::ImageTransport it;
       image_transport::Subscriber depth_sub;
@@ -71,25 +68,19 @@ namespace ball_picker {
 
       ros::Subscriber cam_info_sub;
       ros::Subscriber control_sub;
-      ros::Subscriber odom_sub;
-
 
       cv_bridge::CvImagePtr depth_img;
 
       tf::TransformListener tfl;
 
-      geometry_msgs::Point origin;
-      bool odometry_recieved;
-
       ros::Publisher goal_pub;
+      ros::Publisher angle_pub;
       ros::Publisher costmap_pub;
       ros::Publisher kinect_pub;
 
 
       double space;
-      double height;
       double falseangle;
-      double pitch;
       std::string transformframe;
 
       float kinectposition;
@@ -99,7 +90,6 @@ namespace ball_picker {
       void depthImageCallback(const sensor_msgs::ImageConstPtr& msg);
       void camInfoCallback(const sensor_msgs::CameraInfoConstPtr& msg);
       void controlCallback(const ball_picker::FlowCommands& msg);
-      void odometryCallback(const nav_msgs::Odometry& msg);
       
       bool cameraTo3D(int center_x, int center_y, cv::Point3f* point3d);
       geometry_msgs::Point getDistance(double a, double b);

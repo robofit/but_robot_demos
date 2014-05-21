@@ -15,7 +15,7 @@
     <!--
     <param name="base_global_planner" type="string" value="navfn/NavfnROS"/>
     <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
--->
+    -->
     <rosparam file="$(find ball_picker)/param/tb_costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find ball_picker)/param/tb_costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find ball_picker)/param/tb_local_costmap_params.yaml" command="load" />

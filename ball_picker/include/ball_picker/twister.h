@@ -18,7 +18,7 @@
 #include <ball_picker/FlowControl.h>
 
 #define PI 3.1415926
-
+#define ANGLE (PI/4)
 
 namespace ball_picker {
 
@@ -29,6 +29,9 @@ namespace ball_picker {
       ~Twister();
 
     protected:
+
+      ros::WallTimer timer;
+      bool watchdog;
 
       int32_t constflowid;
 
@@ -41,7 +44,7 @@ namespace ball_picker {
       tf::TransformListener tfl;
 
       void controlCallback(const ball_picker::FlowCommands& msg);
-
+      void timerCallback(const ros::WallTimerEvent& event);
    };
 
 }

@@ -19,7 +19,7 @@ using namespace cv;
  */
 Positioner::Positioner(ros::NodeHandle& node): nh(node), it(node)
 {
-  constflowid = ball_picker::FlowCommands::SEARCHBALL;
+  constflowid = 0;
 
   ball_detection_client = nh.serviceClient<DetectObjects>("/ball_detections");
   hand_detection_client = nh.serviceClient<DetectObjects>("/hand_detections");
@@ -31,21 +31,17 @@ Positioner::Positioner(ros::NodeHandle& node): nh(node), it(node)
   depth_sub = it.subscribe("depth_rect", 1, &Positioner::depthImageCallback, this);
   cam_info_sub = nh.subscribe("cam_info", 1, &Positioner::camInfoCallback, this);
   control_sub = nh.subscribe("flow_commands", 1, &Positioner::controlCallback, this);
-  odom_sub = nh.subscribe("odom", 1, &Positioner::odometryCallback, this);
   
+  angle_pub = nh.advertise<std_msgs::Float64>("goal_angle", 1);
   goal_pub = nh.advertise<geometry_msgs::Pose>("goal_coords", 1);
   costmap_pub = nh.advertise<ball_picker::Detections>("costmap_custom_obstacles", 1);
   kinect_pub = nh.advertise<std_msgs::Float64>("kinect_servo",1);
 
   depth_img.reset();
 
-  odometry_recieved = false;
-
   space = SPACE;
-  height = 0.0;
   falseangle = 0.0;
-  pitch = 0.0;
-  transformframe = "/map";
+  transformframe = "/base_footprint";
 
   kinectposition = 0.0;
 
@@ -85,18 +81,21 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
   bool ballfound = false;
   Point3f point3d;
   geometry_msgs::Pose msg_goal;
+  std_msgs::Float64 angle_msg;
   ball_picker::Detections msg_costmap;
   msg_costmap.type = ball_picker::Detections::BALL;
   ball_picker::PointOfInterest obstacle;
+  vector<DetCoords> *detected_targets; 
 
-  if (!detected_obstacles.empty())
+
+  if (((constflowid == ball_picker::FlowCommands::SEARCHBALL) || (constflowid == ball_picker::FlowCommands::SEARCHHAND)) && (!detected_balls.empty()))
   {
-    for (std::vector<DetCoords>::iterator iter = detected_obstacles.begin() ; iter != detected_obstacles.end(); iter++)
+    for (std::vector<DetCoords>::iterator iter = detected_balls.begin() ; iter != detected_balls.end(); iter++)
     {
-      //transformation from camera coordinates to robot coordinates system
+      //transformation from camera coordinates to map coordinates
       geometry_msgs::PoseStamped ps;
       ps.header.frame_id = cam_model.tfFrame();
-      ps.header.stamp = ros::Time::now();
+      ps.header.stamp = ros::Time(0);
 
       ps.pose.position.x = iter->point.x;
       ps.pose.position.y = iter->point.y;
@@ -109,9 +108,9 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
 
       if (!tfl.waitForTransform("/map", ps.header.frame_id, ps.header.stamp, ros::Duration(1.0)))
       {
-        ROS_WARN_THROTTLE(1.0,"Transform not available!");
-        detected_targets.clear();
-	detected_obstacles.clear();
+        ROS_WARN_THROTTLE(1.0,"Transform from camera to map not available!");
+        detected_balls.clear();
+	detected_hands.clear();
         timer.start();
         limit.start();
         return;
@@ -136,14 +135,17 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     }
   }
 
+  if ((constflowid == ball_picker::FlowCommands::SEARCHBALL) || (constflowid == ball_picker::FlowCommands::CHECKBALL))
+    detected_targets = &detected_balls;
+  else
+    detected_targets = &detected_hands;
 
 
-
-  if (!detected_targets.empty())
+  if (!detected_targets->empty())
   {
     point3d.z = FLT_MAX;
 
-    for (std::vector<DetCoords>::iterator iter = detected_targets.begin() ; iter != detected_targets.end(); iter++)
+    for (std::vector<DetCoords>::iterator iter = detected_targets->begin() ; iter != detected_targets->end(); iter++)
     {
       //LADICI vypisy - pozdeji smazat
       cout << "-------------" << endl;
@@ -153,11 +155,10 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       cout << iter->count << endl;
 
 
-
-      //transformation from camera coordinates to robot coordinates system
+      //transformation from camera coordinates to base_footprint or arm_shoulder_pan_link
       geometry_msgs::PoseStamped ps;
       ps.header.frame_id = cam_model.tfFrame();
-      ps.header.stamp = ros::Time::now();
+      ps.header.stamp = ros::Time(0);
 
       ps.pose.position.x = iter->point.x;
       ps.pose.position.y = iter->point.y;
@@ -168,11 +169,11 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       ps.pose.orientation.z = 0.0;
       ps.pose.orientation.w = 1.0;
 
-      if (!tfl.waitForTransform(transformframe, ps.header.frame_id, ps.header.stamp, ros::Duration(0.5)))
+      if (!tfl.waitForTransform(transformframe, ps.header.frame_id, ps.header.stamp, ros::Duration(1.0)))
       {
-        ROS_WARN_THROTTLE(1.0,"Transform not available!");
-        detected_targets.clear();
-	detected_obstacles.clear();
+        ROS_WARN_THROTTLE(1.0,"Transform from camera to transformframe not available!");
+        detected_balls.clear();
+	detected_hands.clear();
         timer.start();
         limit.start();
         return;
@@ -186,13 +187,6 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       {
         ROS_ERROR("TF exception:\n%s", ex.what());
         return;
-      }
- 
-      if ((iter->count > 1) && (constflowid == ball_picker::FlowCommands::SEARCHBALL))
-      {
-        obstacle.x = ps.pose.position.x;
-        obstacle.y = ps.pose.position.y;
-        msg_costmap.objectcenters.push_back(obstacle);
       }
 
       if ((iter->point.z < point3d.z) && (iter->count >= 5))
@@ -211,7 +205,6 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
         ballfound = true;
       }
     }
-
   }
 
   //if any valid detections found, start with transform
@@ -219,7 +212,7 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
   {
     //LADICI vypis - pozdeji smazat
     cout << "the nearest ball is on the position --> x: " << msg_goal.position.x << ", y: " << msg_goal.position.y << ", z: " << msg_goal.position.z << endl; 
-
+    ROS_INFO("The nearest object found on the position x: %f, y: %f, z: %f. ", msg_goal.position.x, msg_goal.position.y, msg_goal.position.z);
 
 
     int modif_x = 1;
@@ -227,18 +220,15 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     double base_angle = 0;
     double angle = 0;
 
-    while (!odometry_recieved)
-      ;
-
-    if (msg_goal.position.x >= origin.x)
+    if (msg_goal.position.x >= 0)
     {
-      //II. quadrant
-      if (msg_goal.position.y >= origin.y)
+      //I. quadrant
+      if (msg_goal.position.y >= 0)
       {
         modif_x = 1;
         modif_y = 1;
       }
-      //I. quadrant
+      //IV. quadrant
       else
       {
         modif_x = 1;
@@ -249,13 +239,13 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
     }
     else
     {
-      //IV. quadrant
-      if (msg_goal.position.y <= origin.y)
+      //III. quadrant
+      if (msg_goal.position.y <= 0)
       {
         modif_x = -1;
         modif_y = -1;
       }
-      //III. quadrant
+      //II. quadrant
       else
       {
         modif_x = -1;
@@ -265,26 +255,33 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
       base_angle = PI;
     }
 
-    geometry_msgs::Point diff = getDistance(fabs((modif_x)*(msg_goal.position.x-origin.x)), fabs((modif_y)*(msg_goal.position.y-origin.y)));
-    msg_goal.position.x = origin.x + ((modif_x)*diff.x);
-    msg_goal.position.y = origin.y + ((modif_y)*diff.y);
-    
-    if (fabs(msg_goal.position.x-origin.x) < 0.00001)
+    geometry_msgs::Point diff = getDistance(fabs(msg_goal.position.x), fabs(msg_goal.position.y));
+   
+    if (diff.x < 0.00001)
       angle = PI;
     else
-      angle = atan(fabs((modif_y)*(msg_goal.position.y-origin.y))/fabs((modif_x)*(msg_goal.position.x-origin.x)));    
+      angle = atan(diff.y/diff.x);    
+
+    msg_goal.position.x = (modif_x)*diff.x;
+    msg_goal.position.y = (modif_y)*diff.y;
+
+    angle_msg.data = (modif_x)*(modif_y)*(angle - base_angle);
+
+    angle_msg.data = angle_msg.data - falseangle;
+
+    if (angle_msg.data > PI)
+      angle_msg.data = angle_msg.data - 2*PI;
+    else if (angle_msg.data < -PI)
+      angle_msg.data = angle_msg.data + 2*PI;
+
+    cout << "pan angle: " << angle_msg.data << endl;
+
+    angle_pub.publish(angle_msg);
 
 
-    angle = (modif_x)*(modif_y)*(angle - base_angle);
-
-
-    angle = angle - falseangle;
-
-     tf::Quaternion q;
-     q.setRPY(0.0, pitch, angle);
-     tf::quaternionTFToMsg(q, msg_goal.orientation);
-
-    //msg_goal.position.z = msg_goal.position.z + height;
+    tf::Quaternion q;
+    q.setRPY(0.0, 0.0, angle);
+    tf::quaternionTFToMsg(q, msg_goal.orientation);
 
     //advertise the result on goal_coords topic
     goal_pub.publish(msg_goal);
@@ -292,10 +289,10 @@ void Positioner::limitCallback(const ros::WallTimerEvent& event)
  
     //send positive state into control service
     srv.request.state = true;
+
   }
   else
   {
-
     ROS_INFO("No object found.");
     //send negative state into control service
     srv.request.state = false;
@@ -356,6 +353,7 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
   srv.request.all = true;
 
 
+  //we need to detect balls
   if (constflowid != ball_picker::FlowCommands::CHECKHAND)
   {
     //call the service for detection
@@ -367,7 +365,7 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
     dets.push_back(srv.response.detections);
   }
 
-
+  //we need to detect hands
   if ((constflowid == ball_picker::FlowCommands::SEARCHHAND) ||
       (constflowid == ball_picker::FlowCommands::CHECKHAND))
   {
@@ -381,7 +379,7 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
   }
 
 
-
+  //nothing to do if depth image is not awailable
   if (depth_img == NULL)
   {
     ROS_WARN_THROTTLE(1.0,"Depth not available");
@@ -389,17 +387,18 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
   }
  
   vector<DetCoords> *storage_ptr; 
-  
+
+  //process all the detections  
   for (std::vector<ball_picker::Detections>::iterator detsit = dets.begin(); detsit != dets.end(); detsit++)
   {
 
-    if ((constflowid == ball_picker::FlowCommands::SEARCHHAND) && (detsit->type == ball_picker::Detections::BALL))
-      storage_ptr = &detected_obstacles;
+    if(detsit->type == ball_picker::Detections::BALL)
+      storage_ptr = &detected_balls;
     else
-      storage_ptr = &detected_targets;
+      storage_ptr = &detected_hands;
 
 
-    //process all the detections and find the nearest one
+    //process all the detections: add new one, modify the similar
     for(unsigned int i=0; i < detsit->objectcenters.size(); i++)
     {
       DetCoords dcoords;
@@ -407,7 +406,6 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
       if (cameraTo3D(detsit->objectcenters[i].x, detsit->objectcenters[i].y, &(dcoords.point)))
       {
         bool modified = false;
-
 
         for (std::vector<DetCoords>::iterator iter = storage_ptr->begin() ; iter != storage_ptr->end(); iter++)
         {
@@ -432,7 +430,6 @@ void Positioner::timerCallback(const ros::WallTimerEvent& event)
         }
       }
     }
-
   }
 }
 
@@ -491,6 +488,7 @@ geometry_msgs::Point Positioner::getDistance(double a, double b)
   return result;
 }
 
+
 /**
  * callback on incoming camera info msg
  */
@@ -541,37 +539,30 @@ void Positioner::controlCallback(const ball_picker::FlowCommands& msg)
     {
       case ball_picker::FlowCommands::SEARCHBALL:
 	space = SPACE;
-	height = 0.0;
 	falseangle = FALSEANGLE;
-	pitch = 0.0;
-	transformframe = "/map";
+	transformframe = "/base_footprint";
         kinect_msg.data = -0.6;
         break;
       case ball_picker::FlowCommands::CHECKBALL:
 	space = 0.0;
-	height = HEIGHT;
 	falseangle = 0.0;
-	pitch = PITCH;
-	transformframe = "/odom";
+	transformframe = "/arm_shoulder_pan_link";
 	kinect_msg.data = -1.0;
         break;
       case ball_picker::FlowCommands::SEARCHHAND:
         space = SPACE;
-	height = 0.0;
 	falseangle = 0.0;
-	pitch = 0.0;
-	transformframe = "/map";
+	transformframe = "/base_footprint";
 	kinect_msg.data = -0.4;
         break;
       case ball_picker::FlowCommands::CHECKHAND:
        	space = 0.0;
-	height = HEIGHT;
 	falseangle = 0.0;
-	pitch = PITCH;
-	transformframe = "/odom";
+	transformframe = "/arm_shoulder_pan_link";
 	kinect_msg.data = -0.6;
         break;
-   }
+     }
+   
 
 
     kinect_pub.publish(kinect_msg);
@@ -584,8 +575,8 @@ void Positioner::controlCallback(const ball_picker::FlowCommands& msg)
 
 
     //reset vector with captured detections
-    detected_targets.clear();
-    detected_obstacles.clear();
+    detected_balls.clear();
+    detected_hands.clear();
   
     ROS_INFO_STREAM("Timers started.");
  
@@ -595,16 +586,6 @@ void Positioner::controlCallback(const ball_picker::FlowCommands& msg)
   }
 
 }
-
-void Positioner::odometryCallback(const nav_msgs::Odometry& msg)
-{
-  origin.x = msg.pose.pose.position.x;
-  origin.y = msg.pose.pose.position.y;
-  origin.z = msg.pose.pose.position.z;
-
-  odometry_recieved = true;
-}
-
 
 int main(int argc, char **argv)
 {

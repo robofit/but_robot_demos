@@ -1,5 +1,7 @@
 TrajectoryPlannerROS:
 
+  recovery_behavior_enabled: false
+  clearing_rotation_allowed: false
 # Robot Configuration Parameters
   max_vel_x: 0.3
   min_vel_x: 0.1

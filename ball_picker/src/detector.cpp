@@ -109,18 +109,6 @@ bool Detector::detectHands(ball_picker::DetectObjects::Request &req, ball_picker
 
   IplImage img = rgb_img->image;
 
-  //get the size of the image frame
-  Size size = cvGetSize(&img);
-
-  //transform into gray shades
-  IplImage *gray = cvCreateImage(size, IPL_DEPTH_8U, 1);
-  cvCvtColor(&img, gray, CV_BGR2GRAY);
-
-  IplImage *edge = cvCreateImage(size, IPL_DEPTH_8U, 1);
-  cvThreshold(gray, gray, 100, 255, CV_THRESH_BINARY);
-  cvSmooth(gray, gray, CV_GAUSSIAN, 11, 11);
-  cvCanny(gray, edge, 1.0, 3.0, 5);
-
   CvMemStorage * storage = cvCreateMemStorage(0);
   CvSeq * hands = cvHaarDetectObjects(&img, hand_cascade, storage, 1.2, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(100, 100));
 
