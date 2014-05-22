@@ -1,3 +1,11 @@
+/**
+ * Author: Dagmar Prokopova
+ * File: ball_picker_layer.h
+ * Description: Header file for ball_picker_layer
+ * Bachelor's thesis, 2013/2014
+ */
+
+
 #ifndef BALL_PICKER_LAYER_H_
 #define BALL_PICKER_LAYER_H_
 #include <ros/ros.h>
@@ -45,6 +53,7 @@ namespace costmap_2d
       bool clear_flag;
       ros::Subscriber obstacles_sub;
       ros::ServiceServer clear_srv;
+      ros::ServiceClient confirm_update_client;
 
       void obstaclesIncomeCallback(const ball_picker::Detections& obstacles);
       bool clearObstacles(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);

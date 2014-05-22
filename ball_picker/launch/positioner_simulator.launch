@@ -10,5 +10,6 @@
     <!--
          <remap from="kinect_servo" to="/dynamixel/kinect_controller/command" />
     -->
+    <remap from="confirm_updated_costmap" to="/confirm_updated_costmap" />
   </node>
 </launch>

@@ -1,3 +1,11 @@
+/**
+ * Author: Dagmar Prokopova
+ * File: ball_picker_layer.cpp
+ * Description: Costmap layer filled with ball detections
+ * Bachelor's thesis, 2013/2014
+ *
+ */
+
 #include<ball_picker/ball_picker_layer.h>
 #include <pluginlib/class_list_macros.h>
 
@@ -26,6 +34,7 @@ namespace costmap_2d
     global_frame_ = tf::resolve(tf_prefix, global_frame_);
     robot_base_frame_ = tf::resolve(tf_prefix, robot_base_frame_);
 
+    confirm_update_client = nh.serviceClient<std_srvs::Empty>("/confirm_updated_costmap");    
 
     while (!tfl.waitForTransform(global_frame_, robot_base_frame_, ros::Time::now(), ros::Duration(1.0)))
     {
@@ -100,7 +109,6 @@ namespace costmap_2d
 
     }
 
-    obstacle_buffer.clear();
   }
 
   void BallPickerLayer::updateCosts(costmap_2d::Costmap2D& master_grid, int min_i, int min_j, int max_i, int max_j)
@@ -136,6 +144,14 @@ namespace costmap_2d
 
      for (int i=0; i < getSizeInCellsX()*getSizeInCellsY(); i++)
        costmap_[i] == NO_INFORMATION;
+
+     if (!obstacle_buffer.empty())
+     {
+       ROS_INFO("Costmap updated with ball obstacles.");
+       obstacle_buffer.clear();
+       std_srvs::Empty emptysrv;
+       confirm_update_client.call(emptysrv);
+     }
 
   }
 

@@ -19,7 +19,7 @@ using namespace std;
  */
 Controller::Controller(ros::NodeHandle& node): nh(node), state(ball_picker::FlowCommands::INITPREPARE)
 {
-  //advertise service for checking the state
+  //advertise service for confirmation of operation
   service_server = nh.advertiseService("flow_control", &Controller::controlflow, this);
 
   //establish publisher for control topic
@@ -28,19 +28,19 @@ Controller::Controller(ros::NodeHandle& node): nh(node), state(ball_picker::Flow
   ROS_INFO_STREAM("Controller initialized.");
 
 
-  ROS_INFO_STREAM("Starting the loop.");
-
-  //publish the initial state into control topic
+  //set the initial state
   ball_picker::FlowCommands msg;
   msg.flowid = state;
 
+  //wait for all nodes to be subscribed to control topic
   while(control_pub.getNumSubscribers() < SUBSCRIBERS)
-    ROS_INFO_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
+    ROS_WARN_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
 
+  ROS_INFO_STREAM("Starting the loop...");
+
+  //start the loop by publishing the first command
   control_pub.publish(msg);
   ros::spinOnce();
-
-
 
 }
 
@@ -52,7 +52,7 @@ Controller::~Controller() {}
 
 
 /**
- * service which keeps, check and sets the state of the controller
+ * service which checks the result and sets the new state for the controller
  */
 bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker::FlowControl::Response &res)
 {
@@ -61,13 +61,14 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
   //check if the goal was completed and set new state
   if (req.flowcmd.flowid != ball_picker::FlowCommands::QUERY)
   {
-
+    //if we have obtained different state than was expected
     if (req.flowcmd.flowid != state)
     {
-      ROS_ERROR("Invalid state.");
+      ROS_ERROR("Controller: Invalid state.");
       return false;
     }
 
+    //the main control loop of the application
     switch(state)
     {
       case ball_picker::FlowCommands::INITPREPARE:
@@ -93,7 +94,7 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
         if (req.state)
           state = ball_picker::FlowCommands::CHECKBALL;
         else
-          state = ball_picker::FlowCommands::MOVETOBALL;
+          state = ball_picker::FlowCommands::SEARCHBALL;
         break;
       case ball_picker::FlowCommands::CHECKBALL:
 	if (req.state)
@@ -125,7 +126,7 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
         if (req.state)
           state = ball_picker::FlowCommands::CHECKHAND;
         else
-          state = ball_picker::FlowCommands::MOVETOHAND;
+          state = ball_picker::FlowCommands::SEARCHHAND;
         break;
       case ball_picker::FlowCommands::CHECKHAND:
 	if (req.state)
@@ -147,13 +148,15 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
 	break;
     }
  
-    //publish the changed state into control topic
+    //set the new state
     ball_picker::FlowCommands msg;
     msg.flowid = state;
 
+    //wait for all nodes to be subscribed
     while(control_pub.getNumSubscribers() < SUBSCRIBERS)
-      ROS_INFO_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
+      ROS_WARN_THROTTLE(1.0,"Controller: Waiting for all nodes to be subscribed.");
 
+    //send the message to the control topic
     control_pub.publish(msg);
     ros::spinOnce();
   }
@@ -161,7 +164,7 @@ bool Controller::controlflow(ball_picker::FlowControl::Request &req, ball_picker
   //fill the response with new state
   res.flowcmd.flowid = state;
 
-  ROS_INFO_STREAM_ONCE("Response of controll service set.");
+  ROS_INFO("Controller: Response of controll service set.");
   return true;
 }
 

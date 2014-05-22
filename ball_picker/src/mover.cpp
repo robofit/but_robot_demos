@@ -1,7 +1,7 @@
 /**
  * Author: Dagmar Prokopova
  * File: mover.cpp
- * Description: Gives command for moving
+ * Description: Gives command for moving to the detected object
  * Bachelor's thesis, 2013/2014
  *
  */
@@ -26,8 +26,10 @@ Mover::Mover(ros::NodeHandle& node): nh(node), action_client("move_base", true)
   //define subscription on goal coordinates
   goal_sub = nh.subscribe("goal_coords", 1, &Mover::goalCoordinatesCallback, this);
 
+  //define subscription on flow command
   control_sub = nh.subscribe("flow_commands", 1, &Mover::controlCallback, this);
 
+  //prepare control client
   control_client = nh.serviceClient<FlowControl>("/flow_control");
 
   ROS_INFO_STREAM("Mover initialized.");
@@ -47,11 +49,11 @@ void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
 {
   if ((constflowid == ball_picker::FlowCommands::SEARCHBALL) || (constflowid == ball_picker::FlowCommands::SEARCHHAND))
   {
-    ROS_INFO("Goal coordinates received.");
+    ROS_INFO("Mover: Goal coordinates received.");
 
     //fill the goal for the robot
     goal.target_pose.header.frame_id = "base_footprint";
-    goal.target_pose.header.stamp = ros::Time::now();
+    goal.target_pose.header.stamp = ros::Time(0);
 
     goal.target_pose.pose.position.x = msg.position.x;
     goal.target_pose.pose.position.y = msg.position.y;
@@ -61,7 +63,7 @@ void Mover::goalCoordinatesCallback(const geometry_msgs::Pose& msg)
     goal.target_pose.pose.orientation.y = msg.orientation.y;
     goal.target_pose.pose.orientation.z = msg.orientation.z;
     goal.target_pose.pose.orientation.w = msg.orientation.w;
-
+    
     goal_recieved = true;
 
   }
@@ -79,55 +81,58 @@ void Mover::controlCallback(const ball_picker::FlowCommands& msg)
   if ((msg.flowid == ball_picker::FlowCommands::MOVETOBALL) ||
       (msg.flowid == ball_picker::FlowCommands::MOVETOHAND))
   {
-    ROS_INFO("Starting the move process.");
+    ROS_INFO("Mover: Starting the move process.");
 
     //wait for the action server to come up
     if(!action_client.waitForServer(ros::Duration(5.0)))
-    {
-      ROS_WARN_THROTTLE(1.0, "Move base server not available!");
+    { 
+      ROS_WARN_THROTTLE(1.0, "Mover: Move base server not available!");
       return;
     }
 
-
+    //wait for controller to be ready
     if (!control_client.waitForExistence(ros::Duration(0.5)))
     {
-      ROS_WARN_THROTTLE(1.0, "Control service not available.");
+      ROS_WARN_THROTTLE(1.0, "Mover: Control service not available.");
       return;
     }
 
+    // no goal recieved, something went wrong
     if (!goal_recieved)
     {
-      ROS_ERROR("Goal coordinates not recieved.");
+      ROS_ERROR("Mover: Goal coordinates not recieved.");
       return;
     }
 
-    //send the goal to the robot
-    ROS_INFO("Sending goal");
+    //send the goal to the robot and give it time
+    ROS_INFO("Mover: Sending goal");
     action_client.sendGoal(goal);
-    action_client.waitForResult(ros::Duration(30.0));
+    action_client.waitForResult(ros::Duration(300.0));
 
     FlowControl srv;
     srv.request.flowcmd.flowid = constflowid;
 
+    //report the result
     if(action_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {
-      ROS_INFO("The base moved to the target.");
+      ROS_INFO("Mover: The base moved to the target.");
       srv.request.state = true;
-      goal_recieved = false;
     }
     else
     {
-      ROS_INFO("The base failed to move to the target.");
+      ROS_INFO("Mover: The base failed to move to the target.");
       srv.request.state = false;
 
       //cancel all goals
       action_client.cancelAllGoals();
     }
 
+    goal_recieved = false;
+
     //call the control service
     if (!control_client.call(srv))
     {
-      ROS_ERROR("Error on calling control service!");
+      ROS_ERROR("Mover: Error on calling control service!");
       return;
     }
 

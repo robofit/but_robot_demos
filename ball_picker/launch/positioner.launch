@@ -7,5 +7,6 @@
     <remap from="angle" to="/goal_angle" />
     <remap from="costmap_custom_obstacles" to="/costmap_custom_obstacles" />
     <remap from="kinect_servo" to="/kinect_servo_repeater" />
+    <remap from="confirm_updated_costmap" to="/confirm_updated_costmap" />
   </node>
 </launch>

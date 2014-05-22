@@ -1,7 +1,7 @@
 /**
  * Author: Dagmar Prokopova
  * File: detector.cpp
- * Description: Detection of tennis balls
+ * Description: Detection of tennis balls and human hands
  * Bachelor's thesis, 2013/2014
  *
  */
@@ -15,10 +15,15 @@ using namespace cv;
 
 /**
  * constructor of detector
- * establishes subscription and service for detections
+ * establishes subscription and services for detections
  */
 Detector::Detector(ros::NodeHandle& node): nh(node), it(node)
 {
+
+  image_recieved_flag = false;
+  ball_detection_ready_flag = false;
+  hand_detection_ready_flag = false;
+
   //define subscription on rgb frames from kinect
   rgb_sub = it.subscribe("kinect_data", 10, &Detector::rgbImageCallback, this);
 
@@ -26,6 +31,7 @@ Detector::Detector(ros::NodeHandle& node): nh(node), it(node)
   detect_ball_srv = nh.advertiseService("detect_balls", &Detector::detectBalls, this);
   detect_hand_srv = nh.advertiseService("detect_hands", &Detector::detectHands, this);
 
+  //load the hand cascade classifier from parameter server
   ros::NodeHandle n_private("~");
   string handclassifier;
 
@@ -35,14 +41,10 @@ Detector::Detector(ros::NodeHandle& node): nh(node), it(node)
     hand_cascade = (CvHaarClassifierCascade*)cvLoad(handclassifier.c_str(), 0, 0, 0);
 
     if (hand_cascade == NULL)
-      ROS_ERROR("Cannot load haar clasifier for hand detection.");
+      ROS_ERROR("Detector: Cannot load haar clasifier for hand detection.");
   }
   else
-    ROS_ERROR("Cannot get the param value of classifier xml file location.");
-
-  image_recieved_flag = false;
-  ball_detection_ready_flag = false;
-  hand_detection_ready_flag = false;
+    ROS_ERROR("Detector: Cannot get the param value of classifier xml file location.");
 
   ROS_INFO_STREAM("Detector initialized.");
 }
@@ -60,7 +62,7 @@ Detector::~Detector() {}
  */
 void Detector::rgbImageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
-  ROS_INFO_ONCE("RGB image from kinect received.");
+  ROS_INFO_ONCE("Detector: First RGB image from kinect received.");
 
   try
   {
@@ -73,7 +75,6 @@ void Detector::rgbImageCallback(const sensor_msgs::ImageConstPtr& msg)
   }
 
   image_recieved_flag = true;
-
 
 
   //visualize the input and the detection
@@ -92,7 +93,7 @@ void Detector::rgbImageCallback(const sensor_msgs::ImageConstPtr& msg)
     cvRectangle(imgptr, cvPoint(rect->x, rect->y), cvPoint(rect->x + rect->width, rect->y + rect->height), CV_RGB(0,0,255), 3, 8, 0);
   }
 
-  cvShowImage("Original rgb image from kinect", imgptr);
+  cvShowImage("Original image with captured detections", imgptr);
   waitKey(10);
 
 }
@@ -109,15 +110,16 @@ bool Detector::detectHands(ball_picker::DetectObjects::Request &req, ball_picker
 
   IplImage img = rgb_img->image;
 
+  //detect hands
   CvMemStorage * storage = cvCreateMemStorage(0);
   CvSeq * hands = cvHaarDetectObjects(&img, hand_cascade, storage, 1.2, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(100, 100));
-
 
   //fill the response with type
   res.detections.type = ball_picker::Detections::HAND;
 
   hand_detection_ready_flag = false;
 
+  //fill the response with centers of hands
   for(int i = 0; i < (int)hands->total; i++)
   {
     rect = (CvRect*)cvGetSeqElem(hands, i);

@@ -27,6 +27,8 @@
 #include <ball_picker/FlowControl.h>
 #include <ball_picker/Detections.h>
 
+#include <std_srvs/Empty.h>
+
 #define PI 3.14159265
 #define SPACE 0.45
 #define FALSEANGLE 0.46
@@ -61,6 +63,9 @@ namespace ball_picker {
       std::vector<DetCoords> detected_balls;
       std::vector<DetCoords> detected_hands;
 
+      ros::ServiceServer costmap_updated_srv;
+      unsigned int costmap_updated;
+
       image_transport::ImageTransport it;
       image_transport::Subscriber depth_sub;
       
@@ -90,6 +95,8 @@ namespace ball_picker {
       void depthImageCallback(const sensor_msgs::ImageConstPtr& msg);
       void camInfoCallback(const sensor_msgs::CameraInfoConstPtr& msg);
       void controlCallback(const ball_picker::FlowCommands& msg);
+      bool updatedCostmapCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
+
       
       bool cameraTo3D(int center_x, int center_y, cv::Point3f* point3d);
       geometry_msgs::Point getDistance(double a, double b);
