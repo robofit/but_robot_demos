@@ -238,7 +238,7 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
         //get the arm to the ball
         panvalue.data = goal_angle;
         pitchvalue.data = shoulder_pitch_angle;
-        elbowvalue.data = -elbow_flex_angle;
+        elbowvalue.data = elbow_flex_angle - PI;
         wristvalue.data = 0.0;
 
         shoulder_pan_pub.publish(panvalue);
@@ -301,7 +301,7 @@ void Manipulator::controlCallback(const ball_picker::FlowCommands& msg)
         //get the arm to the hand
         panvalue.data = goal_angle;
         pitchvalue.data = shoulder_pitch_angle;
-        elbowvalue.data = -elbow_flex_angle;
+        elbowvalue.data = elbow_flex_angle - PI;
         wristvalue.data = 0.0;
 
         shoulder_pan_pub.publish(panvalue);
