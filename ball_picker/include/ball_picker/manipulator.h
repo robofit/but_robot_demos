@@ -52,7 +52,6 @@ namespace ball_picker {
 
       double shoulder1;
       double shoulder2;
-      double armheight;
       double fixedshoulder;
 
       ros::Publisher right_finger_pub;
