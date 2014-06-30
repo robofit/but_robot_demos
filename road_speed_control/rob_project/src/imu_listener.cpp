@@ -1,7 +1,7 @@
 #include "ros/ros.h"
 #include "sensor_msgs/Imu.h"
 #include "SpeedControl.h"
-
+using namespace roadcheck;
 int main(int argc, char **argv) {
     printf(" ### Robot road check run. ###\n");
     ros::init(argc, argv, "listener");
