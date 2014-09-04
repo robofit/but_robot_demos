@@ -1,0 +1,12 @@
+{frame_length_angle: 60,
+ frame_length_road: 40,
+ g: 1.0,
+ gth: 0.05,
+ max_speed_road: 0.5,
+ a_speed_road: 0.5,
+ a_speed_ax: 0.5,
+ a_speed_ay: 0.5,
+ max_acc: 2.5,
+ a_acc: 0.5,
+ auto: 0
+}

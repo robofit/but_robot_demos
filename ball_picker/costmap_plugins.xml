@@ -1,0 +1,5 @@
+<library path="lib/libball_picker_layer">
+  <class type="costmap_2d::BallPickerLayer" base_class_type="costmap_2d::Layer">
+    <description>Custom layer that adds detected balls into the costmap.</description>
+  </class>
+</library>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="ball_picker" type="kinect_repeater" name="kinect_repeater" output="screen">
+    <remap from="kinect_command" to="/dynamixel/kinect_controller/command" />
+    <remap from="kinect_value" to="/kinect_servo_repeater" />
+  </node>
+</launch>
