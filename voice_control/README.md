@@ -17,7 +17,7 @@ Klient
 ------
 Klient se preklada antem v korenovem adresari, spousti se pomoci `java -cp lib/sphinx4.jar:bin/bc.jar fit_vut.BC.BC`.
 Je to kvuli tomu, ze ant nevypisuje veci hned, obcas si pocka az ke konci programu (coz je celkem neprakticke).
-Da se nakonfigurovat gramatika (data/gram/digits.gram), je to soubor formatu [JSGF](http://en.wikipedia.org/wiki/JSGF).
+Da se nakonfigurovat gramatika (`data/gram/digits.gram`), je to soubor formatu [JSGF](http://en.wikipedia.org/wiki/JSGF).
 
 Poznamky
 --------
