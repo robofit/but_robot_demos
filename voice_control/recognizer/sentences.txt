@@ -1,0 +1,9 @@
+pee are two turn right
+pee are two rotate left
+pee are two move front
+pee are two move back
+pee are two stop
+pee are two turn left
+pee are two go front
+pee are two go back
+pee are two rotate right
