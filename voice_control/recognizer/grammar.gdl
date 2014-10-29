@@ -1,0 +1,126 @@
+digraph "grammar.gdl" {
+rankdir = LR
+
+	node1 [ label="<sil>", color=green, shape=box ]
+
+	node1 -> node11 [ label=0.0 ]
+	node11 [ label="pee", color=green, shape=box ]
+
+	node11 -> node12 [ label=0.0 ]
+	node12 [ label="are", color=green, shape=box ]
+
+	node12 -> node13 [ label=0.0 ]
+	node13 [ label="two", color=green, shape=box ]
+
+	node13 -> node16 [ label=0.0 ]
+	node16 [ label="", color=grey, shape=circle ]
+
+	node16 -> node22 [ label=0.0 ]
+	node22 [ label="", color=grey, shape=circle ]
+
+	node22 -> node24 [ label=0.0 ]
+	node24 [ label="go", color=green, shape=box ]
+
+	node24 -> node28 [ label=0.0 ]
+	node28 [ label="", color=grey, shape=circle ]
+
+	node28 -> node30 [ label=0.0 ]
+	node30 [ label="front", color=green, shape=box ]
+
+	node30 -> node2 [ label=0.0 ]
+	node2 [ label="<sil>", color=red, shape=box ]
+
+	node30 -> node67 [ label=0.0 ]
+	node67 [ label="<sil>", color=green, shape=box ]
+
+	node67 -> node2 [ label=0.0 ]
+	node67 -> node67 [ label=0.0 ]
+	node28 -> node31 [ label=0.0 ]
+	node31 [ label="back", color=green, shape=box ]
+
+	node31 -> node2 [ label=0.0 ]
+	node31 -> node55 [ label=0.0 ]
+	node55 [ label="<sil>", color=green, shape=box ]
+
+	node55 -> node2 [ label=0.0 ]
+	node55 -> node55 [ label=0.0 ]
+	node24 -> node65 [ label=0.0 ]
+	node65 [ label="<sil>", color=green, shape=box ]
+
+	node65 -> node28 [ label=0.0 ]
+	node65 -> node65 [ label=0.0 ]
+	node22 -> node25 [ label=0.0 ]
+	node25 [ label="move", color=green, shape=box ]
+
+	node25 -> node28 [ label=0.0 ]
+	node25 -> node53 [ label=0.0 ]
+	node53 [ label="<sil>", color=green, shape=box ]
+
+	node53 -> node28 [ label=0.0 ]
+	node53 -> node53 [ label=0.0 ]
+	node16 -> node36 [ label=0.0 ]
+	node36 [ label="", color=grey, shape=circle ]
+
+	node36 -> node38 [ label=0.0 ]
+	node38 [ label="turn", color=green, shape=box ]
+
+	node38 -> node42 [ label=0.0 ]
+	node42 [ label="", color=grey, shape=circle ]
+
+	node42 -> node44 [ label=0.0 ]
+	node44 [ label="left", color=green, shape=box ]
+
+	node44 -> node2 [ label=0.0 ]
+	node44 -> node61 [ label=0.0 ]
+	node61 [ label="<sil>", color=green, shape=box ]
+
+	node61 -> node2 [ label=0.0 ]
+	node61 -> node61 [ label=0.0 ]
+	node42 -> node45 [ label=0.0 ]
+	node45 [ label="right", color=green, shape=box ]
+
+	node45 -> node2 [ label=0.0 ]
+	node45 -> node51 [ label=0.0 ]
+	node51 [ label="<sil>", color=green, shape=box ]
+
+	node51 -> node2 [ label=0.0 ]
+	node51 -> node51 [ label=0.0 ]
+	node38 -> node69 [ label=0.0 ]
+	node69 [ label="<sil>", color=green, shape=box ]
+
+	node69 -> node42 [ label=0.0 ]
+	node69 -> node69 [ label=0.0 ]
+	node36 -> node39 [ label=0.0 ]
+	node39 [ label="rotate", color=green, shape=box ]
+
+	node39 -> node42 [ label=0.0 ]
+	node39 -> node59 [ label=0.0 ]
+	node59 [ label="<sil>", color=green, shape=box ]
+
+	node59 -> node42 [ label=0.0 ]
+	node59 -> node59 [ label=0.0 ]
+	node16 -> node46 [ label=0.0 ]
+	node46 [ label="stop", color=green, shape=box ]
+
+	node46 -> node2 [ label=0.0 ]
+	node46 -> node47 [ label=0.0 ]
+	node47 [ label="<sil>", color=green, shape=box ]
+
+	node47 -> node2 [ label=0.0 ]
+	node47 -> node47 [ label=0.0 ]
+	node13 -> node49 [ label=0.0 ]
+	node49 [ label="<sil>", color=green, shape=box ]
+
+	node49 -> node16 [ label=0.0 ]
+	node49 -> node49 [ label=0.0 ]
+	node12 -> node63 [ label=0.0 ]
+	node63 [ label="<sil>", color=green, shape=box ]
+
+	node63 -> node13 [ label=0.0 ]
+	node63 -> node63 [ label=0.0 ]
+	node11 -> node57 [ label=0.0 ]
+	node57 [ label="<sil>", color=green, shape=box ]
+
+	node57 -> node12 [ label=0.0 ]
+	node57 -> node57 [ label=0.0 ]
+}
