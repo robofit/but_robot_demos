@@ -1,0 +1,6 @@
+<launch>
+
+  <include file="$(find capturer)/launch/capturer_records.launch"/>
+  <include file="$(find recognizer)/launch/recognizer.launch"/>
+
+</launch>

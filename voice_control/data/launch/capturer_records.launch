@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find capturer)/launch/capturer.launch">
+	
+
+	<!-- EDIT THIS LINE, file must be in RAW, mono, little-endian, 16kbps, 32bit depth audio format -->
+    <arg name="recorded_file" value="/some/absolute/path"/>
+
+
+  </include>
+
+</launch>
