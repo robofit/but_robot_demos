@@ -1,7 +1,0 @@
-<launch>
-
-  <node type="capturer" pkg="voice_control" name="capturer" cwd="node" output="screen"/>
-
-  <node type="recognizer" pkg="voice_control" name="recognizer" cwd="node" output="screen"/>
-
-</launch>
