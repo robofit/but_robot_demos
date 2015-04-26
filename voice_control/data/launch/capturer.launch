@@ -1,7 +1,0 @@
-<launch>
-
-	<arg name="recorded_file" default=""/>
-	
-	<node type="capturer" name="capturer" pkg="capturer" output="screen" args="$(arg recorded_file)" />
-
-</launch>

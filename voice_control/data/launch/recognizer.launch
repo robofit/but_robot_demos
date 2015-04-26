@@ -1,9 +1,0 @@
-<launch>
-
-	<!-- EDIT THIS LINE -->
-	<arg name="voice_commands_topic" default="voice_command"/>
-	
-
-	<node type="recognizer" name="recognizer" pkg="recognizer" output="screen" args="$(arg voice_commands_topic)" />
-
-</launch>

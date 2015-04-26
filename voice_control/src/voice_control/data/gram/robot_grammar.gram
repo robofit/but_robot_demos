@@ -1,0 +1,17 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Digits Grammar file
+ */
+
+grammar robot_grammar;
+
+public <robot_gram> = <name> <command>;
+<name> = pee are two;
+<command> = <go> | <turn> | stop;
+
+<go> = go <direction>;      /* move */
+<turn> = rotate <dir_side>; /* turn */
+
+<direction> = front | back | forward | backward;
+<dir_side> = left | right;

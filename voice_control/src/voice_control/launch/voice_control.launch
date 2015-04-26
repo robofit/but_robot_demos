@@ -1,0 +1,30 @@
+<launch>
+
+      <!-- EDIT THESE LINE -->
+      <!-- name of topic to publish recognized commands -->
+      <arg name="voice_commands_topic" default="/voice_commands"/>
+      <!-- name of device, this one is kinect on basestation. Use "default" for default microphone -->
+      <arg name="audio_device" default="plughw:2,0"/>
+      <!-- directory with jsgf files, MUST BE IN FORM: "-jp /absolute/path/to/directory" = use '-jp' at first -->
+      <arg name="jsgf_path" default=""/>
+      <!-- jsgf file name, MUST BE IN FORM: "-jf name" = use '-jf' at first, file MUST have ".gram" extension, fill only name without extension -->
+      <arg name="jsgf_file" default=""/>
+      <!-- key to GoogleSpeech API, MUST BE IN FORM: "-k key", use '-k' at first -->
+      <arg name="g_key" default=""/>
+
+      <arg name="execute" default="false"/>
+      <arg name="google" default="false"/>
+      <arg name="grammar" default="true"/>
+      <arg name="lm" default="false"/>
+
+      <arg unless="$(arg execute)" name="exec" value=""/>
+      <arg     if="$(arg execute)" name="exec" value="--execute"/>
+
+      <arg if="$(arg google)"  name="type" value="--google"/>
+      <arg if="$(arg grammar)" name="type" value="--grammar"/>
+      <arg if="$(arg lm)"      name="type" value="--lm"/>
+
+      <node type="voice_control" name="voice_control" pkg="voice_control" output="screen"
+            args="$(arg type) -n $(arg voice_commands_topic) -d $(audio_device) $(arg exec) $(jsgf_path) $(jsgf_file) $(g_key)" />
+
+</launch>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Sphinx-4 Configuration file
+-->
+<config>
+	<component name="endpointer" type="edu.cmu.sphinx.frontend.FrontEnd">
+		<propertylist name="pipeline">
+			<item>kinect</item>
+			<item>dataBlocker</item>
+			<item>speechClassifier</item>
+			<item>speechMarker</item>
+		</propertylist>
+	</component>
+
+	<component name="microphone"
+		type="edu.cmu.sphinx.frontend.util.Microphone">
+		<property name="closeBetweenUtterances" value="false"/>
+		<property name="bigEndian" value="false"/>
+	</component>
+
+	<component name="kinect" type="edu.vutbr.xhajek31.Kinect"/>
+
+	<component name="dataBlocker" type="edu.cmu.sphinx.frontend.DataBlocker"/>
+
+	<component name="speechClassifier" type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier"/>
+
+	<component name="speechMarker" type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker">
+		<property name="speechLeader" value="200"/>
+		<property name="speechTrailer" value="200"/>
+	</component>
+</config>
