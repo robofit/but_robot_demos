@@ -19,6 +19,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
 
+/**
+ * Trida implementujici voice activity detector, data ziskava z frontendu Sphinx-4
+ */
+
 public class VAD {
 
 	ConfigurationManager cm;
@@ -49,6 +53,11 @@ public class VAD {
 		}
 		return true;
 	}
+
+	/**
+	 * Blokujici metoda vracejici recovy signal
+	 * @return pole bajtu (little-endian) s recovym signalem
+	 */
 
 	public byte[] nextSpeech ()
 	{
@@ -100,8 +109,17 @@ public class VAD {
 		}
 	}
 
+	/**
+	 * Prevede big-endian na little-endian (pro 16bitove vzorky)
+	 * @param data pole k prevedeni
+	 * @return LE vysledek konverze
+	 */
+
 	public byte[] toLittleEndian (byte [] data)
 	{
+		if (data == null) {
+			return null;
+		}
 		for (int i = 0; i < data.length - 1; i += 2) {
 			byte b = data [i];
 			data [i] = data[i+1];

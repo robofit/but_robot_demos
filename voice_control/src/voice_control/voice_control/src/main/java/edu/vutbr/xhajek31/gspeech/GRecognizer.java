@@ -11,7 +11,9 @@ import java.io.InputStreamReader;
 
 import org.json.*;
 
-
+/**
+ * Trida obsluhujici servery GoogleSpeech - nahraje rec na servery a pocka na odpoved, kterou nasledne publishne
+ */
 
 public class GRecognizer {
 
@@ -24,13 +26,25 @@ public class GRecognizer {
             callbackClass = cbC;
       }
 
+      /**
+       * Vstupni metoda, preda rec nove vytvorenemu vlaknu
+       * @param data recovy signal
+       */
+
       public void recognize (byte[] data)
       {
             (new GRecognizerRequest (data)).run ();
       }
 
+      /**
+       * Trida obsluhujici jednotlive pozadavky, spoustena v novych vlaknech
+       */
 
       class GRecognizerRequest implements Runnable {
+
+            /**
+             * Struktura pro predavani vysledku rozpoznavani. Obsahuje rozpoznany text a jeho pravdepodobnost.
+             */
 
             class GResult {
                   String transcript;
@@ -43,6 +57,10 @@ public class GRecognizer {
             {
                   this.data = data;
             }
+
+            /**
+             * Samotne nahrani na server a pockani na odpoved
+             */
 
             public void run ()
             {
@@ -85,6 +103,13 @@ public class GRecognizer {
                         callbackClass.publish (result.transcript, result.confidence);
                   }
             }
+
+            /**
+             * Funkce dostane odpoved z GoogleSpeech ve forme JSON a vytahne z ni rozpoznany text a
+             * jeho pravdepodobnost.
+             * @param json json string s vysledkem rozpoznavani
+             * @return struktura s rozpoznanym textem a jeho pravdepodobnosti
+             */
 
             GResult parseResult (String json)
             {
