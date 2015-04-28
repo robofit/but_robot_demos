@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find voice_control)/launch/voice_control.launch"/>
+	<node type="example_gspeech.py" name="example" pkg="voice_control_examples" output="screen"/>
+</launch>

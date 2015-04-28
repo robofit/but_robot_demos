@@ -1,0 +1,8 @@
+<launch>
+	<include file="$(find voice_control)/launch/voice_control.launch">
+		<arg name="execute" default="true"/>
+		<arg name="google" default="false"/>
+		<arg name="grammar" default="true"/>
+		<arg name="lm" default="false"/>
+	</include>
+</launch>
