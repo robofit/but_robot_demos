@@ -125,7 +125,7 @@ public class RecognizerNode extends AbstractNodeMain {
                         jsgfPath = args[++i];
                   } else if (args[i].equals("-jf")) {
                         if (i+1 >= args.length) {
-                              System.err.println ("Wrong arguments - '-jp' requires name after it");
+                              System.err.println ("Wrong arguments - '-jf' requires name after it");
                               return;
                         }
                         jsgfName = args[++i];
@@ -137,7 +137,7 @@ public class RecognizerNode extends AbstractNodeMain {
                         type = RecognitionType.GRAMMAR;
                   } else if (args[i].equals("--lm")) {
                         type = RecognitionType.LM;
-                  } else {
+                  } else if (!args[i].startsWith("__")){
                         System.err.println ("Unknown argument - '" + args[i] + "'");
                   }
             }

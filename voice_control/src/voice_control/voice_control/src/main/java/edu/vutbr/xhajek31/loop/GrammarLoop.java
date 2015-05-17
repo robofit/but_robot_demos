@@ -47,31 +47,43 @@ public class GrammarLoop extends CancellableLoop {
 	boolean useLM = false;
 	String deviceName;
 
+	/**
+	 * Nacte konfiguraci knihovny Sphinx-4
+	 * @param ros trida slouzici k publikovani rozpoznanych dat
+	 * @param useLM pokud uzivatel zvolil jako gramatiku jazykovy model, bude true, pro JSGF false
+	 * @param deviceName jmeno zarizeni, ze ktereho se bude nahravat (napr. default, hw:0, plughw:0,1)
+	 */
+
 	public GrammarLoop (ROS ros, boolean useLM, String deviceName) {
 		this.ros = ros;
 		this.useLM = useLM;
 		this.deviceName = deviceName;
-	}
-
-	/**
-	 * Metoda spustena pred prvni iteraci. Inicializuje veci knihovny Sphinx-4, spusti nahravani
-	 */
-
-	@Override
-	protected void setup() {
 		String path = RecognizerNode.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		path = path.substring (0, path.lastIndexOf ('/'));
 		config = path + "/../data/config/default_config.xml";
 		cm = new ConfigurationManager(config);
+	}
+
+	/**
+	 * Metoda spustena pred prvni iteraci. Inicializuje veci knihovny Sphinx-4, spusti nahravani.
+	 * Vyhleda Kinect (coby mikrofon) a recognizer (odkud bude prijimat vysledky),
+	 * ktery pak necha inicializovat
+	 */
+
+	@Override
+	protected void setup() {
 		if (useLM) {
-			setProperty(cm, "flatLinguist->grammar", "LMGrammar");
+			setProperty(cm, "decoder->searchManager", "wordPruningSearchManager");
 		}
 		recognizer = (Recognizer) cm.lookup("recognizer");
 		kinect = (Kinect)cm.lookup("kinect");
 		kinect.setDeviceName (deviceName);
 		recognizer.allocate ();
 		try {
-			kinect.startRecording();
+			if (!kinect.startRecording()) {
+ 				RecognizerNode.log.error ("Failed to start recording, check microphone");
+ 				cancel ();
+ 			}
 		} catch (Exception e) {
 			RecognizerNode.log.info ("Failed to start recording, check microphone");
 			cancel ();

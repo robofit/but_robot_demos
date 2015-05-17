@@ -20,6 +20,11 @@ public class GRecognizer {
       private String url = "https://www.google.com/speech-api/v2/recognize?output=json&lang=en-us&key=";
       private ROS callbackClass;
 
+      /**
+       * @param key klic k GoogleSpeech API
+       * @param cbC trida slouzici k publikovani rozpoznanych dat
+       */
+
       public GRecognizer (String key, ROS cbC)
       {
             url += key;
@@ -132,6 +137,8 @@ public class GRecognizer {
                         } else {
                               result.confidence = -1;
                         }
+                  } else {
+                        return null;
                   }
                   return result;
             }

@@ -90,7 +90,7 @@
 
      <component name="lexTreeLinguist" type="edu.cmu.sphinx.linguist.lextree.LexTreeLinguist">
           <property name="acousticModel" value="acousticModel"/>
-          <property name="languageModel" value="simpleNGramModel"/>
+          <property name="languageModel" value="largeTrigramModel"/>
           <property name="dictionary" value="dictionary"/>
           <property name="addFillerWords" value="true"/>
           <property name="generateUnitStates" value="false"/>

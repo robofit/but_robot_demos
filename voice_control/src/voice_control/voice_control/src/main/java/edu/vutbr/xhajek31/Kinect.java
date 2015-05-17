@@ -14,6 +14,7 @@ import java.util.logging.Level;
 /**
  * Trida starajici se o ziskavani dat z Kinectu (zvlada i jine mikrofony).
  * Koncipovana jako blok Sphinx-4 frontendu.
+ * Vetsina je prevzata ze tridy edu.cmu.sphinx.frontend.util.Microphone
  */
 
 public class Kinect extends BaseDataProcessor {
@@ -21,7 +22,7 @@ public class Kinect extends BaseDataProcessor {
 	private boolean signed = true;
 	private int frameSizeInBytes = 2;
 	private int sampleRate = 16000;
-	private AudioFormat finalFormat = new AudioFormat( sampleRate, frameSizeInBytes * 8, 1, signed, false);;
+	private AudioFormat finalFormat = new AudioFormat( sampleRate, frameSizeInBytes * 8, 1, signed, false);
 	private AudioInputStream audioStream;
 	private TargetDataLine audioLine;
 	private BlockingQueue<Data> audioList;
@@ -38,16 +39,14 @@ public class Kinect extends BaseDataProcessor {
 	public Kinect () {
 	}
 
+	/**
+	 * Nastavi jmeno zarizeni, musi byt volano pred zacatkem nahravani (jinak se zmena neprojevi).
+	 * @param name jmeno zarizeni, ze ktereho se bude nahravat (napr. default, hw:0, plughw:0,1)
+	 */
+
 	public void setDeviceName (String name) {
 		this.name = name;
 	}
-
-
-	@Override
-	public void newProperties(PropertySheet ps) throws PropertyException {
-		super.newProperties(ps);
-	}
-
 
 	/**
 	* Constructs a Microphone with the given InputStream.
@@ -58,9 +57,10 @@ public class Kinect extends BaseDataProcessor {
 		audioList = new LinkedBlockingQueue<Data>();
 	}
 
-	private Mixer getSelectedMixer() {
-		return getNamedTargetLine (name);
-	}
+	/**
+	 * Vrati Mixer patrici zdroji se zvolenym {@link #name jmenem}
+	 * @param nm jmeno zarizeni
+	 */
 
 	private Mixer getNamedTargetLine(String nm)
 	{
@@ -71,6 +71,14 @@ public class Kinect extends BaseDataProcessor {
 		}
 		return null;
 	}
+
+	/**
+	 * Overi, jestli danemu mixeru patri dane jmeno.
+	 * Metoda volana postupne pro vsechny systemove mikrofony, dokud se nenalezne ten pozadovany
+	 * @param mixer zadany mixer k overeni
+	 * @param nm hledane jmeno
+	 * @return true, pokud jmeno patri mixeru, jinak false
+	 */
 
 	public static boolean containsName(Mixer mixer, String nm)
 	{
@@ -92,7 +100,7 @@ public class Kinect extends BaseDataProcessor {
 	*/
 	private TargetDataLine getAudioLine()
 	{
-		Mixer mixer = getSelectedMixer();
+		Mixer mixer = getNamedTargetLine (name);
 		if (mixer == null) {
 			return null;
 		}
@@ -115,11 +123,16 @@ public class Kinect extends BaseDataProcessor {
 	private boolean open()
 	{
 		audioLine = getAudioLine ();
-		audioStream = new AudioInputStream (audioLine);
 		if (audioLine == null) {
 			logger.severe("Failed to open kinect device");
+			System.out.println ("Could not find device by given name, choose from:");
+ 			for (Mixer.Info mi : AudioSystem.getMixerInfo()) {
+ 				Mixer mixer = AudioSystem.getMixer(mi);
+ 				System.out.println (mixer.getMixerInfo().getName() + "\t" + mixer.getMixerInfo().getDescription());
+ 			}
 			return false;
 		}
+		audioStream = new AudioInputStream (audioLine);
 		return true;
 	}
 
@@ -149,6 +162,7 @@ public class Kinect extends BaseDataProcessor {
 		recorder = new RecordingThread("Microphone");
 		recorder.start();
 		recording = true;
+		System.out.println("Recording, can start talking...");
 		return true;
 	}
 

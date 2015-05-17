@@ -29,6 +29,12 @@ public class GSpeechLoop extends CancellableLoop {
 	String key;
 	String deviceName;
 
+	/**
+	 * @param ros trida slouzici k publikovani rozpoznanych dat
+	 * @param key klic k GoogleSpeech API
+	 * @param deviceName jmeno zarizeni, ze ktereho se bude nahravat (napr. default, hw:0, plughw:0,1)
+	 */
+
 	public GSpeechLoop (ROS ros, String key, String deviceName) {
 		super ();
 		this.ros = ros;
