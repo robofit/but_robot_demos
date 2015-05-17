@@ -25,6 +25,6 @@
       <arg if="$(arg lm)"      name="type" value="--lm"/>
 
       <node type="voice_control" name="voice_control" pkg="voice_control" output="screen"
-            args="$(arg type) -n $(arg voice_commands_topic) -d $(audio_device) $(arg exec) $(jsgf_path) $(jsgf_file) $(g_key)" />
+            args="$(arg type) -n $(arg voice_commands_topic) -d $(arg audio_device) $(arg exec) $(arg jsgf_path) $(arg jsgf_file) $(arg g_key)" />
 
 </launch>

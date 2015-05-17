@@ -20,7 +20,8 @@ import javax.sound.sampled.AudioSystem;
 import java.io.*;
 
 /**
- * Trida implementujici voice activity detector, data ziskava z frontendu Sphinx-4
+ * Trida implementujici voice activity detector, data ziskava z frontendu Sphinx-4.
+ * Pouziva nastaveni knihovny ze souboru frontend_config.xml.
  */
 
 public class VAD {
@@ -31,6 +32,12 @@ public class VAD {
 	String config;
 	String deviceName;
 
+	/**
+	 * Nacte konfiguraci knihovny Sphinx-4, vyhleda Kinect (coby mikrofon) a frontend (odkud bude nacitat data),
+	 * ktery pak necha inicializovat
+	 * @param deviceName jmeno zarizeni, ze ktereho se bude nahravat (napr. default, hw:0, plughw:0,1)
+	 */
+
 	public VAD (String deviceName)
 	{
 		this.deviceName = deviceName;
@@ -40,14 +47,22 @@ public class VAD {
 		cm = new ConfigurationManager(config);
 		frontend = (FrontEnd) cm.lookup("endpointer");
 		kinect = (Kinect) cm.lookup ("kinect");
-		kinect.setDeviceName (deviceName;);
+		kinect.setDeviceName (deviceName);
 		frontend.initialize();
 	}
+
+	/**
+	 * Metoda spoustici nahravani z mikrofonu,
+	 * musi byt zavolana pred prvnim volanim {@link #nextSpeech() nextSpeech}
+	 */
 
 	public boolean start ()
 	{
 		try {
-			kinect.startRecording ();
+			if (!kinect.startRecording()) {
+ 				RecognizerNode.log.error ("Failed to start recording, check microphone");
+ 				cancel ();
+ 			}
 		} catch (Exception e) {
 			return false;
 		}
@@ -55,7 +70,7 @@ public class VAD {
 	}
 
 	/**
-	 * Blokujici metoda vracejici recovy signal
+	 * Blokujici metoda vracejici recovy signal, ceka na data z knihovny Sphinx-4
 	 * @return pole bajtu (little-endian) s recovym signalem
 	 */
 
@@ -110,7 +125,8 @@ public class VAD {
 	}
 
 	/**
-	 * Prevede big-endian na little-endian (pro 16bitove vzorky)
+	 * Prevede big-endian na little-endian (pro 16bitove vzorky).
+	 * Pouziva algoritmus prohozeni i-teho a i+1-teho prvku.
 	 * @param data pole k prevedeni
 	 * @return LE vysledek konverze
 	 */
